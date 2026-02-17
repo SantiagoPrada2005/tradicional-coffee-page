@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ScrollReveal from './ui/ScrollReveal';
-import { highlightedProducts, exploreProducts } from '../data/products';
+import { highlightedProducts, exploreProducts, type Product } from '../data/products';
+import ProductModal from './ProductModal';
 import { siteConfig } from '../data/site-config';
 
 // Combine all products for the menu
@@ -10,6 +11,13 @@ const allProducts = [...highlightedProducts, ...exploreProducts];
 
 const MenuPage: React.FC = () => {
     const [filter, setFilter] = useState('Todos');
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleProductClick = (product: Product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
 
     const filteredProducts = filter === 'Todos'
         ? allProducts
@@ -115,7 +123,8 @@ const MenuPage: React.FC = () => {
                             <motion.div
                                 key={product.id}
                                 variants={item}
-                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 cursor-pointer"
+                                onClick={() => handleProductClick(product)}
                             >
                                 <div className="aspect-square relative overflow-hidden">
                                     <div
@@ -152,6 +161,12 @@ const MenuPage: React.FC = () => {
                         )}
                     </motion.div>
                 </AnimatePresence>
+
+                <ProductModal
+                    product={selectedProduct}
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                />
             </main>
         </div>
     );

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { highlightedProducts, exploreProducts } from '../data/products';
+import { highlightedProducts, exploreProducts, type Product } from '../data/products';
 import ScrollReveal from './ui/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ProductModal from './ProductModal';
 
 const container = {
     hidden: { opacity: 0 },
@@ -22,10 +23,17 @@ const item = {
 
 const ColdProductCarousel: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<'all' | 'nitro' | 'latte' | 'frappe'>('all');
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleProductClick = (product: Product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
 
     const theme = {
         '--color-primary': '#25f478',
-        '--color-background-dark': '#0f172a',
+        '--color-background-dark': '#121212',
         '--font-display': "'Plus Jakarta Sans'",
         '--font-body': "'Plus Jakarta Sans'",
     } as React.CSSProperties;
@@ -46,7 +54,7 @@ const ColdProductCarousel: React.FC = () => {
     ];
 
     return (
-        <div style={theme} className="bg-background-dark font-display text-white overflow-hidden antialiased min-h-screen relative">
+        <div style={theme} className="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden antialiased min-h-screen relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
@@ -73,8 +81,8 @@ const ColdProductCarousel: React.FC = () => {
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
                                 className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 backdrop-blur-sm hover:scale-105 ${activeCategory === cat.id
-                                    ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(37,244,120,0.4)]'
-                                    : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
+                                        ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(37,244,120,0.4)]'
+                                        : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
                                     }`}
                             >
                                 {cat.label}
@@ -92,7 +100,12 @@ const ColdProductCarousel: React.FC = () => {
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
                     >
                         {filteredHighlighted.map((product) => (
-                            <motion.div variants={item} key={product.id} className="w-full relative group cursor-pointer">
+                            <motion.div
+                                variants={item}
+                                key={product.id}
+                                className="w-full relative group cursor-pointer"
+                                onClick={() => handleProductClick(product)}
+                            >
                                 <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-green/20">
                                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
@@ -152,7 +165,12 @@ const ColdProductCarousel: React.FC = () => {
                         className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
                         {filteredExplore.map((product) => (
-                            <motion.div variants={item} key={product.id} className="flex items-center gap-6 p-4 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+                            <motion.div
+                                variants={item}
+                                key={product.id}
+                                className="flex items-center gap-6 p-4 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-pointer group"
+                                onClick={() => handleProductClick(product)}
+                            >
                                 <div className="h-24 w-24 rounded-2xl bg-cover bg-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
                                 <div className="flex-1">
                                     <h4 className="text-white text-xl font-bold mb-1">{product.name}</h4>
@@ -168,6 +186,12 @@ const ColdProductCarousel: React.FC = () => {
                         ))}
                     </motion.div>
                 </AnimatePresence>
+
+                <ProductModal
+                    product={selectedProduct}
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                />
             </div>
         </div>
     );
