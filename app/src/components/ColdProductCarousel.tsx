@@ -42,9 +42,9 @@ const ColdProductCarousel: React.FC = () => {
         ? highlightedProducts
         : highlightedProducts.filter(p => p.category === activeCategory);
 
-    const filteredExplore = activeCategory === 'all'
+    const filteredExplore = (activeCategory === 'all'
         ? exploreProducts
-        : exploreProducts.filter(p => p.category === activeCategory);
+        : exploreProducts.filter(p => p.category === activeCategory)).slice(0, 6);
 
     const categories: { id: 'all' | 'nitro' | 'latte' | 'frappe'; label: string }[] = [
         { id: 'all', label: 'Todos' },
@@ -81,8 +81,8 @@ const ColdProductCarousel: React.FC = () => {
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
                                 className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 backdrop-blur-sm hover:scale-105 ${activeCategory === cat.id
-                                        ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(37,244,120,0.4)]'
-                                        : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
+                                    ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(37,244,120,0.4)]'
+                                    : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
                                     }`}
                             >
                                 {cat.label}
