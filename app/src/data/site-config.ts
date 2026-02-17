@@ -8,7 +8,7 @@ export const siteConfig = {
     },
     hero: {
         title: "Tradición que se enfría y te vuelve adicto",
-        cta: "PÍDELO FRÍO YA",
+        cta: "Ver Menú",
         tags: ["Cold Brew", "Iced Latte", "Espresso Tonic", "Nitro"]
     },
     contact: {

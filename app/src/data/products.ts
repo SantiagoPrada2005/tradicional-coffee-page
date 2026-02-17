@@ -1,4 +1,3 @@
-
 export interface Product {
     id: number;
     name: string;
@@ -16,97 +15,85 @@ export interface Product {
 export const highlightedProducts: Product[] = [
     {
         id: 1,
-        name: "Frappé de Chocolate",
-        description: "Chocolate intenso con trozos de galleta y nuestra firma Tradicional.",
-        price: "$4.95",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2bYF6dZamBRTJV2hEOXQiqRp6NXZx-1CAe_IHBLoPOCYkxHjCC2F9uzr6T6nXhhN8tx3Dgqk43cW_COdPUoPijftUYLJnu4zPygA3zx2r8Lmp3NcOtjf7j8O85hBhhmEMbah_VlCgh8bZ66U5Q7efYSLoQ0Uu2TAM_-cdp-mrNP1hO6NYExkimlxHJYxXcin-9JBMNZI0W4QtyU6lXZG13QpX3noqD3qhMnnL6FBALlag7wB1mgcN0tBvfvAH-s7XdYjp0hZqul42",
-        alt: "Tradicional Chocolate Frappe with red straw",
-        category: 'frappe',
-        tag: {
-            label: "Más pedido",
-            icon: "local_fire_department"
-        }
-    },
-    {
-        id: 20,
-        name: "Frappé de Oreo",
-        description: "Oreo intenso con trozos de galleta y nuestra firma Tradicional.",
-        price: "$4.95",
+        name: "Frappe de Oreo",
+        description: "Delicioso frappe cremoso con trozos de galleta Oreo.",
+        price: "$10.000",
         image: "/images/frappe-oreo.jpeg",
-        alt: "Tradicional Oreo Frappe with red straw",
+        alt: "Frappe de Oreo",
         category: 'frappe',
-        tag: {
-            label: "Más pedido",
-            icon: "local_fire_department"
-        }
+        tag: { label: "Más pedido", icon: "local_fire_department" }
     },
     {
         id: 2,
-        name: "Caramel Gold",
-        description: "Vainilla cremosa con remolinos de caramelo y popote amarillo.",
-        price: "$5.50",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCcUvkjdzwjlYEQA_ZpKRnnryLZLEVaqkuPDe6PCiCv6A6yacRzMTMZkWxFZn1BUf_4361ei65TN31RRN5la8hRaLL5djrDRTN-kLJ1xZVEDH03TgIScjSyalf0DtLrm2s2-HNVpVB9PJwfirttvXHAWl3gYrfGoQ__Q0MuIvniD7Qz9shNUjplJLZX4Fsvwk9OtzsQPwht4dygGYYsYXt7QUw51rLkwmiRfWqBtkIXE7yXGzwwPx4V962BvoaAkWIHN7Y8Nt5cdG9E",
-        alt: "Tradicional Caramel Frappe with yellow straw",
-        category: 'frappe',
-        tag: {
-            label: "Nuevo"
-        }
+        name: "Cappuccino Especial",
+        description: "Espresso, leche cremada, crema chantilly, canela y concentrado de caramelo.",
+        price: "$7.000",
+        image: "",
+        alt: "Cappuccino Especial con caramelo",
+        category: 'hot',
+        tag: { label: "Especialidad" }
     },
     {
         id: 3,
-        name: "Cookie & Cream",
-        description: "El sabor de siempre, elevado con texturas crujientes reales.",
-        price: "$5.75",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCksKvkjmLaTmpkwSmMuxWaNM2FQdko6uSgSapljqEFkF8Kr2BQ3w9c7w6Ctjtm_hGXwW-KceNHGFEdVZvqQtRuQs3f-ijqI0YtbIIVxHjcvpV2i6OWAPZ5YVg2zGZNFMCzu-XjONRTiQOEQwwpjllJNvDRmoHGhtumc3QHCms8VWDLd65bSfPyXZcjqmVAC_XcoOcAuTaVObSbKTJgYfs2-f2hLcvyYsOpX-NNiO5yLiM_P0ck7rYNobEEVpEkPp9oEowAhVa0yu2p",
-        alt: "Sensory close-up of whipped cream and cookie crumbles",
-        category: 'frappe'
+        name: "Frappuccino",
+        description: "La mezcla perfecta de café y granizado con el toque de la casa.",
+        price: "$13.000",
+        image: "/images/frappe-cafe.jpeg",
+        alt: "Frappuccino de la casa",
+        category: 'frappe',
+        tag: { label: "Premium" }
     }
 ];
 
 export const exploreProducts: Product[] = [
-    {
-        id: 4,
-        name: "Espresso Tonic",
-        description: "Cítrico y refrescante",
-        price: "$3.95",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA_BDQ1wfWEXpJ10Zfx_STtu0jlPnSgpGLZefTfRQ9CXjQ4f2EB3PeoUADEQsN-Axe3IR7PGEcIVikgXnvksnKSTA9exrGOK2T85yrZmxOKLQzBp7DTqFme8YsW4KZAFVpyhPUHRy6nsHDSQdaHiPKz5Pr-a1h3HPCYnVPR2FoOGvVp7rXiWvw6liXtw9aA1ddou5jqD3ockmd8_NaAd5mJInHLOzQJm3F7BAA_v12rtV5c9fmXAA241_-y6KfBST8GBON8BSyBVBJf",
-        alt: "Small espresso shot glass",
-        category: 'nitro'
-    },
-    {
-        id: 5,
-        name: "Botella Cold Brew",
-        description: "Para llevar a casa",
-        price: "$8.50",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuClAn78kJYgAUiw2ETNQOgShQFHZI-xNC-qBF7OA3bLhsEEJmgX_3PEFyKaLGTXSPvG37ZulLE_Dum-MXBekc1dvA_j6ilhOk9N_icW6_Itp5KJkbtux4fvUpouGqXZrIB_N-_VTwInrtsIO0t4nQWv7JMFK8wa3SIvKTdIf6kOZYoONJc8mL6zpZ0X0UYl8-xr35xPqIokwCl3la8FabUwy8zXtqbrazhQpA-L1fLtL29xa52SLPYFel6-VKUhveZy7MDRwi00_gDo",
-        alt: "Cold brew coffee bottle",
-        category: 'nitro'
-    },
-    {
-        id: 6,
-        name: "Iced Latte Vainilla",
-        description: "Suave y balanceado",
-        price: "$4.50",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2bYF6dZamBRTJV2hEOXQiqRp6NXZx-1CAe_IHBLoPOCYkxHjCC2F9uzr6T6nXhhN8tx3Dgqk43cW_COdPUoPijftUYLJnu4zPygA3zx2r8Lmp3NcOtjf7j8O85hBhhmEMbah_VlCgh8bZ66U5Q7efYSLoQ0Uu2TAM_-cdp-mrNP1hO6NYExkimlxHJYxXcin-9JBMNZI0W4QtyU6lXZG13QpX3noqD3qhMnnL6FBALlag7wB1mgcN0tBvfvAH-s7XdYjp0hZqul42",
-        alt: "Iced vanilla latte",
-        category: 'latte'
-    },
-    {
-        id: 7,
-        name: "Capuccino Tradicional",
-        description: "Espuma perfecta y cremosa",
-        price: "$3.75",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA_BDQ1wfWEXpJ10Zfx_STtu0jlPnSgpGLZefTfRQ9CXjQ4f2EB3PeoUADEQsN-Axe3IR7PGEcIVikgXnvksnKSTA9exrGOK2T85yrZmxOKLQzBp7DTqFme8YsW4KZAFVpyhPUHRy6nsHDSQdaHiPKz5Pr-a1h3HPCYnVPR2FoOGvVp7rXiWvw6liXtw9aA1ddou5jqD3ockmd8_NaAd5mJInHLOzQJm3F7BAA_v12rtV5c9fmXAA241_-y6KfBST8GBON8BSyBVBJf",
-        alt: "Hot cappuccino",
-        category: 'hot'
-    },
-    {
-        id: 8,
-        name: "Cheesecake de Arándanos",
-        description: "Dulce y refrescante",
-        price: "$4.25",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA_BDQ1wfWEXpJ10Zfx_STtu0jlPnSgpGLZefTfRQ9CXjQ4f2EB3PeoUADEQsN-Axe3IR7PGEcIVikgXnvksnKSTA9exrGOK2T85yrZmxOKLQzBp7DTqFme8YsW4KZAFVpyhPUHRy6nsHDSQdaHiPKz5Pr-a1h3HPCYnVPR2FoOGvVp7rXiWvw6liXtw9aA1ddou5jqD3ockmd8_NaAd5mJInHLOzQJm3F7BAA_v12rtV5c9fmXAA241_-y6KfBST8GBON8BSyBVBJf",
-        alt: "Blueberry cheesecake",
-        category: 'dessert'
-    }
+    // CAFÉ CALIENTE 
+    { id: 4, name: "Expreso", description: "Café concentrado e intenso.", price: "$5.000", image: "", alt: "Expreso", category: 'hot' },
+    { id: 5, name: "Café Irlandés", description: "Doble espresso y whisky.", price: "$10.000", image: "", alt: "Café Irlandés", category: 'hot' },
+    { id: 6, name: "Café Moka", description: "Espresso, chocolate, leche cremada y canela.", price: "$9.000", image: "", alt: "Café Moka", category: 'hot' },
+    { id: 7, name: "Americano", description: "Espresso sencillo con agua.", price: "$3.500", image: "", alt: "Café Americano", category: 'hot' },
+    { id: 8, name: "Latte", description: "Espresso y leche cremada.", price: "$5.000", image: "", alt: "Café Latte", category: 'latte' },
+    { id: 9, name: "Latte pequeño", description: "Versión reducida de nuestro Latte clásico.", price: "$4.000", image: "", alt: "Latte pequeño", category: 'latte' },
+    { id: 10, name: "Cappuccino Tradicional", description: "1 espresso sencillo y leche cremada.", price: "$5.000", image: "", alt: "Cappuccino", category: 'hot' },
+    { id: 11, name: "Cappuccino con licor", description: "Expresso, leche cremada y el licor de su preferencia.", price: "$9.000", image: "", alt: "Cappuccino con licor", category: 'hot' },
+    { id: 12, name: "Cappuccino con marshmallow", description: "Expresso, leche cremada, crema chantilly y marshmallow.", price: "$9.000", image: "", alt: "Cappuccino con marshmallow", category: 'hot' },
+
+    // CAFÉS FRÍOS [cite: 70, 71]
+    { id: 13, name: "Americano frío", description: "Expresso doble, agua y hielo.", price: "$5.000", image: "", alt: "Americano frío", category: 'cold' },
+    { id: 14, name: "Late frío", description: "Expresso sencillo, leche y hielo.", price: "$8.000", image: "", alt: "Latte frío", category: 'latte' },
+    { id: 15, name: "Hielato", description: "Leche condensada, espresso y leche espumada.", price: "$8.000", image: "", alt: "Hielato", category: 'cold' },
+
+    // AGUAPANELA, JUGOS Y CHOCOLATE [cite: 73, 75, 89]
+    { id: 16, name: "Aguapanela", description: "Tradicional y refrescante.", price: "$2.000", image: "", alt: "Aguapanela", category: 'hot' },
+    { id: 17, name: "Aguapanela con leche", description: "Aguapanela cremosa.", price: "$3.500", image: "", alt: "Aguapanela con leche", category: 'hot' },
+    { id: 18, name: "Jugo natural en agua", description: "Fruta natural del día.", price: "$6.000", image: "", alt: "Jugo en agua", category: 'cold' },
+    { id: 19, name: "Jugo natural en leche", description: "Fruta natural con leche.", price: "$7.000", image: "", alt: "Jugo en leche", category: 'cold' },
+    { id: 20, name: "Chocolate en agua", description: "Chocolate tradicional.", price: "$3.000", image: "", alt: "Chocolate en agua", category: 'hot' },
+    { id: 21, name: "Chocolate en leche", description: "Chocolate cremoso.", price: "$4.000", image: "", alt: "Chocolate en leche", category: 'hot' },
+    { id: 22, name: "Chocolate marsmello", description: "Chocolate caliente con malvaviscos.", price: "$6.000", image: "/images/chocolate-con-marshmallow.jpeg", alt: "Chocolate con marshmallow", category: 'hot' },
+
+    // COLADAS Y MILO [cite: 85, 92]
+    { id: 23, name: "Colada (Cereza, Vainilla, Milo o Café)", description: "Elige tu sabor favorito.", price: "$6.000", image: "/images/colada.jpeg", alt: "Colada", category: 'hot' },
+    { id: 24, name: "Milo frío", description: "Bebida achocolatada fría.", price: "$8.000", image: "", alt: "Milo frío", category: 'cold' },
+    { id: 25, name: "Milo caliente", description: "Milo reconfortante.", price: "$5.000", image: "", alt: "Milo caliente", category: 'hot' },
+    { id: 26, name: "Milo marsmellos", description: "Milo con malvaviscos.", price: "$7.000", image: "", alt: "Milo con marshmallow", category: 'hot' },
+
+    // FRAPPES [cite: 100]
+    { id: 27, name: "Frappe de Milo", description: "Granizado de milo.", price: "$10.000", image: "", alt: "Frappe Milo", category: 'frappe' },
+    { id: 28, name: "Frappe de Café", description: "Clásico sabor a café helado.", price: "$10.000", image: "/images/frappe-cafe.jpeg", alt: "Frappe Café", category: 'frappe' },
+    { id: 29, name: "Frappe de Nutella", description: "Para los amantes del chocolate y avellana.", price: "$10.000", image: "/images/frappe-nutella.jpeg", alt: "Frappe Nutella", category: 'frappe' },
+    { id: 30, name: "Frappe de Moka", description: "Mezcla de café y chocolate.", price: "$10.000", image: "", alt: "Frappe Moka", category: 'frappe' },
+    { id: 31, name: "Frappe de Coco Limón", description: "Refrescante y tropical.", price: "$10.000", image: "/images/frappe-coco-limon.jpeg", alt: "Frappe Coco Limón", category: 'frappe' },
+    { id: 32, name: "Frappe de Uva", description: "Sabor frutal intenso.", price: "$10.000", image: "", alt: "Frappe Uva", category: 'frappe' },
+    { id: 33, name: "Frappe Té Chai", description: "Especias y frescura.", price: "$12.000", image: "/images/frappe-te-chai.jpeg", alt: "Frappe Té Chai", category: 'frappe' },
+
+    // LIMONADAS Y BEBIDAS [cite: 102, 104]
+    { id: 34, name: "Limonada de Coco", description: "Cremosa y refrescante.", price: "$9.000", image: "", alt: "Limonada Coco", category: 'cold' },
+    { id: 35, name: "Limonada de Mango Biche", description: "Con el toque ácido del mango.", price: "$10.000", image: "", alt: "Limonada Mango Biche", category: 'cold' },
+    { id: 36, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/limonada-cereza.jpeg", alt: "Limonada Cerezada", category: 'cold' },
+    { id: 37, name: "Tamarindo / Michelada", description: "Jugo de tamarindo solo o michelado.", price: "$4.000 - $6.000", image: "", alt: "Tamarindo", category: 'cold' },
+    { id: 38, name: "Cervezas (Corona, Club, Águila, Poker)", description: "Variedad de cervezas nacionales e internacionales.", price: "$4.000 - $7.000", image: "", alt: "Cerveza", category: 'cold' },
+
+    // DELICIAS [cite: 90]
+    { id: 39, name: "Torta", description: "Porción de torta del día.", price: "$4.000", image: "", alt: "Torta", category: 'dessert' },
+    { id: 40, name: "Cuaresmeros", description: "Tradición local.", price: "$1.200", image: "", alt: "Cuaresmeros", category: 'dessert' }
 ];
