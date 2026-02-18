@@ -9,7 +9,7 @@ export const siteConfig = {
     hero: {
         title: "Tradición que se enfría y te vuelve adicto",
         cta: "Ver Menú",
-        tags: ["Cold Brew", "Iced Latte", "Espresso Tonic", "Nitro"]
+        tags: ["Frappes", "Iced Latte", "Espresso Tonic", "Coffees"]
     },
     contact: {
         email: "hola@tradicionalcoldhub.com",
