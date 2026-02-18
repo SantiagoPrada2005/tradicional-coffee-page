@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ScrollReveal from './ui/ScrollReveal';
@@ -10,6 +10,14 @@ import { siteConfig } from '../data/site-config';
 const allProducts = [...highlightedProducts, ...exploreProducts];
 
 const MenuPage: React.FC = () => {
+    useEffect(() => {
+        document.title = `Menú | ${siteConfig.brand.name} | Café Frío y Frappes`;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute('content', 'Explora nuestro menú artesanal de café frío, frappes, iced lattes y postres hechos en Colombia.');
+        }
+    }, []);
+
     const [filter, setFilter] = useState('Todos');
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
