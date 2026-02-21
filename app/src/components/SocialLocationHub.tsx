@@ -4,20 +4,11 @@ import { siteConfig, socialCards } from '../data/site-config';
 import ScrollReveal from './ui/ScrollReveal';
 
 const SocialLocationHub: React.FC = () => {
-    const theme = {
-        '--color-primary': '#25f478',
-        '--color-background-dark': '#2a1e16',
-        '--color-surface-dark': '#3d2b20',
-        '--font-display': "'Plus Jakarta Sans'",
-        '--font-body': "'Plus Jakarta Sans'",
-        '--font-footer': "'Open Sans'",
-    } as React.CSSProperties;
-
     return (
-        <div style={theme} className="bg-coffee-dark text-coffee-cream font-sans antialiased overflow-hidden min-h-screen flex flex-col relative">
+        <div className="bg-coffee-dark text-coffee-cream font-sans antialiased overflow-hidden min-h-screen flex flex-col relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-coffee-gold/5 rounded-full blur-[100px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-coffee-gold/5 rounded-full blur-[100px]"></div>
             </div>
 
             <header className="sticky top-0 z-50 w-full glass-panel border-b border-white/5 backdrop-blur-xl bg-black/50">
@@ -80,7 +71,7 @@ const SocialLocationHub: React.FC = () => {
                                     </div>
                                 )}
                                 <div className="absolute inset-0 p-8 flex flex-col justify-end items-start transform transition-transform duration-300 group-hover:-translate-y-2">
-                                    <div className="flex items-center gap-2 mb-4 text-primary bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                                    <div className="flex items-center gap-2 mb-4 text-coffee-gold bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                                         {card.iconPath ? (
                                             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d={card.iconPath}></path></svg>
                                         ) : (
@@ -123,7 +114,7 @@ const SocialLocationHub: React.FC = () => {
                         <p className="font-footer text-gray-400 text-sm tracking-wide max-w-xs mb-6">{siteConfig.brand.description}</p>
                         <div className="flex gap-4">
                             {siteConfig.social.generic.map((social) => (
-                                <a key={social.platform} href={social.url} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-primary transition-colors">
+                                <a key={social.platform} href={social.url} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-coffee-gold transition-colors">
                                     <span className="material-symbols-outlined">{social.icon}</span>
                                 </a>
                             ))}
@@ -134,13 +125,13 @@ const SocialLocationHub: React.FC = () => {
                         <div className="flex flex-col gap-4">
                             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-2">Compañía</h4>
                             {siteConfig.footer.company.map((link) => (
-                                <a key={link.label} className="text-gray-500 hover:text-primary transition-colors text-sm" href={link.href}>{link.label}</a>
+                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm" href={link.href}>{link.label}</a>
                             ))}
                         </div>
                         <div className="flex flex-col gap-4">
                             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-2">Legal</h4>
                             {siteConfig.footer.legal.map((link) => (
-                                <a key={link.label} className="text-gray-500 hover:text-primary transition-colors text-sm" href={link.href}>{link.label}</a>
+                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm" href={link.href}>{link.label}</a>
                             ))}
                         </div>
                     </div>

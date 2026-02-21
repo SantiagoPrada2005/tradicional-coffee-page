@@ -31,13 +31,6 @@ const ColdProductCarousel: React.FC = () => {
         setIsModalOpen(true);
     };
 
-    const theme = {
-        '--color-primary': '#25f478',
-        '--color-background-dark': '#121212',
-        '--font-display': "'Plus Jakarta Sans'",
-        '--font-body': "'Plus Jakarta Sans'",
-    } as React.CSSProperties;
-
     const filteredHighlighted = activeCategory === 'all'
         ? highlightedProducts
         : highlightedProducts.filter(p => p.category === activeCategory);
@@ -54,14 +47,14 @@ const ColdProductCarousel: React.FC = () => {
     ];
 
     return (
-        <div style={theme} className="bg-coffee-cream dark:bg-coffee-dark font-sans text-coffee-dark dark:text-coffee-cream overflow-hidden antialiased min-h-screen relative">
+        <div className="bg-coffee-cream dark:bg-coffee-dark font-sans text-coffee-dark dark:text-coffee-cream overflow-hidden antialiased min-h-screen relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
-                <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
+                <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-coffee-gold/10 rounded-full blur-[80px]"></div>
+                <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-coffee-gold/5 rounded-full blur-[80px]"></div>
             </div>
 
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 md:py-24">
@@ -106,7 +99,7 @@ const ColdProductCarousel: React.FC = () => {
                                 className="w-full relative group cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-green/20">
+                                <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-gold/20">
                                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
                                     {product.tag && (

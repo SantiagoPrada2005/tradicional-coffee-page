@@ -37,13 +37,6 @@ const MenuPage: React.FC = () => {
                     ? allProducts.filter(p => p.category === 'dessert')
                     : allProducts;
 
-    const theme = {
-        '--color-primary': '#25f478',
-        '--color-background-dark': '#121212',
-        '--font-display': "'Plus Jakarta Sans'",
-        '--font-body': "'Plus Jakarta Sans'",
-    } as React.CSSProperties;
-
     const container = {
         hidden: { opacity: 0 },
         show: {
@@ -61,17 +54,17 @@ const MenuPage: React.FC = () => {
     };
 
     return (
-        <div style={theme} className="bg-coffee-dark font-sans text-coffee-cream min-h-screen relative overflow-x-hidden">
+        <div className="bg-coffee-dark font-sans text-coffee-cream min-h-screen relative overflow-x-hidden">
             {/* Background Effects */}
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+                <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-coffee-gold/5 rounded-full blur-[100px]"></div>
                 <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-cyan-400/5 rounded-full blur-[100px]"></div>
             </div>
 
             {/* Navigation (Simple version for Menu Page) */}
             <nav className="relative z-50 w-full flex justify-between items-center px-6 md:px-12 py-6 border-b border-white/10 backdrop-blur-md bg-black/20">
                 <Link to="/" className="flex items-center gap-2 group">
-                    <span className="material-symbols-outlined text-primary transition-transform group-hover:-translate-x-1">arrow_back</span>
+                    <span className="material-symbols-outlined text-coffee-gold transition-transform group-hover:-translate-x-1">arrow_back</span>
                     <span className="font-bold text-lg">Volver</span>
                 </Link>
                 <div className="flex items-center gap-2">

@@ -14,15 +14,8 @@ const ColdHubHero: React.FC = () => {
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-    const theme = {
-        '--color-primary': '#39FF14',
-        '--color-background-dark': '#12230f',
-        '--font-display': "'Space Grotesk'",
-        '--font-body': "'Space Grotesk'",
-    } as React.CSSProperties;
-
     return (
-        <div ref={targetRef} style={theme} className="bg-coffee-dark text-coffee-cream overflow-x-hidden min-h-screen font-sans">
+        <div ref={targetRef} className="bg-coffee-dark text-coffee-cream overflow-x-hidden min-h-screen font-sans">
             <div className="relative min-h-screen w-full flex flex-col items-center justify-between overflow-hidden">
                 <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80 z-10"></div>
@@ -45,7 +38,7 @@ const ColdHubHero: React.FC = () => {
                             <img
                                 src={siteConfig.brand.logo}
                                 alt={siteConfig.brand.name}
-                                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]"
+                                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(214,191,144,0.5)]"
                             />
                         </div>
                         <span className="text-coffee-cream font-bold text-xl md:text-2xl tracking-tight drop-shadow-md font-logo">{siteConfig.brand.shortName}</span>

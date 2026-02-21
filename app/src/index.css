@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #25f478;
+  --color-primary: #d6bf90;
+  /* coffee-gold */
   --color-background-dark: #121212;
-  --color-surface-dark: #3d2b20;
+  --color-surface-dark: #503225;
+  /* coffee-dark */
   --font-display: 'Plus Jakarta Sans';
   --font-body: 'Plus Jakarta Sans';
 
