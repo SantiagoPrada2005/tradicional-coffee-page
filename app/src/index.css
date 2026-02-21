@@ -8,6 +8,10 @@
   --color-surface-dark: #3d2b20;
   --font-display: 'Plus Jakarta Sans';
   --font-body: 'Plus Jakarta Sans';
+
+  --color-coffee-cream: #f6edda;
+  --color-coffee-dark: #503225;
+  --color-coffee-gold: #d6bf90;
 }
 
 body {

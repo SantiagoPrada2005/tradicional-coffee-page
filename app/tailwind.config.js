@@ -14,12 +14,18 @@ export default {
         "glass": "rgba(255, 255, 255, 0.05)",
         "glass-border": "rgba(255, 255, 255, 0.1)",
         "surface-dark": "var(--color-surface-dark)",
+        "coffee-cream": "#f6edda",
+        "coffee-dark": "#503225",
+        "coffee-gold": "#d6bf90",
       },
       fontFamily: {
         "display": ["var(--font-display)", "sans-serif"],
         "body": ["var(--font-body)", "sans-serif"],
         "anton": ["Anton", "sans-serif"],
         "footer": ["Open Sans", "sans-serif"],
+        "logo": ["Prachamati", "sans-serif"],
+        "fatimi": ["Fatimi", "sans-serif"],
+        "sans": ["Open Sans", "sans-serif"],
       },
       borderRadius: {
         "lg": "2rem",

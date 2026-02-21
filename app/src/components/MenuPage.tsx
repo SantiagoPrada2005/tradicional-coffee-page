@@ -61,7 +61,7 @@ const MenuPage: React.FC = () => {
     };
 
     return (
-        <div style={theme} className="bg-background-dark font-display text-white min-h-screen relative overflow-x-hidden">
+        <div style={theme} className="bg-coffee-dark font-sans text-coffee-cream min-h-screen relative overflow-x-hidden">
             {/* Background Effects */}
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
@@ -92,7 +92,7 @@ const MenuPage: React.FC = () => {
                     <ScrollReveal animation="fade-down">
                         <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Nuestro</span> <br className="md:hidden" />
-                            <span className="text-primary drop-shadow-[0_0_15px_rgba(37,244,120,0.5)]">Menú</span>
+                            <span className="text-coffee-gold drop-shadow-[0_0_15px_rgba(214,191,144,0.5)]">Menú</span>
                         </h1>
                         <p className="text-white/60 text-lg max-w-2xl mx-auto">
                             Descubre nuestra selección artesanal de bebidas frías y calientes, preparadas con pasión y los mejores ingredientes.
@@ -108,8 +108,8 @@ const MenuPage: React.FC = () => {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${filter === cat
-                                    ? 'bg-primary text-black shadow-[0_0_15px_rgba(37,244,120,0.4)] scale-105'
-                                    : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                                    ? 'bg-coffee-gold text-coffee-dark shadow-[0_0_15px_rgba(214,191,144,0.4)] scale-105'
+                                    : 'bg-white/5 text-coffee-cream/70 hover:bg-white/10 hover:text-coffee-cream'
                                     }`}
                             >
                                 {cat}
@@ -131,7 +131,7 @@ const MenuPage: React.FC = () => {
                             <motion.div
                                 key={product.id}
                                 variants={item}
-                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 cursor-pointer"
+                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-coffee-gold/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-coffee-gold/5 cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
                                 <div className="aspect-square relative overflow-hidden">
@@ -141,15 +141,15 @@ const MenuPage: React.FC = () => {
                                     ></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
 
-                                    <button className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-primary transition-colors shadow-lg translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
+                                    <button className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-colors shadow-lg translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
                                         <span className="material-symbols-outlined">add</span>
                                     </button>
                                 </div>
 
                                 <div className="p-5">
                                     <div className="flex justify-between items-start mb-2">
-                                        <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{product.name}</h3>
-                                        <span className="font-bold text-primary bg-primary/10 px-2 py-1 rounded-lg text-sm">{product.price}</span>
+                                        <h3 className="text-xl font-bold text-coffee-cream group-hover:text-coffee-gold transition-colors">{product.name}</h3>
+                                        <span className="font-bold text-coffee-gold bg-coffee-gold/10 px-2 py-1 rounded-lg text-sm">{product.price}</span>
                                     </div>
                                     <p className="text-white/50 text-sm line-clamp-2 mb-4">{product.description}</p>
                                     {product.tag && (

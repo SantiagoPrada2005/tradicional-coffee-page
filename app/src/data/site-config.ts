@@ -4,10 +4,10 @@ export const siteConfig = {
         name: "Tradicional Coffee",
         shortName: "Tradicional Coffee",
         logo: "/images/logo.png",
-        description: "Hecho en Colombia. Enfriado para ti. La mejor experiencia de café frío en la ciudad."
+        description: "Disfruta de la tradición del café en cada sorbo.\nLa experiencia definitiva en el corazón de Roldanillo, ofreciendo café artesanal de alta calidad, innovadores granizados y bebidas refrescantes. Un espacio para conectar y crear momentos memorables."
     },
     hero: {
-        title: "Tradición que se enfría y te vuelve adicto",
+        title: "Sabor auténtico en el corazón de Roldanillo",
         cta: "Ver Menú",
         tags: ["Frappes", "Iced Latte", "Espresso Tonic", "Coffees"]
     },

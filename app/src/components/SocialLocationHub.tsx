@@ -14,7 +14,7 @@ const SocialLocationHub: React.FC = () => {
     } as React.CSSProperties;
 
     return (
-        <div style={theme} className="bg-background-dark text-white font-display antialiased overflow-hidden min-h-screen flex flex-col relative">
+        <div style={theme} className="bg-coffee-dark text-coffee-cream font-sans antialiased overflow-hidden min-h-screen flex flex-col relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
@@ -48,9 +48,9 @@ const SocialLocationHub: React.FC = () => {
 
             <main className="flex-grow flex flex-col w-full max-w-7xl mx-auto px-6 py-12 md:py-24 relative z-10">
                 <ScrollReveal animation="fade-up" className="w-full text-center mb-16">
-                    <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-white uppercase tracking-tight mb-4">
+                    <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-coffee-cream uppercase tracking-tight mb-4">
                         Síguenos y vive<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">la experiencia</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-coffee-gold to-yellow-600">la experiencia</span>
                     </h1>
                     <p className="text-white/60 text-lg max-w-2xl mx-auto">
                         Únete a nuestra comunidad en redes sociales y descubre por qué somos el destino favorito para los amantes del café frío.
@@ -74,7 +74,7 @@ const SocialLocationHub: React.FC = () => {
                                                     <span className="material-symbols-outlined text-white text-5xl ml-1">{card.overlayIcon}</span>
                                                 </div>
                                             ) : (
-                                                <span className={`material-symbols-outlined text-primary text-7xl drop-shadow-[0_0_15px_rgba(37,244,120,0.8)] ${card.overlayAnimate ? 'animate-bounce' : ''}`}>{card.overlayIcon}</span>
+                                                <span className={`material-symbols-outlined text-coffee-gold text-7xl drop-shadow-[0_0_15px_rgba(214,191,144,0.8)] ${card.overlayAnimate ? 'animate-bounce' : ''}`}>{card.overlayIcon}</span>
                                             )}
                                         </div>
                                     </div>
@@ -88,8 +88,8 @@ const SocialLocationHub: React.FC = () => {
                                         )}
                                         <span className="text-xs font-bold tracking-wider uppercase">{card.platform}</span>
                                     </div>
-                                    <h2 className="text-3xl font-bold text-white leading-none mb-6">{card.title}</h2>
-                                    <span className="w-full bg-primary text-background-dark font-bold text-base py-3 px-6 rounded-full flex items-center justify-between hover:bg-white transition-colors shadow-[0_0_20px_rgba(37,244,120,0.3)] group-hover:scale-105">
+                                    <h2 className="text-3xl font-bold text-coffee-cream leading-none mb-6">{card.title}</h2>
+                                    <span className="w-full bg-coffee-gold text-coffee-dark font-bold text-base py-3 px-6 rounded-full flex items-center justify-between hover:bg-coffee-cream transition-colors shadow-[0_0_20px_rgba(214,191,144,0.3)] group-hover:scale-105">
                                         {card.action}
                                         <span className="material-symbols-outlined text-[20px] font-bold">{card.actionIcon}</span>
                                     </span>
@@ -101,7 +101,7 @@ const SocialLocationHub: React.FC = () => {
 
                 <ScrollReveal animation="scale-up" delay={0.4}>
                     <div className="w-full text-center mt-8 p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-md max-w-3xl mx-auto">
-                        <p className="text-white/80 text-lg md:text-xl font-medium mb-2">{siteConfig.newsletter.title} <span className="text-primary font-bold">{siteConfig.newsletter.highlight}</span> {siteConfig.newsletter.suffix}</p>
+                        <p className="text-coffee-cream/80 text-lg md:text-xl font-medium mb-2">{siteConfig.newsletter.title} <span className="text-coffee-gold font-bold">{siteConfig.newsletter.highlight}</span> {siteConfig.newsletter.suffix}</p>
                         <p className="text-white/40 text-sm">{siteConfig.newsletter.description}</p>
                     </div>
                 </ScrollReveal>

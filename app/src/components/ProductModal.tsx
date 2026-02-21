@@ -36,7 +36,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-50 h-10 w-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-primary hover:text-black transition-all duration-300 backdrop-blur-md border border-white/10"
+                            className="absolute top-6 right-6 z-50 h-10 w-10 rounded-full bg-black/50 text-coffee-cream flex items-center justify-center hover:bg-coffee-gold hover:text-black transition-all duration-300 backdrop-blur-md border border-white/10"
                         >
                             <span className="material-symbols-outlined">close</span>
                         </button>
@@ -53,10 +53,9 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/20" />
 
-                            {/* Floating Badge */}
                             {product.tag && (
                                 <div className="absolute top-6 left-6">
-                                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-primary text-black' : 'border border-primary text-primary bg-black/50 backdrop-blur-md'}`}>
+                                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-coffee-gold text-coffee-dark' : 'border border-coffee-gold text-coffee-gold bg-black/50 backdrop-blur-md'}`}>
                                         {product.tag.icon && <span className="material-symbols-outlined text-[16px] mr-1">{product.tag.icon}</span>}
                                         {product.tag.label}
                                     </span>
@@ -64,15 +63,14 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                             )}
                         </div>
 
-                        {/* Content Section */}
                         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
                             <div className="mb-2">
-                                <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
+                                <span className="text-coffee-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
                                     {siteConfig.brand.name}
                                 </span>
                             </div>
 
-                            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-extrabold text-coffee-cream mb-4 leading-tight">
                                 {product.name}
                             </h2>
 
@@ -87,18 +85,18 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                                 </div>
                                 <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                     <span className="block text-white/40 text-xs font-bold uppercase tracking-wider mb-1">Precio</span>
-                                    <span className="text-primary text-2xl font-bold">{product.price}</span>
+                                    <span className="text-coffee-gold text-2xl font-bold">{product.price}</span>
                                 </div>
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="flex-1 bg-primary text-black font-bold h-14 md:h-16 rounded-full flex items-center justify-center gap-2 hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(57,255,20,0.3)]">
+                                <button className="flex-1 bg-coffee-gold text-coffee-dark font-bold h-14 md:h-16 rounded-full flex items-center justify-center gap-2 hover:bg-coffee-cream hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(214,191,144,0.3)]">
                                     <span className="material-symbols-outlined">shopping_cart</span>
                                     AÑADIR AL CARRITO
                                 </button>
                                 <button
                                     onClick={onClose}
-                                    className="px-8 h-14 md:h-16 rounded-full border border-white/10 text-white font-bold hover:bg-white/5 transition-colors"
+                                    className="px-8 h-14 md:h-16 rounded-full border border-white/10 text-coffee-cream font-bold hover:bg-white/5 transition-colors"
                                 >
                                     Cerrar
                                 </button>

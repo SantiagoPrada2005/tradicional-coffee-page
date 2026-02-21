@@ -54,7 +54,7 @@ const ColdProductCarousel: React.FC = () => {
     ];
 
     return (
-        <div style={theme} className="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden antialiased min-h-screen relative">
+        <div style={theme} className="bg-coffee-cream dark:bg-coffee-dark font-sans text-coffee-dark dark:text-coffee-cream overflow-hidden antialiased min-h-screen relative">
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
                 <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
@@ -67,10 +67,10 @@ const ColdProductCarousel: React.FC = () => {
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 md:py-24">
                 <header className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
                     <ScrollReveal animation="fade-right" className="text-center md:text-left">
-                        <span className="text-sm md:text-base text-primary font-bold tracking-wider uppercase block mb-2">Tradicional</span>
+                        <span className="text-sm md:text-base text-coffee-gold font-bold tracking-wider uppercase block mb-2">Tradicional</span>
                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-none mb-4">
                             Nuestros Fríos <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">del Momento</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-coffee-gold to-yellow-600">del Momento</span>
                         </h1>
                         <p className="text-white/60 text-base md:text-lg font-medium max-w-md">Refresca tu día con nuestra selección premium de bebidas frías, preparadas al momento.</p>
                     </ScrollReveal>
@@ -81,7 +81,7 @@ const ColdProductCarousel: React.FC = () => {
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
                                 className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 backdrop-blur-sm hover:scale-105 ${activeCategory === cat.id
-                                    ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(37,244,120,0.4)]'
+                                    ? 'bg-coffee-gold text-coffee-dark border-coffee-gold shadow-[0_0_15px_rgba(214,191,144,0.4)]'
                                     : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
                                     }`}
                             >
@@ -111,7 +111,7 @@ const ColdProductCarousel: React.FC = () => {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
                                     {product.tag && (
                                         <div className="absolute top-6 left-6 z-20">
-                                            <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-primary text-black' : 'border border-primary text-primary bg-black/50 backdrop-blur-md'}`}>
+                                            <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-coffee-gold text-coffee-dark' : 'border border-coffee-gold text-coffee-gold bg-black/50 backdrop-blur-md'}`}>
                                                 {product.tag.icon && <span className="material-symbols-outlined text-[16px] mr-1">{product.tag.icon}</span>}
                                                 {product.tag.label}
                                             </span>
@@ -125,9 +125,9 @@ const ColdProductCarousel: React.FC = () => {
                                         <div className="flex items-center justify-between">
                                             <div className="flex flex-col">
                                                 <span className="text-xs text-white/50 font-medium uppercase tracking-wider">Precio</span>
-                                                <span className="text-3xl font-bold text-primary">{product.price}</span>
+                                                <span className="text-3xl font-bold text-coffee-gold">{product.price}</span>
                                             </div>
-                                            <button className="h-14 w-14 rounded-full bg-white text-black flex items-center justify-center hover:bg-primary transition-all duration-300 shadow-lg group-hover:rotate-90 group-hover:scale-110" aria-label={`Add ${product.name} to cart`}>
+                                            <button className="h-14 w-14 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-all duration-300 shadow-lg group-hover:rotate-90 group-hover:scale-110" aria-label={`Add ${product.name} to cart`}>
                                                 <span className="material-symbols-outlined text-[28px]">add</span>
                                             </button>
                                         </div>
@@ -146,10 +146,10 @@ const ColdProductCarousel: React.FC = () => {
                 <ScrollReveal animation="fade-up" delay={0.4}>
                     <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
                         <div className="flex items-center gap-2 text-white">
-                            <span className="material-symbols-outlined text-primary">local_cafe</span>
+                            <span className="material-symbols-outlined text-coffee-gold">local_cafe</span>
                             <span className="text-lg font-bold">¿Buscas algo más clásico?</span>
                         </div>
-                        <Link className="group flex items-center gap-2 text-primary font-bold hover:text-white transition-colors" to="/menu">
+                        <Link className="group flex items-center gap-2 text-coffee-gold font-bold hover:text-white transition-colors" to="/menu">
                             Ver menú completo
                             <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </Link>
@@ -177,7 +177,7 @@ const ColdProductCarousel: React.FC = () => {
                                     <p className="text-white/50 text-sm">{product.description}</p>
                                 </div>
                                 <div className="text-right pr-4">
-                                    <span className="block text-primary text-xl font-bold mb-2">{product.price}</span>
+                                    <span className="block text-coffee-gold text-xl font-bold mb-2">{product.price}</span>
                                     <button className="text-white/60 hover:text-white transition-colors" aria-label={`Add ${product.name} to cart`}>
                                         <span className="material-symbols-outlined text-[32px]">add_circle</span>
                                     </button>
