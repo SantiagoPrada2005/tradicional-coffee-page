@@ -38,6 +38,8 @@ const ColdHubHero: React.FC = () => {
                             <img
                                 src={siteConfig.brand.logo}
                                 alt={siteConfig.brand.name}
+                                width={48}
+                                height={48}
                                 className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(214,191,144,0.5)]"
                             />
                         </div>
@@ -49,13 +51,13 @@ const ColdHubHero: React.FC = () => {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="flex items-center gap-2"
                     >
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10" aria-label="Locations">
+                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Locations">
                             <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">location_on</span>
                         </button>
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10" aria-label="Camera">
+                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Camera">
                             <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">photo_camera</span>
                         </button>
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10" aria-label="Music">
+                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Music">
                             <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">music_note</span>
                         </button>
                     </motion.div>
@@ -83,7 +85,7 @@ const ColdHubHero: React.FC = () => {
                     </div>
                     <div className="w-full flex justify-center mt-4">
                         <ScrollReveal animation="fade-up" delay={0.7} className="w-full flex justify-center">
-                            <Link to="/menu" className="group relative flex w-full max-w-sm md:max-w-md cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 md:h-16 bg-coffee-gold text-coffee-dark text-lg md:text-xl font-bold tracking-wide shadow-[0_0_15px_rgba(214,191,144,0.5)] hover:shadow-[0_0_30px_rgba(214,191,144,0.9)] transition-all duration-300 hover:scale-105 active:scale-95">
+                            <Link to="/menu" className="group relative flex w-full max-w-sm md:max-w-md cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 md:h-16 bg-coffee-gold text-coffee-dark text-lg md:text-xl font-bold tracking-wide shadow-[0_0_15px_rgba(214,191,144,0.5)] hover:shadow-[0_0_30px_rgba(214,191,144,0.9)] transition-transform duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-coffee-dark focus-visible:ring-coffee-gold">
                                 <span className="relative z-10 flex items-center gap-2">
                                     {siteConfig.hero.cta}
                                     <span className="material-symbols-outlined !text-[22px] md:!text-[26px] transition-transform group-hover:translate-x-1">arrow_forward</span>

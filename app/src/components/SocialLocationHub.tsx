@@ -18,6 +18,8 @@ const SocialLocationHub: React.FC = () => {
                             <img
                                 src={siteConfig.brand.logo}
                                 alt={siteConfig.brand.name}
+                                width={32}
+                                height={32}
                                 className="h-full w-full object-contain filter drop-shadow-[0_0_5px_rgba(37,244,120,0.5)]"
                             />
                         </div>
@@ -31,7 +33,7 @@ const SocialLocationHub: React.FC = () => {
                             {siteConfig.navigation.actionButton.label}
                         </button>
                     </div>
-                    <button className="w-10 h-10 flex md:hidden items-center justify-center rounded-full hover:bg-white/10 text-white transition-colors">
+                    <button aria-label="Abrir menú" className="w-10 h-10 flex md:hidden items-center justify-center rounded-full hover:bg-white/10 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold">
                         <span className="material-symbols-outlined">menu</span>
                     </button>
                 </div>
@@ -106,6 +108,8 @@ const SocialLocationHub: React.FC = () => {
                                 <img
                                     src={siteConfig.brand.logo}
                                     alt={siteConfig.brand.name}
+                                    width={40}
+                                    height={40}
                                     className="h-full w-full object-contain"
                                 />
                             </div>
@@ -114,7 +118,7 @@ const SocialLocationHub: React.FC = () => {
                         <p className="font-footer text-gray-400 text-sm tracking-wide max-w-xs mb-6">{siteConfig.brand.description}</p>
                         <div className="flex gap-4">
                             {siteConfig.social.generic.map((social) => (
-                                <a key={social.platform} href={social.url} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-coffee-gold transition-colors">
+                                <a key={social.platform} href={social.url} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 hover:text-coffee-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold">
                                     <span className="material-symbols-outlined">{social.icon}</span>
                                 </a>
                             ))}
@@ -125,13 +129,13 @@ const SocialLocationHub: React.FC = () => {
                         <div className="flex flex-col gap-4">
                             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-2">Compañía</h4>
                             {siteConfig.footer.company.map((link) => (
-                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm" href={link.href}>{link.label}</a>
+                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm focus-visible:outline-none focus-visible:text-coffee-gold" href={link.href}>{link.label}</a>
                             ))}
                         </div>
                         <div className="flex flex-col gap-4">
                             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-2">Legal</h4>
                             {siteConfig.footer.legal.map((link) => (
-                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm" href={link.href}>{link.label}</a>
+                                <a key={link.label} className="text-gray-500 hover:text-coffee-gold transition-colors text-sm focus-visible:outline-none focus-visible:text-coffee-gold" href={link.href}>{link.label}</a>
                             ))}
                         </div>
                     </div>

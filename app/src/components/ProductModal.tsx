@@ -36,7 +36,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-50 h-10 w-10 rounded-full bg-black/50 text-coffee-cream flex items-center justify-center hover:bg-coffee-gold hover:text-black transition-all duration-300 backdrop-blur-md border border-white/10"
+                            aria-label="Cerrar modal"
+                            className="absolute top-6 right-6 z-50 h-10 w-10 rounded-full bg-black/50 text-coffee-cream flex items-center justify-center hover:bg-coffee-gold hover:text-black transition-[background-color,color,box-shadow,border-color] duration-300 backdrop-blur-md border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold"
                         >
                             <span className="material-symbols-outlined">close</span>
                         </button>
@@ -63,7 +64,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                             )}
                         </div>
 
-                        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
+                        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center overflow-y-auto overscroll-contain">
                             <div className="mb-2">
                                 <span className="text-coffee-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
                                     {siteConfig.brand.name}
@@ -90,13 +91,13 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="flex-1 bg-coffee-gold text-coffee-dark font-bold h-14 md:h-16 rounded-full flex items-center justify-center gap-2 hover:bg-coffee-cream hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(214,191,144,0.3)]">
+                                <button className="flex-1 bg-coffee-gold text-coffee-dark font-bold h-14 md:h-16 rounded-full flex items-center justify-center gap-2 hover:bg-coffee-cream hover:scale-[1.02] transition-[transform,background-color,box-shadow,color] duration-300 shadow-[0_0_20px_rgba(214,191,144,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:ring-coffee-gold">
                                     <span className="material-symbols-outlined">shopping_cart</span>
                                     AÑADIR AL CARRITO
                                 </button>
                                 <button
                                     onClick={onClose}
-                                    className="px-8 h-14 md:h-16 rounded-full border border-white/10 text-coffee-cream font-bold hover:bg-white/5 transition-colors"
+                                    className="px-8 h-14 md:h-16 rounded-full border border-white/10 text-coffee-cream font-bold hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold"
                                 >
                                     Cerrar
                                 </button>

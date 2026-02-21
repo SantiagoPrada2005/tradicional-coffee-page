@@ -72,6 +72,8 @@ const MenuPage: React.FC = () => {
                         <img
                             src={siteConfig.brand.logo}
                             alt={siteConfig.brand.name}
+                            width={32}
+                            height={32}
                             className="h-full w-full object-contain"
                         />
                     </div>
@@ -100,7 +102,7 @@ const MenuPage: React.FC = () => {
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
-                                className={`px-6 py-2 rounded-full font-bold transition-all duration-300 ${filter === cat
+                                className={`px-6 py-2 rounded-full font-bold transition-[transform,background-color,color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold ${filter === cat
                                     ? 'bg-coffee-gold text-coffee-dark shadow-[0_0_15px_rgba(214,191,144,0.4)] scale-105'
                                     : 'bg-white/5 text-coffee-cream/70 hover:bg-white/10 hover:text-coffee-cream'
                                     }`}
@@ -124,7 +126,7 @@ const MenuPage: React.FC = () => {
                             <motion.div
                                 key={product.id}
                                 variants={item}
-                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-coffee-gold/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-coffee-gold/5 cursor-pointer"
+                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-coffee-gold/30 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-coffee-gold/5 cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
                                 <div className="aspect-square relative overflow-hidden">
@@ -134,7 +136,7 @@ const MenuPage: React.FC = () => {
                                     ></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
 
-                                    <button className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-colors shadow-lg translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
+                                    <button aria-label={`Add ${product.name} to cart`} className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-[background-color,transform,opacity] shadow-lg translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300 focus-visible:translate-y-0 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold">
                                         <span className="material-symbols-outlined">add</span>
                                     </button>
                                 </div>

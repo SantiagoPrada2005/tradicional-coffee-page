@@ -73,7 +73,7 @@ const ColdProductCarousel: React.FC = () => {
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 backdrop-blur-sm hover:scale-105 ${activeCategory === cat.id
+                                className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-[transform,background-color,border-color,color,box-shadow] duration-300 backdrop-blur-sm hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold ${activeCategory === cat.id
                                     ? 'bg-coffee-gold text-coffee-dark border-coffee-gold shadow-[0_0_15px_rgba(214,191,144,0.4)]'
                                     : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
                                     }`}
@@ -99,7 +99,7 @@ const ColdProductCarousel: React.FC = () => {
                                 className="w-full relative group cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-gold/20">
+                                <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-[transform,box-shadow] duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-gold/20">
                                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
                                     {product.tag && (
@@ -120,7 +120,7 @@ const ColdProductCarousel: React.FC = () => {
                                                 <span className="text-xs text-white/50 font-medium uppercase tracking-wider">Precio</span>
                                                 <span className="text-3xl font-bold text-coffee-gold">{product.price}</span>
                                             </div>
-                                            <button className="h-14 w-14 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-all duration-300 shadow-lg group-hover:rotate-90 group-hover:scale-110" aria-label={`Add ${product.name} to cart`}>
+                                            <button className="h-14 w-14 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-[background-color,transform] duration-300 shadow-lg group-hover:rotate-90 group-hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label={`Add ${product.name} to cart`}>
                                                 <span className="material-symbols-outlined text-[28px]">add</span>
                                             </button>
                                         </div>
@@ -171,7 +171,7 @@ const ColdProductCarousel: React.FC = () => {
                                 </div>
                                 <div className="text-right pr-4">
                                     <span className="block text-coffee-gold text-xl font-bold mb-2">{product.price}</span>
-                                    <button className="text-white/60 hover:text-white transition-colors" aria-label={`Add ${product.name} to cart`}>
+                                    <button className="text-white/60 hover:text-white transition-colors focus-visible:outline-none focus-visible:text-white" aria-label={`Add ${product.name} to cart`}>
                                         <span className="material-symbols-outlined text-[32px]">add_circle</span>
                                     </button>
                                 </div>
