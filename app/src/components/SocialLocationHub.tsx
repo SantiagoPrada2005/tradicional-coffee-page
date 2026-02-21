@@ -1,7 +1,7 @@
-import React from 'react';
 import { siteConfig, socialCards } from '../data/site-config';
 
 import ScrollReveal from './ui/ScrollReveal';
+import StoreLocatorMap from './StoreLocatorMap';
 
 const SocialLocationHub: React.FC = () => {
     return (
@@ -91,6 +91,16 @@ const SocialLocationHub: React.FC = () => {
                         </ScrollReveal>
                     ))}
                 </div>
+
+                <ScrollReveal animation="fade-up" delay={0.3} className="w-full mb-16 px-4 md:px-0">
+                    <div className="text-center mb-10">
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-coffee-cream mb-4">Encuéntranos</h2>
+                        <p className="text-white/60 text-lg md:text-xl">Visítanos en nuestra sede principal para vivir la experiencia de café frío.</p>
+                    </div>
+                    <div className="max-w-5xl mx-auto">
+                        <StoreLocatorMap />
+                    </div>
+                </ScrollReveal>
 
                 <ScrollReveal animation="scale-up" delay={0.4}>
                     <div className="w-full text-center mt-8 p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-md max-w-3xl mx-auto">

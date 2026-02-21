@@ -89,16 +89,15 @@ export const socialCards = [
         overlayIcon: "play_arrow"
     },
     {
-        id: "location",
-        platform: "Ubicación",
-        iconSymbol: "map",
-        title: "Visítanos",
-        action: "Cómo llegar",
-        actionIcon: "near_me",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBvqACL_HtA-tWZAVy1nw1m2Fhzp_J-8zeArBbV5pBaavg2b7FMjwwitq9YRm-MJft1Mm1l5ugyrbxUUrUuT6jP-Eh8PaRmu5ShlhVP9Y_0IitDB6hjk0WkUXLjWv9S8cEDevP8F0oHPEQDPxiRHsgFOCyipDP3ffylUw6nK1VTXmqrKjZ9QjUxSOTPb9MBNDy7Wmw4jLk7oCe9tkvFzeAI3Xaoj1haCPwQ0jN5xVLxv1NpWY6S0bEPKuqlBm6JOiNC0-3rdUwHCCbG",
+        id: "menu",
+        platform: "Menú",
+        iconSymbol: "menu",
+        title: "Menú",
+        action: "Ver Menú",
+        actionIcon: "arrow_outward",
+        image: "/images/frappe-oreo.jpeg",
         alt: "Dark stylized map of city streets",
-        url: "#",
-        overlayIcon: "location_on",
+        url: "/menu",
         overlayAnimate: true
     }
 ];
