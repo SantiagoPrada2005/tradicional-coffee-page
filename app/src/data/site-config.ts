@@ -14,17 +14,17 @@ export const siteConfig = {
     contact: {
         email: "hola@tradicionalcoldhub.com",
         phone: "+57 300 123 4567",
-        address: "Bogotá, Colombia"
+        address: "Roldanillo, Valle del Cauca, Colombia"
     },
     navigation: {
         header: [
-            { label: "Menú", href: "#" },
+            { label: "Menú", href: "/menu" },
             { label: "Ubicaciones", href: "#" },
             { label: "Nosotros", href: "#" }
         ],
         actionButton: {
-            label: "Descargar App",
-            href: "#"
+            label: "Cómo llegar",
+            href: "https://maps.app.goo.gl/27562592929292929292929292929292"
         }
     },
     social: {
@@ -35,7 +35,7 @@ export const siteConfig = {
         },
         tiktok: {
             handle: "Tradicional Cold Hub",
-            url: "#",
+            url: "https://www.tiktok.com/@tradicionalcoffeerol?_r=1&_t=ZS-946EHHVD9U5",
             label: "TikTok"
         },
         generic: [
@@ -85,7 +85,7 @@ export const socialCards = [
         actionIcon: "play_circle",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDH0uhfqXG8Bfbkq_JoOmSjtEr4o47Cj0vOkAV2RQnneyEVmiMgZMDPTOjLj3mNvVvhYmGo89pM6bWvIY_HxBO0a2q7x3XQo0nEbBflWyc4ZvTmf_px2pL5C-c4pxGpJsj8bt5Kun0c9xE_6ayrb--AEFXgiFFuFk1RaD2tVJkQEuBK4i14w3gfFURWBJLVNUJgpPGkPgbBKjCVHT7i9hBkkRPzdTNJAs5bjS4F2ooUfmkgIU7U92Qf2KagfSGvPp5laSSH77LY3vxR",
         alt: "Dynamic pour shot of cold brew coffee with high contrast",
-        url: "#",
+        url: "https://www.tiktok.com/@tradicionalcoffeerol?_r=1&_t=ZS-946EHHVD9U5",
         overlayIcon: "play_arrow"
     },
     {
