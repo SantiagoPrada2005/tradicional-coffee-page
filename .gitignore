@@ -2,3 +2,5 @@
 .agents
 stich_assets
 .env
+skills-lock.json
+skills.json

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ScrollReveal from './ui/ScrollReveal';
 import { siteConfig } from '../data/site-config';
 
 const ColdHubHero: React.FC = () => {
@@ -11,99 +10,127 @@ const ColdHubHero: React.FC = () => {
         offset: ["start start", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
+    const titleVariants: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.1 * i,
+                duration: 0.8,
+                ease: "easeOut",
+            }
+        })
+    };
+
     return (
-        <div ref={targetRef} className="bg-coffee-dark text-coffee-cream overflow-x-hidden min-h-screen font-sans">
-            <div className="relative min-h-screen w-full flex flex-col items-center justify-between overflow-hidden">
-                <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80 z-10"></div>
-                    <div
-                        className="h-full w-full bg-cover bg-center"
-                        role="img"
-                        aria-label="Two hands holding Tradicional cold frappe drinks in an urban setting"
-                        style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbfo38vPpfkGfJ2o4pVX1irYSUc0KxY2Oq1UWBbbLSdMuhyS4-BxnLH28J_6wmUavbzj13lQhe7HHClhBt0EyFd7jK4K-BESRZs1gFB7LBPDI3G4Y0AcA0pQKDrY5PXHBamgUbcAClQYhLQn9hKTcQzbMTMMmUppwx8wjO9MAmaZqJGf-nVCdoTH3S0GNR5MuLBNRw6b_sxuo_x3f1LuFLUQxRd6V_41BNPVT1CYoJ3ccfoP1Izen5PKvKgYCiu3guv-Od33MhELL-")' }}
-                    >
-                    </div>
+        <section ref={targetRef} className="relative min-h-[100dvh] w-full bg-coffee-dark overflow-hidden flex flex-col font-body">
+            {/* Background Composition */}
+            <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-coffee-dark via-coffee-dark/80 to-transparent z-10 md:block hidden"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-coffee-dark/40 via-transparent to-coffee-dark z-10 md:hidden block"></div>
+                <div
+                    className="h-full w-full bg-cover bg-center grayscale-[20%] brightness-[0.7]"
+                    role="img"
+                    aria-label="Tradicional Coffee Experience"
+                    style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbfo38vPpfkGfJ2o4pVX1irYSUc0KxY2Oq1UWBbbLSdMuhyS4-BxnLH28J_6wmUavbzj13lQhe7HHClhBt0EyFd7jK4K-BESRZs1gFB7LBPDI3G4Y0AcA0pQKDrY5PXHBamgUbcAClQYhLQn9hKTcQzbMTMMmUppwx8wjO9MAmaZqJGf-nVCdoTH3S0GNR5MuLBNRw6b_sxuo_x3f1LuFLUQxRd6V_41BNPVT1CYoJ3ccfoP1Izen5PKvKgYCiu3guv-Od33MhELL-")' }}
+                ></div>
+            </motion.div>
+
+            {/* Navigation Overlay */}
+            <nav className="relative z-50 flex justify-between items-center px-6 md:px-20 py-8">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="flex items-center gap-4"
+                >
+                    <img src={siteConfig.brand.logo} alt="Logo" className="h-10 w-10 object-contain" />
+                    <span className="font-modern font-bold text-white tracking-widest text-sm uppercase">{siteConfig.brand.name}</span>
                 </motion.div>
-                <nav className="relative z-50 w-full flex justify-between items-center px-6 md:px-12 py-6 pt-12 md:pt-8 backdrop-blur-sm bg-black/10 border-b border-white/10">
+                
+                <div className="hidden md:flex gap-10 items-center">
+                    {siteConfig.navigation.header.map((item, idx) => (
+                        <Link key={idx} to={item.href} className="font-modern text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-coffee-gold transition-colors">{item.label}</Link>
+                    ))}
+                    <button className="h-10 w-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-coffee-dark transition-all duration-500">
+                        <span className="material-symbols-outlined text-sm">search</span>
+                    </button>
+                </div>
+            </nav>
+
+            {/* Content Area */}
+            <div className="relative z-20 flex-grow flex flex-col justify-center px-6 md:px-20 max-w-7xl">
+                <div className="max-w-4xl">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex items-center gap-2"
+                        transition={{ duration: 0.8 }}
+                        className="mb-6 flex items-center gap-3"
                     >
-                        <div className="h-10 w-10 md:h-12 md:w-12">
-                            <img
-                                src={siteConfig.brand.logo}
-                                alt={siteConfig.brand.name}
-                                width={48}
-                                height={48}
-                                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(214,191,144,0.5)]"
-                            />
-                        </div>
-                        <span className="text-coffee-cream font-bold text-xl md:text-2xl tracking-tight drop-shadow-md font-logo">{siteConfig.brand.shortName}</span>
+                        <div className="w-8 h-[1px] bg-coffee-gold"></div>
+                        <span className="font-modern text-xs font-bold uppercase tracking-[0.3em] text-coffee-gold">Hecho en Roldanillo</span>
                     </motion.div>
+
+                    <h1 className="font-display text-5xl md:text-8xl lg:text-[7rem] leading-[0.95] text-white mb-10 italic">
+                        {siteConfig.hero.title.split(' ').map((word, i) => (
+                            <motion.span
+                                key={i}
+                                custom={i}
+                                initial="hidden"
+                                animate="visible"
+                                variants={titleVariants}
+                                className="inline-block mr-4 last:mr-0"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </h1>
+
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 1 }}
+                        className="flex flex-col md:flex-row gap-8 items-start md:items-center"
                     >
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Locations">
-                            <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">location_on</span>
-                        </button>
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Camera">
-                            <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">photo_camera</span>
-                        </button>
-                        <button className="p-2 text-coffee-cream/90 hover:text-coffee-gold transition-colors duration-300 rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label="Music">
-                            <span className="material-symbols-outlined !text-[24px] md:!text-[28px]">music_note</span>
-                        </button>
-                    </motion.div>
-                </nav>
-                <main className="relative z-40 w-full flex-grow flex flex-col justify-center md:justify-end px-6 md:px-12 pb-12 md:pb-24 gap-8 md:gap-12">
-                    <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full text-center">
-                        <ScrollReveal animation="fade-up" duration={0.8}>
-                            <h1 className="font-anton text-5xl md:text-8xl lg:text-9xl font-bold leading-[0.95] tracking-wide text-coffee-cream uppercase drop-shadow-2xl" style={{ textShadow: "0 0 20px rgba(214, 191, 144, 0.8), 0 0 40px rgba(214, 191, 144, 0.5)" }}>
-                                {siteConfig.hero.title}
-                            </h1>
-                        </ScrollReveal>
-                        <ScrollReveal animation="scale-up" delay={0.3} duration={0.6}>
-                            <div className="w-24 h-1.5 bg-coffee-gold mx-auto rounded-full shadow-[0_0_15px_rgba(214,191,144,0.8)]"></div>
-                        </ScrollReveal>
-                        <ScrollReveal animation="fade-up" delay={0.5}>
-                            <p className="text-coffee-cream/80 text-sm md:text-xl font-semibold tracking-wide flex flex-wrap justify-center gap-3 items-center drop-shadow-md">
-                                {siteConfig.hero.tags.map((tag, index) => (
-                                    <React.Fragment key={tag}>
-                                        <span>{tag}</span>
-                                        {index < siteConfig.hero.tags.length - 1 && <span className="text-coffee-gold">•</span>}
-                                    </React.Fragment>
-                                ))}
-                            </p>
-                        </ScrollReveal>
-                    </div>
-                    <div className="w-full flex justify-center mt-4">
-                        <ScrollReveal animation="fade-up" delay={0.7} className="w-full flex justify-center">
-                            <Link to="/menu" className="group relative flex w-full max-w-sm md:max-w-md cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 md:h-16 bg-coffee-gold text-coffee-dark text-lg md:text-xl font-bold tracking-wide shadow-[0_0_15px_rgba(214,191,144,0.5)] hover:shadow-[0_0_30px_rgba(214,191,144,0.9)] transition-transform duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-coffee-dark focus-visible:ring-coffee-gold">
-                                <span className="relative z-10 flex items-center gap-2">
-                                    {siteConfig.hero.cta}
-                                    <span className="material-symbols-outlined !text-[22px] md:!text-[26px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        <Link
+                            to="/menu"
+                            className="bg-coffee-gold px-10 py-5 rounded-full font-modern font-bold text-xs uppercase tracking-[0.2em] text-coffee-dark hover:bg-white transition-colors duration-500"
+                        >
+                            {siteConfig.hero.cta}
+                        </Link>
+                        
+                        <div className="flex gap-4">
+                            {siteConfig.hero.tags.map((tag) => (
+                                <span key={tag} className="font-modern text-[10px] font-bold uppercase tracking-widest text-white/30 border-l border-white/20 pl-4 first:border-0 first:pl-0">
+                                    {tag}
                                 </span>
-                                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/50 to-transparent z-0"></div>
-                            </Link>
-                        </ScrollReveal>
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 0.8, y: 0 }}
-                        transition={{ duration: 1, repeat: Infinity, repeatType: 'reverse' }}
-                        className="absolute bottom-4 left-0 right-0 flex justify-center"
-                    >
-                        <span className="material-symbols-outlined text-white drop-shadow-md !text-[32px]">keyboard_arrow_down</span>
+                            ))}
+                        </div>
                     </motion.div>
-                </main>
-            </div>          </div>
+                </div>
+            </div>
+
+            {/* Bottom Accent */}
+            <div className="relative z-20 px-6 md:px-20 py-10 flex justify-between items-end">
+                <div className="flex gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-coffee-gold"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                </div>
+                <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                    className="text-white/20 text-xs font-modern uppercase tracking-[0.2em] flex flex-col items-center gap-4"
+                >
+                    <span className="[writing-mode:vertical-lr]">Scroll</span>
+                    <div className="w-[1px] h-10 bg-white/20"></div>
+                </motion.div>
+            </div>
+        </section>
     );
 };
 

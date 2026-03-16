@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import { highlightedProducts, exploreProducts, type Product } from '../data/products';
 import ScrollReveal from './ui/ScrollReveal';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import ProductModal from './ProductModal';
 
-const container = {
+const container: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1
+            staggerChildren: 0.1,
+            delayChildren: 0.3
         }
     }
 };
 
-const item = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
-    show: { opacity: 1, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0.9, y: 20 }
+const item: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { 
+        opacity: 1, 
+        y: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    },
+    exit: { opacity: 0, y: 20 }
 };
 
 const ColdProductCarousel: React.FC = () => {
@@ -47,35 +54,31 @@ const ColdProductCarousel: React.FC = () => {
     ];
 
     return (
-        <div className="bg-coffee-cream dark:bg-coffee-dark font-sans text-coffee-dark dark:text-coffee-cream overflow-hidden antialiased min-h-screen relative">
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
-                <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
-                <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
-                <div className="ice-particle backdrop-blur-sm border border-white/10"></div>
-                <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-coffee-gold/10 rounded-full blur-[80px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-coffee-gold/5 rounded-full blur-[80px]"></div>
+        <div className="bg-coffee-cream font-body text-coffee-dark overflow-hidden antialiased min-h-screen relative py-24 md:py-32">
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coffee-gold/10 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coffee-dark/5 rounded-full blur-[100px]"></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 md:py-24">
-                <header className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
-                    <ScrollReveal animation="fade-right" className="text-center md:text-left">
-                        <span className="text-sm md:text-base text-coffee-gold font-bold tracking-wider uppercase block mb-2">Tradicional</span>
-                        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-none mb-4">
-                            Nuestros Fríos <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-coffee-gold to-yellow-600">del Momento</span>
-                        </h1>
-                        <p className="text-white/60 text-base md:text-lg font-medium max-w-md">Refresca tu día con nuestra selección premium de bebidas frías, preparadas al momento.</p>
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
+                <header className="flex flex-col md:flex-row items-end justify-between mb-20 gap-10">
+                    <ScrollReveal animation="fade-right" className="max-w-xl">
+                        <span className="font-modern text-xs font-bold uppercase tracking-[0.4em] text-coffee-gold mb-4 block">Selección de Autor</span>
+                        <h2 className="font-display text-5xl md:text-7xl leading-tight mb-6">
+                            Bebidas que <span className="italic">inspiran</span>
+                        </h2>
+                        <div className="w-12 h-[1px] bg-coffee-dark/20 mb-6"></div>
+                        <p className="text-coffee-dark/60 text-lg leading-relaxed">Explora nuestra curaduría de café frío premium, diseñado para despertar tus sentidos.</p>
                     </ScrollReveal>
 
-                    <ScrollReveal animation="fade-left" delay={0.2} className="flex gap-3 overflow-x-auto max-w-full pb-2 no-scrollbar">
+                    <ScrollReveal animation="fade-left" delay={0.2} className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                className={`flex-shrink-0 px-6 py-3 rounded-full text-sm md:text-base font-bold transition-[transform,background-color,border-color,color,box-shadow] duration-300 backdrop-blur-sm hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold ${activeCategory === cat.id
-                                    ? 'bg-coffee-gold text-coffee-dark border-coffee-gold shadow-[0_0_15px_rgba(214,191,144,0.4)]'
-                                    : 'bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 hover:text-white'
+                                className={`flex-shrink-0 px-8 py-4 rounded-full font-modern text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500 ${activeCategory === cat.id
+                                    ? 'bg-coffee-dark text-white shadow-premium'
+                                    : 'bg-white/40 text-coffee-dark/40 hover:bg-white hover:text-coffee-dark'
                                     }`}
                             >
                                 {cat.label}
@@ -90,63 +93,37 @@ const ColdProductCarousel: React.FC = () => {
                         variants={container}
                         initial="hidden"
                         animate="show"
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-24"
                     >
                         {filteredHighlighted.map((product) => (
                             <motion.div
                                 variants={item}
                                 key={product.id}
-                                className="w-full relative group cursor-pointer"
+                                className="group relative cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="aspect-[2/3] md:aspect-[3/4] rounded-[2.5rem] bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md border border-white/10 overflow-hidden relative shadow-2xl transition-[transform,box-shadow] duration-500 group-hover:scale-[1.02] group-hover:shadow-neon-gold/20">
-                                    <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
-                                    {product.tag && (
-                                        <div className="absolute top-6 left-6 z-20">
-                                            <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-coffee-gold text-coffee-dark' : 'border border-coffee-gold text-coffee-gold bg-black/50 backdrop-blur-md'}`}>
-                                                {product.tag.icon && <span className="material-symbols-outlined text-[16px] mr-1">{product.tag.icon}</span>}
-                                                {product.tag.label}
-                                            </span>
-                                        </div>
-                                    )}
-                                    <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col z-20">
-                                        <div className="mb-6 transform transition-transform duration-300 group-hover:-translate-y-2">
-                                            <h3 className="text-3xl font-extrabold text-white mb-2">{product.name}</h3>
-                                            <p className="text-white/80 text-base leading-snug">{product.description}</p>
-                                        </div>
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex flex-col">
-                                                <span className="text-xs text-white/50 font-medium uppercase tracking-wider">Precio</span>
-                                                <span className="text-3xl font-bold text-coffee-gold">{product.price}</span>
+                                <div className="aspect-[4/5] rounded-2xl overflow-hidden relative shadow-premium bg-white">
+                                    <div className="absolute inset-0 bg-cover bg-center grayscale-[10%] group-hover:scale-110 group-hover:grayscale-0 transition-transform duration-1000" style={{ backgroundImage: `url('${product.image}')` }}></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-coffee-dark via-transparent to-transparent opacity-60"></div>
+                                    
+                                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                            <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-coffee-gold mb-2 block">{product.category}</span>
+                                            <h3 className="font-display text-4xl text-white italic mb-4">{product.name}</h3>
+                                            <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                                <span className="font-modern text-lg font-bold text-white/90">{product.price}</span>
+                                                <span className="font-modern text-[10px] font-bold uppercase tracking-widest text-coffee-gold border-b border-coffee-gold/50">Detalles</span>
                                             </div>
-                                            <button className="h-14 w-14 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-[background-color,transform] duration-300 shadow-lg group-hover:rotate-90 group-hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold" aria-label={`Add ${product.name} to cart`}>
-                                                <span className="material-symbols-outlined text-[28px]">add</span>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
-                        {filteredHighlighted.length === 0 && (
-                            <div className="col-span-full py-20 text-center">
-                                <p className="text-white/40 text-lg">No hay productos destacados en esta categoría.</p>
-                            </div>
-                        )}
                     </motion.div>
                 </AnimatePresence>
 
                 <ScrollReveal animation="fade-up" delay={0.4}>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
-                        <div className="flex items-center gap-2 text-white">
-                            <span className="material-symbols-outlined text-coffee-gold">local_cafe</span>
-                            <span className="text-lg font-bold">¿Buscas algo más clásico?</span>
-                        </div>
-                        <Link className="group flex items-center gap-2 text-coffee-gold font-bold hover:text-white transition-colors" to="/menu">
-                            Ver menú completo
-                            <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-                        </Link>
-                    </div>
+                    <div className="h-[1px] w-full bg-coffee-dark/5 mb-24"></div>
                 </ScrollReveal>
 
                 <AnimatePresence mode="wait">
@@ -155,24 +132,25 @@ const ColdProductCarousel: React.FC = () => {
                         variants={container}
                         initial="hidden"
                         animate="show"
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12"
                     >
                         {filteredExplore.map((product) => (
                             <motion.div
                                 variants={item}
                                 key={product.id}
-                                className="flex items-center gap-6 p-4 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-pointer group"
+                                className="flex items-center gap-8 group cursor-pointer"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="h-24 w-24 rounded-2xl bg-cover bg-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform" role="img" aria-label={product.alt} style={{ backgroundImage: `url('${product.image}')` }}></div>
-                                <div className="flex-1">
-                                    <h4 className="text-white text-xl font-bold mb-1">{product.name}</h4>
-                                    <p className="text-white/50 text-sm">{product.description}</p>
+                                <div className="h-40 w-32 rounded-lg bg-cover bg-center grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 shadow-lg" style={{ backgroundImage: `url('${product.image}')` }}></div>
+                                <div className="flex-1 border-b border-coffee-dark/5 pb-6">
+                                    <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-coffee-gold mb-1 block">{product.category}</span>
+                                    <h4 className="font-display text-3xl mb-2 group-hover:text-coffee-gold transition-colors">{product.name}</h4>
+                                    <p className="font-body text-sm text-coffee-dark/50 leading-relaxed max-w-sm">{product.description}</p>
                                 </div>
-                                <div className="text-right pr-4">
-                                    <span className="block text-coffee-gold text-xl font-bold mb-2">{product.price}</span>
-                                    <button className="text-white/60 hover:text-white transition-colors focus-visible:outline-none focus-visible:text-white" aria-label={`Add ${product.name} to cart`}>
-                                        <span className="material-symbols-outlined text-[32px]">add_circle</span>
+                                <div className="text-right pb-6">
+                                    <span className="block font-modern text-xl font-bold mb-4">{product.price}</span>
+                                    <button className="h-10 w-10 rounded-full border border-coffee-dark/20 flex items-center justify-center hover:bg-coffee-dark hover:text-white transition-all">
+                                        <span className="material-symbols-outlined text-sm">add</span>
                                     </button>
                                 </div>
                             </motion.div>

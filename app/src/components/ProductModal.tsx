@@ -15,93 +15,85 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6 md:p-8">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8">
                     {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                        className="absolute inset-0 bg-coffee-dark/95 backdrop-blur-xl"
                     />
 
                     {/* Modal Content */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="relative w-full max-w-5xl bg-[#1a1a1a] rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 flex flex-col md:flex-row max-h-[90vh]"
+                        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                        className="relative w-full max-w-6xl bg-coffee-cream rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[95vh] border border-white/10"
                     >
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            aria-label="Cerrar modal"
-                            className="absolute top-6 right-6 z-50 h-10 w-10 rounded-full bg-black/50 text-coffee-cream flex items-center justify-center hover:bg-coffee-gold hover:text-black transition-[background-color,color,box-shadow,border-color] duration-300 backdrop-blur-md border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold"
+                            className="absolute top-6 right-6 z-50 h-12 w-12 rounded-full bg-coffee-dark/10 text-coffee-dark flex items-center justify-center hover:bg-coffee-dark hover:text-white transition-all duration-500 backdrop-blur-md"
                         >
                             <span className="material-symbols-outlined">close</span>
                         </button>
 
                         {/* Product Image Section */}
-                        <div className="w-full md:w-1/2 h-[300px] md:h-auto relative overflow-hidden group">
+                        <div className="w-full md:w-5/12 h-[40vh] md:h-auto relative overflow-hidden">
                             <motion.div
-                                initial={{ scale: 1.1 }}
-                                animate={{ scale: 1 }}
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-110"
+                                initial={{ scale: 1.2, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="absolute inset-0 bg-cover bg-center grayscale-[10%]"
                                 style={{ backgroundImage: `url('${product.image}')` }}
                                 role="img"
                                 aria-label={product.alt}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/20" />
-
-                            {product.tag && (
-                                <div className="absolute top-6 left-6">
-                                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg ${product.tag.icon ? 'bg-coffee-gold text-coffee-dark' : 'border border-coffee-gold text-coffee-gold bg-black/50 backdrop-blur-md'}`}>
-                                        {product.tag.icon && <span className="material-symbols-outlined text-[16px] mr-1">{product.tag.icon}</span>}
-                                        {product.tag.label}
-                                    </span>
-                                </div>
-                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-coffee-dark/20 to-transparent" />
                         </div>
 
-                        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center overflow-y-auto overscroll-contain">
-                            <div className="mb-2">
-                                <span className="text-coffee-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
-                                    {siteConfig.brand.name}
+                        {/* Content Section */}
+                        <div className="w-full md:w-7/12 p-8 md:p-20 flex flex-col justify-center overflow-y-auto font-body">
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8 }}
+                            >
+                                <span className="font-modern text-xs font-bold uppercase tracking-[0.4em] text-coffee-gold mb-6 block">
+                                    {siteConfig.brand.name} — {product.category}
                                 </span>
-                            </div>
 
-                            <h2 className="text-4xl md:text-6xl font-extrabold text-coffee-cream mb-4 leading-tight">
-                                {product.name}
-                            </h2>
+                                <h2 className="font-display text-5xl md:text-7xl font-bold text-coffee-dark mb-8 italic">
+                                    {product.name}
+                                </h2>
 
-                            <p className="text-white/60 text-lg md:text-xl mb-8 leading-relaxed">
-                                {product.description}
-                            </p>
+                                <p className="text-coffee-dark/60 text-lg md:text-xl mb-12 leading-relaxed">
+                                    {product.description}
+                                </p>
 
-                            <div className="grid grid-cols-2 gap-6 mb-10">
-                                <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                                    <span className="block text-white/40 text-xs font-bold uppercase tracking-wider mb-1">Categoría</span>
-                                    <span className="text-white font-bold capitalize">{product.category}</span>
+                                <div className="flex flex-wrap gap-12 mb-16 items-end">
+                                    <div>
+                                        <span className="block text-coffee-dark/30 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Inversión</span>
+                                        <span className="font-modern text-4xl font-bold text-coffee-dark italic">{product.price}</span>
+                                    </div>
+                                    <div className="flex-grow h-[1px] bg-coffee-dark/5 mb-4"></div>
                                 </div>
-                                <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                                    <span className="block text-white/40 text-xs font-bold uppercase tracking-wider mb-1">Precio</span>
-                                    <span className="text-coffee-gold text-2xl font-bold">{product.price}</span>
-                                </div>
-                            </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="flex-1 bg-coffee-gold text-coffee-dark font-bold h-14 md:h-16 rounded-full flex items-center justify-center gap-2 hover:bg-coffee-cream hover:scale-[1.02] transition-[transform,background-color,box-shadow,color] duration-300 shadow-[0_0_20px_rgba(214,191,144,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:ring-coffee-gold">
-                                    <span className="material-symbols-outlined">shopping_cart</span>
-                                    AÑADIR AL CARRITO
-                                </button>
-                                <button
-                                    onClick={onClose}
-                                    className="px-8 h-14 md:h-16 rounded-full border border-white/10 text-coffee-cream font-bold hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold"
-                                >
-                                    Cerrar
-                                </button>
-                            </div>
+                                <div className="flex flex-col sm:flex-row gap-6">
+                                    <button className="flex-[2] bg-coffee-dark text-white h-16 rounded-full font-modern font-bold text-xs uppercase tracking-[0.3em] hover:bg-coffee-gold transition-colors duration-500 shadow-xl active:scale-95">
+                                        Ordenar ahora
+                                    </button>
+                                    <button
+                                        onClick={onClose}
+                                        className="flex-1 border border-coffee-dark/10 text-coffee-dark h-16 rounded-full font-modern font-bold text-xs uppercase tracking-[0.3em] hover:bg-coffee-dark hover:text-white transition-all duration-500"
+                                    >
+                                        Explorar menú
+                                    </button>
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 </div>

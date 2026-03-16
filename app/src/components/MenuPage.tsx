@@ -1,176 +1,150 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ScrollReveal from './ui/ScrollReveal';
 import { highlightedProducts, exploreProducts, type Product } from '../data/products';
+//import { siteConfig } from '../data/site-config';
 import ProductModal from './ProductModal';
-import { siteConfig } from '../data/site-config';
-
-// Combine all products for the menu
-const allProducts = [...highlightedProducts, ...exploreProducts];
+import ScrollReveal from './ui/ScrollReveal';
 
 const MenuPage: React.FC = () => {
-    useEffect(() => {
-        document.title = `Menú | ${siteConfig.brand.name} | Café Frío y Frappes`;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-            metaDesc.setAttribute('content', 'Explora nuestro menú artesanal de café frío, frappes, iced lattes y postres hechos en Colombia.');
-        }
-    }, []);
-
-    const [filter, setFilter] = useState('Todos');
+    const [activeCategory, setActiveCategory] = useState<string>('all');
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const allProducts = useMemo(() => [...highlightedProducts, ...exploreProducts], []);
+
+    const categories = [
+        { id: 'all', label: 'Todos' },
+        { id: 'frappe', label: 'Frappés' },
+        { id: 'cold', label: 'Bebidas Frías' },
+        { id: 'latte', label: 'Lattes' },
+        { id: 'hot', label: 'Café Caliente' },
+        { id: 'dessert', label: 'Delicias' },
+    ];
+
+    const filteredProducts = useMemo(() => {
+        if (activeCategory === 'all') return allProducts;
+        return allProducts.filter(p => p.category === activeCategory);
+    }, [activeCategory, allProducts]);
 
     const handleProductClick = (product: Product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
     };
 
-    const filteredProducts = filter === 'Todos'
-        ? allProducts
-        : filter === 'Fríos'
-            ? allProducts.filter(p => ['nitro', 'latte', 'frappe', 'cold'].includes(p.category))
-            : filter === 'Calientes'
-                ? allProducts.filter(p => p.category === 'hot')
-                : filter === 'Postres'
-                    ? allProducts.filter(p => p.category === 'dessert')
-                    : allProducts;
-
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, scale: 0.9, y: 20 },
-        show: { opacity: 1, scale: 1, y: 0 },
-        exit: { opacity: 0, scale: 0.9, y: 10 }
-    };
-
     return (
-        <div className="bg-coffee-dark font-sans text-coffee-cream min-h-screen relative overflow-x-hidden">
-            {/* Background Effects */}
-            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-coffee-gold/5 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-cyan-400/5 rounded-full blur-[100px]"></div>
-            </div>
+        <div className="bg-coffee-cream min-h-screen font-body text-coffee-dark pb-32">
+            {/* Header / Hero */}
+            <header className="relative pt-20 pb-32 px-6 overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/3 aspect-square bg-coffee-gold/5 blur-[120px] rounded-full"></div>
 
-            {/* Navigation (Simple version for Menu Page) */}
-            <nav className="relative z-50 w-full flex justify-between items-center px-6 md:px-12 py-6 border-b border-white/10 backdrop-blur-md bg-black/20">
-                <Link to="/" className="flex items-center gap-2 group">
-                    <span className="material-symbols-outlined text-coffee-gold transition-transform group-hover:-translate-x-1">arrow_back</span>
-                    <span className="font-bold text-lg">Volver</span>
-                </Link>
-                <div className="flex items-center gap-2">
-                    <div className="h-8 w-8">
-                        <img
-                            src={siteConfig.brand.logo}
-                            alt={siteConfig.brand.name}
-                            width={32}
-                            height={32}
-                            className="h-full w-full object-contain"
-                        />
-                    </div>
-                    <span className="font-bold text-xl tracking-tight uppercase">{siteConfig.brand.name}</span>
-                </div>
-                <div className="w-20"></div> {/* Spacer for centering */}
-            </nav>
+                <div className="max-w-7xl mx-auto">
+                    <Link to="/" className="inline-flex items-center gap-3 font-modern text-[10px] font-bold uppercase tracking-[0.3em] text-coffee-dark/40 hover:text-coffee-gold transition-colors mb-20 group">
+                        <span className="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
+                        Volver al inicio
+                    </Link>
 
-            <main className="relative z-10 max-w-7xl mx-auto px-6 py-12">
-                <header className="text-center mb-16">
-                    <ScrollReveal animation="fade-down">
-                        <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Nuestro</span> <br className="md:hidden" />
-                            <span className="text-coffee-gold drop-shadow-[0_0_15px_rgba(214,191,144,0.5)]">Menú</span>
+                    <ScrollReveal animation="fade-up" className="max-w-4xl">
+                        <span className="font-modern text-xs font-bold uppercase tracking-[0.4em] text-coffee-gold mb-6 block">Nuestra Carta</span>
+                        <h1 className="font-display text-7xl md:text-9xl leading-[0.85] mb-12 italic">
+                            Sabores que <br /> <span className="not-italic text-coffee-gold font-modern font-black uppercase tracking-tighter">Cuentan Historias</span>
                         </h1>
-                        <p className="text-white/60 text-lg max-w-2xl mx-auto">
-                            Descubre nuestra selección artesanal de bebidas frías y calientes, preparadas con pasión y los mejores ingredientes.
+                        <p className="text-coffee-dark/50 text-xl leading-relaxed max-w-2xl">
+                            Cada grano ha sido seleccionado individualmente para ofrecer una experiencia que honra la tradición de Roldanillo.
                         </p>
                     </ScrollReveal>
-                </header>
+                </div>
+            </header>
 
-                {/* Filters */}
-                <ScrollReveal animation="fade-up" delay={0.2} className="mb-12">
-                    <div className="flex flex-wrap justify-center gap-4">
-                        {['Todos', 'Fríos', 'Calientes', 'Postres'].map((cat) => (
+            {/* Filter Bar */}
+            <div className="sticky top-0 z-50 bg-coffee-cream/80 backdrop-blur-xl border-y border-coffee-dark/5 mb-24">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex gap-10 overflow-x-auto no-scrollbar py-8">
+                        {categories.map((cat) => (
                             <button
-                                key={cat}
-                                onClick={() => setFilter(cat)}
-                                className={`px-6 py-2 rounded-full font-bold transition-[transform,background-color,color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold ${filter === cat
-                                    ? 'bg-coffee-gold text-coffee-dark shadow-[0_0_15px_rgba(214,191,144,0.4)] scale-105'
-                                    : 'bg-white/5 text-coffee-cream/70 hover:bg-white/10 hover:text-coffee-cream'
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={`relative flex-shrink-0 font-modern text-[11px] font-bold uppercase tracking-[0.2em] transition-colors py-2 ${activeCategory === cat.id ? 'text-coffee-dark' : 'text-coffee-dark/30 hover:text-coffee-dark'
                                     }`}
                             >
-                                {cat}
+                                {cat.label}
+                                {activeCategory === cat.id && (
+                                    <motion.div
+                                        layoutId="menu-filter-pill"
+                                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-coffee-gold"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
                             </button>
                         ))}
                     </div>
-                </ScrollReveal>
+                </div>
+            </div>
 
-                {/* Product Grid */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={filter}
-                        variants={container}
-                        initial="hidden"
-                        animate="show"
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                    >
+            {/* Product Listing */}
+            <main className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
+                    <AnimatePresence mode="popLayout">
                         {filteredProducts.map((product) => (
                             <motion.div
+                                layout
                                 key={product.id}
-                                variants={item}
-                                className="group relative bg-white/5 rounded-3xl overflow-hidden border border-white/5 hover:border-coffee-gold/30 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-coffee-gold/5 cursor-pointer"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                className="group flex items-start gap-8 cursor-pointer pb-12 border-b border-coffee-dark/5"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="aspect-square relative overflow-hidden">
-                                    <div
-                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                        style={{ backgroundImage: `url('${product.image}')` }}
-                                    ></div>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-
-                                    <button aria-label={`Add ${product.name} to cart`} className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-coffee-cream text-coffee-dark flex items-center justify-center hover:bg-coffee-gold transition-[background-color,transform,opacity] shadow-lg translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300 focus-visible:translate-y-0 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee-gold">
-                                        <span className="material-symbols-outlined">add</span>
-                                    </button>
+                                <div className="h-32 w-24 md:h-48 md:w-36 flex-shrink-0 rounded-lg overflow-hidden relative shadow-lg bg-white/50">
+                                    {product.image ? (
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                                            style={{ backgroundImage: `url('${product.image}')` }}
+                                        ></div>
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center text-coffee-dark/10">
+                                            <span className="material-symbols-outlined text-4xl">coffee</span>
+                                        </div>
+                                    )}
                                 </div>
 
-                                <div className="p-5">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h3 className="text-xl font-bold text-coffee-cream group-hover:text-coffee-gold transition-colors">{product.name}</h3>
-                                        <span className="font-bold text-coffee-gold bg-coffee-gold/10 px-2 py-1 rounded-lg text-sm">{product.price}</span>
+                                <div className="flex-grow flex flex-col justify-between h-full pt-1">
+                                    <div>
+                                        <div className="flex justify-between items-start mb-4 gap-4">
+                                            <h3 className="font-display text-3xl md:text-4xl text-coffee-dark leading-none group-hover:text-coffee-gold transition-colors">{product.name}</h3>
+                                            <span className="font-modern text-xl font-bold text-coffee-dark italic">{product.price}</span>
+                                        </div>
+                                        <p className="text-coffee-dark/40 text-sm md:text-base leading-relaxed max-w-md">{product.description}</p>
                                     </div>
-                                    <p className="text-white/50 text-sm line-clamp-2 mb-4">{product.description}</p>
-                                    {product.tag && (
-                                        <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-white/40 border border-white/10 px-2 py-1 rounded">
-                                            {product.tag.icon && <span className="material-symbols-outlined text-[14px]">{product.tag.icon}</span>}
-                                            {product.tag.label}
-                                        </span>
-                                    )}
+
+                                    <div className="flex items-center gap-4 mt-6">
+                                        <span className="font-modern text-[9px] font-bold uppercase tracking-widest text-coffee-gold bg-coffee-gold/5 px-3 py-1 rounded-full">{product.category}</span>
+                                        <span className="w-12 h-[1px] bg-coffee-dark/5"></span>
+                                        <button className="font-modern text-[9px] font-bold uppercase tracking-[0.2em] text-coffee-dark/40 group-hover:text-coffee-dark transition-colors flex items-center gap-2">
+                                            Ver ingredientes
+                                            <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
-                        {filteredProducts.length === 0 && (
-                            <div className="col-span-full py-20 text-center">
-                                <span className="material-symbols-outlined text-white/20 text-6xl mb-4">coffee_maker</span>
-                                <p className="text-white/40 text-lg font-medium">No encontramos productos en esta categoría.</p>
-                            </div>
-                        )}
-                    </motion.div>
-                </AnimatePresence>
+                    </AnimatePresence>
+                </div>
 
-                <ProductModal
-                    product={selectedProduct}
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                />
+                {filteredProducts.length === 0 && (
+                    <div className="py-40 text-center">
+                        <span className="material-symbols-outlined text-6xl text-coffee-dark/10 mb-6">coffee_maker</span>
+                        <p className="font-modern text-sm uppercase tracking-widest text-coffee-dark/30">Próximamente más sabores en esta categoría</p>
+                    </div>
+                )}
             </main>
+
+            <ProductModal
+                product={selectedProduct}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 };
