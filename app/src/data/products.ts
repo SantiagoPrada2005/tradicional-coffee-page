@@ -12,39 +12,6 @@ export interface Product {
     };
 }
 
-export const highlightedProducts: Product[] = [
-    {
-        id: 1,
-        name: "Frappe de Oreo",
-        description: "Delicioso frappe cremoso con trozos de galleta Oreo.",
-        price: "$10.000",
-        image: "/images/frappe-oreo.jpeg",
-        alt: "Frappe de Oreo",
-        category: 'frappe',
-        tag: { label: "Más pedido", icon: "local_fire_department" }
-    },
-    {
-        id: 2,
-        name: "Cappuccino Especial",
-        description: "Espresso, leche cremada, crema chantilly, canela y concentrado de caramelo.",
-        price: "$7.000",
-        image: "",
-        alt: "Cappuccino Especial con caramelo",
-        category: 'hot',
-        tag: { label: "Especialidad" }
-    },
-    {
-        id: 3,
-        name: "Frappuccino",
-        description: "La mezcla perfecta de café y granizado con el toque de la casa.",
-        price: "$13.000",
-        image: "/images/frappe-cafe.jpeg",
-        alt: "Frappuccino de la casa",
-        category: 'frappe',
-        tag: { label: "Premium" }
-    }
-];
-
 export const exploreProducts: Product[] = [
     // CAFÉ CALIENTE 
     { id: 4, name: "Expreso", description: "Café concentrado e intenso.", price: "$5.000", image: "", alt: "Expreso", category: 'hot' },
@@ -96,4 +63,38 @@ export const exploreProducts: Product[] = [
     // DELICIAS [cite: 90]
     { id: 39, name: "Torta", description: "Porción de torta del día.", price: "$4.000", image: "", alt: "Torta", category: 'dessert' },
     { id: 40, name: "Cuaresmeros", description: "Tradición local.", price: "$1.200", image: "", alt: "Cuaresmeros", category: 'dessert' }
+];
+
+export interface AccordionItemData {
+    id: number;
+    title: string;
+    imageUrl: string;
+}
+
+export const accordionItems: AccordionItemData[] = [
+    {
+        id: 1,
+        title: 'Frappé',
+        imageUrl: '/images/frappe-oreo.jpeg',
+    },
+    {
+        id: 2,
+        title: 'Café',
+        imageUrl: '/images/frappe-cafe.jpeg',
+    },
+    {
+        id: 3,
+        title: 'Latte',
+        imageUrl: '/images/frappe-te-chai.jpeg',
+    },
+    {
+        id: 4,
+        title: 'Bebidas Calientes',
+        imageUrl: '/images/marshmallow.jpeg',
+    },
+    {
+        id: 5,
+        title: 'Bebidas Frías',
+        imageUrl: '/images/limonada-cereza.jpeg',
+    },
 ];

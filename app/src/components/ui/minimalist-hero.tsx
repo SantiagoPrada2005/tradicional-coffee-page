@@ -105,7 +105,7 @@ export const MinimalistHero = ({
   const handleMouseEnter = () => {
     gsap.to(imageRef.current, {
       scale: 1.25,
-      rotate: 12, // Tilted more to the left
+      rotate: 12,
       filter: 'brightness(1.25) drop-shadow(0 25px 40px rgba(214, 191, 144, 0.4))',
       duration: 0.5,
       ease: 'power2.out'
@@ -121,7 +121,7 @@ export const MinimalistHero = ({
   const handleMouseLeave = () => {
     gsap.to(imageRef.current, {
       scale: 1,
-      rotate: -6, // Back to standard left tilt
+      rotate: -6,
       filter: 'brightness(1) drop-shadow(0 15px 30px rgba(0,0,0,0.4))',
       duration: 0.6,
       ease: 'power2.out'
@@ -138,58 +138,52 @@ export const MinimalistHero = ({
     <div
       ref={containerRef}
       className={cn(
-        'relative flex h-dvh w-full flex-col items-center justify-between overflow-hidden bg-coffee-dark p-6 md:p-12 font-body',
+        'relative flex h-dvh w-full flex-col items-center justify-between overflow-hidden bg-coffee-dark px-5 py-6 md:p-12 font-body',
         className
       )}
     >
-      {/* Background Image / Fondo Hero */}
+      {/* Background Image */}
       <div
-        className="absolute inset-0 z-0 h-full w-full bg-cover bg-center grayscale-20% brightness-[0.5]"
-        style={{ backgroundImage: `url('${bgImageSrc}')` }}
+        className="absolute inset-0 z-0 h-full w-full bg-cover bg-center brightness-50"
+        style={{ backgroundImage: `url('${bgImageSrc}')`, filter: 'grayscale(20%) brightness(0.5)' }}
       />
-      <div className="absolute inset-0 bg-liner-to-t from-coffee-dark via-coffee-dark/40 to-coffee-dark/80 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-coffee-dark via-coffee-dark/40 to-coffee-dark/80 z-0"></div>
 
       {/* Header */}
       <header className="z-30 flex w-full max-w-7xl items-center justify-between">
-        <div className="header-element text-xl md:text-2xl font-bold tracking-widest font-logo text-white uppercase">
+        <div className="header-element text-lg md:text-2xl font-bold tracking-widest font-logo text-white uppercase">
           {logoText}
         </div>
 
-        <div className="header-element hidden items-center space-x-10 md:flex">
+        <div className="header-element hidden md:flex items-center space-x-10">
           {navLinks.map((link) => (
             <NavLink key={link.label} href={link.href}>
               {link.label}
             </NavLink>
           ))}
         </div>
-
-        <button className="header-element flex flex-col space-y-1.5 md:hidden" aria-label="Open menu">
-          <span className="block h-0.5 w-6 bg-coffee-gold"></span>
-          <span className="block h-0.5 w-6 bg-coffee-gold"></span>
-          <span className="block h-0.5 w-5 bg-coffee-gold"></span>
-        </button>
       </header>
 
       {/* Main Content Area */}
-      <div className="relative z-20 grid w-full max-w-7xl grow grid-cols-1 items-center md:grid-cols-3">
+      <div className="relative z-20 grid w-full max-w-7xl grow grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-0">
         {/* Left Text Content */}
-        <div className="left-content order-2 md:order-1 text-center md:text-left mt-8 md:mt-0">
-          <div className="mb-4 flex items-center justify-center md:justify-start gap-3">
+        <div className="left-content text-center md:text-left order-2 md:order-1">
+          <div className="mb-4 flex items-center gap-3 justify-center md:justify-start">
             <div className="w-8 h-px bg-coffee-gold"></div>
             <span className="font-modern text-xs font-bold uppercase tracking-[0.3em] text-coffee-gold">Hecho en Roldanillo</span>
           </div>
-          <p className="mx-auto md:mx-0 max-w-xs text-sm leading-relaxed text-white/80 font-body">{mainText}</p>
+          <p className="max-w-xs mx-auto md:mx-0 text-sm leading-relaxed text-white/80 font-body">{mainText}</p>
           <Link to={readMoreLink} className="mt-6 inline-block font-modern text-[10px] font-bold text-white uppercase tracking-[0.2em] underline decoration-coffee-gold underline-offset-4 hover:text-coffee-gold transition-colors">
             Descubrir Más
           </Link>
         </div>
 
         {/* Center Image */}
-        <div className="relative order-1 md:order-2 flex justify-center items-center h-full">
+        <div className="relative flex justify-center items-center h-full order-1 md:order-2">
           {/* Subtle Glow Behind Image */}
           <div
             ref={glowRef}
-            className="absolute z-0 h-[300px] w-[300px] rounded-full bg-coffee-gold/20 blur-[50px] md:h-[450px] md:w-[450px] lg:h-[550px] lg:w-[550px]"
+            className="absolute z-0 h-[280px] w-[280px] md:h-[550px] md:w-[550px] rounded-full bg-coffee-gold/20 blur-[50px]"
           ></div>
 
           <img
@@ -198,8 +192,7 @@ export const MinimalistHero = ({
             alt={imageAlt}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            // Made it larger, added -rotate-6 initial tilt, and ensured no CSS transitions conflict with GSAP
-            className="relative z-50 h-auto w-1000px origin-center object-cover -rotate-6 md:w-200 lg:w-10xl 7xl:w-12xl"
+            className="relative z-50 h-auto w-[220px] md:w-[420px] origin-center object-cover -rotate-6"
             style={{
               filter: 'brightness(1) drop-shadow(0 15px 30px rgba(0,0,0,0.4))'
             }}
@@ -212,8 +205,8 @@ export const MinimalistHero = ({
         </div>
 
         {/* Right Text */}
-        <div className="right-content order-3 flex items-center justify-center text-center md:items-end md:justify-end mt-8 md:mt-0">
-          <h1 className="font-display italic text-5xl md:text-6xl lg:text-[5rem] font-extrabold text-white leading-[0.9] text-center md:text-right">
+        <div className="right-content flex items-end justify-center md:justify-end order-3">
+          <h1 className="font-display italic text-4xl md:text-[5rem] font-extrabold text-white leading-[0.9] text-center md:text-right">
             {overlayText.part1}
             <br />
             <span className="text-coffee-gold">{overlayText.part2}</span>
@@ -222,16 +215,16 @@ export const MinimalistHero = ({
       </div>
 
       {/* Footer Elements */}
-      <footer className="z-30 flex w-full max-w-7xl items-center justify-between pb-4">
-        <div className="footer-element text-xs font-modern uppercase tracking-widest text-white/50 hidden md:block">
+      <footer className="z-30 flex w-full max-w-7xl items-center justify-between flex-col gap-4 md:flex-row pb-4">
+        <div className="footer-element text-[10px] md:text-xs font-modern uppercase tracking-widest text-white/50 text-center md:text-left">
           {locationText}
         </div>
 
         {/* Menu button */}
-        <div className="footer-element grow flex justify-center md:grow-0 md:justify-end w-full md:w-auto mt-6 md:mt-0">
+        <div className="footer-element">
           <Link
             to="/menu"
-            className="flex items-center gap-2 bg-coffee-gold px-12 py-4 rounded-full font-modern font-bold text-[11px] uppercase tracking-[0.2em] text-coffee-dark hover:bg-white transition-all shadow-premium hover:shadow-premium-gold"
+            className="flex items-center gap-2 bg-coffee-gold px-8 py-3 md:px-12 md:py-4 rounded-full font-modern font-bold text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-coffee-dark hover:bg-white transition-all shadow-premium hover:shadow-premium-gold"
           >
             Ver Menú
           </Link>

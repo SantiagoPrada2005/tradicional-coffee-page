@@ -1,68 +1,78 @@
-import React from 'react';
-import { motion, type Variant } from 'framer-motion';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import { useGSAP } from '@gsap/react';
 
-type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'scale-up' | 'blur-in';
+gsap.registerPlugin(ScrollTrigger);
+
+type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out';
 
 interface ScrollRevealProps {
     children: React.ReactNode;
     animation?: AnimationType;
-    duration?: number;
     delay?: number;
-    staggerChildren?: number;
+    duration?: number;
     className?: string;
-    threshold?: number;
-    once?: boolean;
+    staggerChildren?: number;
 }
 
-const animations: Record<AnimationType, { hidden: Variant; visible: Variant }> = {
-    'fade-up': {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0 },
-    },
-    'fade-down': {
-        hidden: { opacity: 0, y: -50 },
-        visible: { opacity: 1, y: 0 },
-    },
-    'fade-left': {
-        hidden: { opacity: 0, x: 50 },
-        visible: { opacity: 1, x: 0 },
-    },
-    'fade-right': {
-        hidden: { opacity: 0, x: -50 },
-        visible: { opacity: 1, x: 0 },
-    },
-    'scale-up': {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1 },
-    },
-    'blur-in': {
-        hidden: { opacity: 0, filter: 'blur(20px)' },
-        visible: { opacity: 1, filter: 'blur(0px)' },
-    },
+const animationConfigs: Record<AnimationType, gsap.TweenVars> = {
+    'fade-up': { y: 40, opacity: 0 },
+    'fade-down': { y: -40, opacity: 0 },
+    'fade-left': { x: -40, opacity: 0 },
+    'fade-right': { x: 40, opacity: 0 },
+    'zoom-in': { scale: 0.85, opacity: 0 },
+    'zoom-out': { scale: 1.15, opacity: 0 },
 };
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     animation = 'fade-up',
-    duration = 0.5,
     delay = 0,
-    staggerChildren = 0,
+    duration = 0.8,
     className = '',
-    once = true,
+    staggerChildren = 0,
 }) => {
-    const selectedAnimation = animations[animation];
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const fromVars = animationConfigs[animation];
+
+        if (staggerChildren > 0) {
+            gsap.from(el.children, {
+                ...fromVars,
+                duration,
+                delay,
+                stagger: staggerChildren,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+        } else {
+            gsap.from(el, {
+                ...fromVars,
+                duration,
+                delay,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+    }, { scope: containerRef });
 
     return (
-        <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once, margin: "-10%" }}
-            transition={{ duration, delay, staggerChildren }}
-            variants={selectedAnimation}
-            className={className}
-        >
+        <div ref={containerRef} className={className}>
             {children}
-        </motion.div>
+        </div>
     );
 };
 

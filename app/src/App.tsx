@@ -4,7 +4,6 @@ import ColdHubHero from './components/ColdHubHero'
 import SocialLocationHub from './components/SocialLocationHub'
 import MenuPage from './components/MenuPage'
 import { siteConfig } from './data/site-config'
-import './index.css'
 import { LandingAccordionItem } from './components/interactive-image-accordion'
 
 function App() {

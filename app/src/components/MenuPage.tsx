@@ -1,17 +1,22 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { Flip } from 'gsap/all';
+import { useGSAP } from '@gsap/react';
+import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { highlightedProducts, exploreProducts, type Product } from '../data/products';
+import { exploreProducts, type Product } from '../data/products';
 //import { siteConfig } from '../data/site-config';
 import ProductModal from './ProductModal';
 import ScrollReveal from './ui/ScrollReveal';
+
+gsap.registerPlugin(Flip, useGSAP);
 
 const MenuPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const allProducts = useMemo(() => [...highlightedProducts, ...exploreProducts], []);
+    const allProducts = useMemo(() => [...exploreProducts], []);
 
     const categories = [
         { id: 'all', label: 'Todos' },
@@ -22,10 +27,28 @@ const MenuPage: React.FC = () => {
         { id: 'dessert', label: 'Delicias' },
     ];
 
-    const filteredProducts = useMemo(() => {
-        if (activeCategory === 'all') return allProducts;
-        return allProducts.filter(p => p.category === activeCategory);
+    const filteredProductsCount = useMemo(() => {
+        if (activeCategory === 'all') return allProducts.length;
+        return allProducts.filter(p => p.category === activeCategory).length;
     }, [activeCategory, allProducts]);
+
+    const handleCategoryChange = (catId: string) => {
+        if (catId === activeCategory) return;
+        
+        const state = Flip.getState('.product-card, .filter-indicator', { props: 'opacity' });
+        
+        flushSync(() => {
+            setActiveCategory(catId);
+        });
+        
+        Flip.from(state, {
+            duration: 0.6,
+            ease: 'power2.out',
+            absolute: true,
+            onEnter: elements => gsap.fromTo(elements, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }),
+            onLeave: elements => gsap.to(elements, { opacity: 0, scale: 0.95, duration: 0.4 })
+        });
+    };
 
     const handleProductClick = (product: Product) => {
         setSelectedProduct(product);
@@ -63,16 +86,14 @@ const MenuPage: React.FC = () => {
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
-                                onClick={() => setActiveCategory(cat.id)}
+                                onClick={() => handleCategoryChange(cat.id)}
                                 className={`relative flex-shrink-0 font-modern text-[11px] font-bold uppercase tracking-[0.2em] transition-colors py-2 ${activeCategory === cat.id ? 'text-coffee-dark' : 'text-coffee-dark/30 hover:text-coffee-dark'
                                     }`}
                             >
                                 {cat.label}
                                 {activeCategory === cat.id && (
-                                    <motion.div
-                                        layoutId="menu-filter-pill"
-                                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-coffee-gold"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    <div
+                                        className="filter-indicator absolute bottom-0 left-0 right-0 h-[2px] bg-coffee-gold"
                                     />
                                 )}
                             </button>
@@ -84,16 +105,14 @@ const MenuPage: React.FC = () => {
             {/* Product Listing */}
             <main className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
-                    <AnimatePresence mode="popLayout">
-                        {filteredProducts.map((product) => (
-                            <motion.div
-                                layout
+                    <div>
+                        {allProducts.map((product) => {
+                            const isVisible = activeCategory === 'all' || product.category === activeCategory;
+                            return (
+                            <div
                                 key={product.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="group flex items-start gap-8 cursor-pointer pb-12 border-b border-coffee-dark/5"
+                                className="product-card group flex items-start gap-8 cursor-pointer pb-12 border-b border-coffee-dark/5"
+                                style={{ display: isVisible ? 'flex' : 'none' }}
                                 onClick={() => handleProductClick(product)}
                             >
                                 <div className="h-32 w-24 md:h-48 md:w-36 flex-shrink-0 rounded-lg overflow-hidden relative shadow-lg bg-white/50">
@@ -127,12 +146,13 @@ const MenuPage: React.FC = () => {
                                         </button>
                                     </div>
                                 </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                            </div>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                {filteredProducts.length === 0 && (
+                {filteredProductsCount === 0 && (
                     <div className="py-40 text-center">
                         <span className="material-symbols-outlined text-6xl text-coffee-dark/10 mb-6">coffee_maker</span>
                         <p className="font-modern text-sm uppercase tracking-widest text-coffee-dark/30">Próximamente más sabores en esta categoría</p>

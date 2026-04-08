@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { accordionItems, type AccordionItemData } from './ui/lib/menu';
+import React, { useState, useEffect } from 'react';
+import { accordionItems, type AccordionItemData } from '../data/products';
 
 // --- Types ---
 interface AccordionItemProps {
@@ -7,7 +7,6 @@ interface AccordionItemProps {
   isActive: boolean;
   onMouseEnter: () => void;
 }
-
 
 // --- Accordion Item Component ---
 const AccordionItem: React.FC<AccordionItemProps> = ({ item, isActive, onMouseEnter }) => {
@@ -46,18 +45,30 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isActive, onMouseEn
   );
 };
 
-
 // --- Main App Component ---
 export function LandingAccordionItem() {
-  const [activeIndex, setActiveIndex] = useState(4);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const filteredItems = accordionItems.filter(item => item.id >= 1 && item.id <= 5);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % filteredItems.length);
+    }, 2500); // tiempo en milisegundos 
+
+    return () => clearInterval(interval);
+  }, [activeIndex, filteredItems.length]);
 
   const handleItemHover = (index: number) => {
     setActiveIndex(index);
   };
 
   return (
-    <div className="bg-[#D2B48C] font-body">
-      <section className="container mx-auto px-4 py-12 md:py-24">
+    // 1. AQUÍ ESTÁ LA MAGIA: min-h-[100dvh] flex flex-col justify-center
+    <div className="bg-[#D2B48C] font-body min-h-[100dvh] flex flex-col justify-center">
+
+      {/* 2. Reduje py-12 md:py-24 a py-8 md:py-12 para que no empuje el contenido hacia afuera */}
+      <section className="container mx-auto px-4 py-8 md:py-12 w-full max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
 
           {/* Left Side: Text Content */}
@@ -79,8 +90,8 @@ export function LandingAccordionItem() {
           </div>
 
           {/* Right Side: Image Accordion */}
-          <div className="w-full md:w-1/2">
-            <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4">
+          <div className="w-full md:w-1/2 flex justify-center">
+            <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4 max-w-full">
               {accordionItems.filter(item => item.id >= 1 && item.id <= 5).map((item, index) => (
                 <AccordionItem
                   key={item.id}
@@ -91,6 +102,7 @@ export function LandingAccordionItem() {
               ))}
             </div>
           </div>
+
         </div>
       </section>
     </div>
