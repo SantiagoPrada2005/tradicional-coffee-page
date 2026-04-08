@@ -1,7 +1,5 @@
 import React from 'react';
 import ScrollReveal from '../../../components/animations/ScrollReveal';
-import { LocationMap } from './expand-map';
-
 const SocialLocationHub: React.FC = () => {
     return (
         <section className="bg-[#1C110C] font-body text-white relative min-h-[100dvh] flex flex-col justify-between py-4 overflow-hidden">
@@ -99,27 +97,36 @@ const SocialLocationHub: React.FC = () => {
                 {/* --- 4. BOTTOM BENTO (INFO Y UBICACIÓN) --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {/* Info Card */}
-                    <ScrollReveal animation="fade-right" className="bg-[#1C110C]/80 backdrop-blur-sm rounded-3xl p-6 border border-white/10 self-start w-full">
-                        <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-[#B89B72] mb-3 block">Encuéntranos</span>
-                        <div className="mb-4">
-                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] block mb-0.5">Dirección</span>
-                            <p className="font-display text-lg text-white italic leading-tight">
+                    <ScrollReveal animation="fade-right" className="bg-[#1C110C]/80 backdrop-blur-sm rounded-[1.5rem] p-6 md:p-8 border border-white/10 w-full h-full flex flex-col justify-center">
+                        <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-[#B89B72] mb-4 block">Encuéntranos</span>
+                        <div className="mb-5">
+                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] block mb-1">Dirección</span>
+                            <p className="font-display text-lg md:text-xl text-white italic leading-tight">
                                 Cra. 7 #7-40,<br />Roldanillo, Valle del Cauca
                             </p>
                         </div>
                         <div>
-                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] block mb-0.5">Horario</span>
-                            <p className="text-[#D4B88E] font-medium text-xs">Todos los días 8:00am - 10:00pm</p>
+                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] block mb-1">Horario</span>
+                            <p className="text-[#D4B88E] font-medium text-xs md:text-sm">Todos los días 8:00am - 10:00pm</p>
                         </div>
                     </ScrollReveal>
 
-                    {/* Visítanos Card - LocationMap */}
-                    <ScrollReveal animation="fade-left" delay={0.2} className="flex flex-col items-center justify-center">
-                        <LocationMap
-                            location="Cra. 7 #7-40, Roldanillo"
-                            coordinates="4.4110° N, 76.1542° W"
-                            mapUrl="https://www.google.com/maps/place/Tradicional+Coffee/@4.4110203,-76.1567558,17z/data=!3m1!4b1!4m6!3m5!1s0x8e38374eef85d4b3:0x6b1bde098e68af0e!8m2!3d4.4110203!4d-76.1541809!16s%2Fg%2F11y_1tqqsl?hl=es&entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
-                        />
+                    {/* Visítanos Card - Maps Embed */}
+                    <ScrollReveal animation="fade-left" delay={0.2} className="flex flex-col items-center justify-center w-full h-full min-h-[200px]">
+                        <div className="relative w-full h-full min-h-[240px] md:min-h-[200px] rounded-[1.5rem] overflow-hidden border border-white/10 bg-[#1C110C]/80 shadow-lg group">
+                            {/* Subtle hover overlay to match the theme */}
+                            <div className="absolute inset-0 pointer-events-none z-10 box-border border border-transparent group-hover:border-white/5 transition-colors duration-300 rounded-[1.5rem]"></div>
+                            <iframe 
+                                src="https://maps.google.com/maps?q=Tradicional%20Coffee%20Roldanillo&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                                width="100%" 
+                                height="100%" 
+                                style={{ border: 0 }} 
+                                allowFullScreen 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="absolute inset-0 w-full h-full"
+                            ></iframe>
+                        </div>
                     </ScrollReveal>
                 </div>
 
