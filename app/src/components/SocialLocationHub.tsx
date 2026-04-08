@@ -10,7 +10,7 @@ const SocialLocationHub: React.FC = () => {
             <div
                 className="absolute inset-0 z-0 opacity-30"
                 style={{
-                    backgroundImage: "/images/fondo-hero.jpeg",
+                    backgroundImage: 'url("/images/fondo-hero.jpeg")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}
@@ -36,50 +36,54 @@ const SocialLocationHub: React.FC = () => {
                     </ScrollReveal>
                 </div>
 
-                {/* --- 2. SOCIAL CARDS (GRID 2 COLUMNAS) --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {/* Card Instagram */}
-                    <ScrollReveal animation="fade-up" className="relative h-40 md:h-48 bg-[#241710]/80 backdrop-blur-sm rounded-3xl p-6 flex flex-col justify-between border border-white/5 overflow-hidden group cursor-pointer hover:border-white/20 transition-all">
-                        {/* ESTE ES EL ENLACE INVISIBLE QUE CUBRE TODA LA TARJETA */}
-                        <a
-                            href="https://www.instagram.com/tradicional_coffee_roldanillo/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute inset-0 z-20"
-                            aria-label="Ir a Instagram de Tradicional Coffee"
-                        ></a>
+                {/* --- 2. SOCIAL HUB (DISEÑO CENTRALIZADO) --- */}
+                <ScrollReveal animation="fade-up" className="relative w-full bg-[#241710]/80 backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-12 flex flex-col md:flex-row items-center justify-around gap-10 md:gap-4 group mb-4">
 
-                        <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#1C110C]/80 z-0"></div>
-                        <div className="relative z-10 flex justify-center">
-                            <span className="bg-[#3A2818] text-white/80 text-[9px] px-3 py-1 rounded-full font-modern tracking-wider flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#D4B88E] inline-block group-hover:scale-150 transition-transform"></span>
-                                @tradicional_coffee_roldanillo
-                            </span>
-                        </div>
-                        <div className="relative z-10">
-                            <span className="font-modern text-[8px] font-bold uppercase tracking-[0.3em] text-[#B89B72] mb-2 block group-hover:text-white transition-colors">Instagram</span>
-                            <h3 className="font-display text-2xl md:text-3xl text-white italic group-hover:scale-[1.02] transition-transform origin-left">Momentos que perduran</h3>
-                        </div>
-                    </ScrollReveal>
+                    {/* CAMBIO 2: Agregué un div contenedor con 'overflow-hidden rounded-3xl' solo para la luz de fondo, para que el degradado no se salga de las esquinas */}
+                    <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#3A2818]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
 
-                    {/* Card TikTok */}
-                    <ScrollReveal animation="fade-up" delay={0.2} className="relative h-40 md:h-48 bg-[#241710]/80 backdrop-blur-sm rounded-3xl p-6 flex flex-col justify-end border border-white/5 overflow-hidden group cursor-pointer hover:border-white/20 transition-all">
-                        {/* ESTE ES EL ENLACE INVISIBLE QUE CUBRE TODA LA TARJETA */}
-                        <a
-                            href="https://www.tiktok.com/@tradicionalcoffeerol?_r=1&_t=ZS-95LvyjihScf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute inset-0 z-20"
-                            aria-label="Ir a TikTok de Tradicional Coffee"
-                        ></a>
+                    {/* --- IZQUIERDA: TIKTOK --- */}
+                    <a
+                        href="https://www.tiktok.com/@tradicionalcoffeerol?_r=1&_t=ZS-95LvyjihScf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative z-10 flex flex-col items-center gap-1 hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+                        aria-label="Ir a TikTok"
+                    >
+                        <svg className="w-8 h-8 md:w-10 md:h-10 fill-[#D4B88E] mb-3 drop-shadow-md" viewBox="0 0 448 512">
+                            <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+                        </svg>
+                        <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-[#B89B72]">TikTok</span>
+                    </a>
 
-                        <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#1C110C]/80 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="relative z-10">
-                            <span className="font-modern text-[8px] font-bold uppercase tracking-[0.3em] text-[#B89B72] mb-2 block group-hover:text-white transition-colors">TikTok</span>
-                            <h3 className="font-display text-2xl md:text-3xl text-white italic group-hover:scale-[1.02] transition-transform origin-left">Entre bastidores</h3>
-                        </div>
-                    </ScrollReveal>
-                </div>
+                    {/* --- CENTRO: IMAGEN 3D --- */}
+                    <div className="relative z-10 w-56 md:w-72 lg:w-80 flex-shrink-0 flex justify-center items-center">
+                        <div className="absolute w-40 h-40 bg-[#D4B88E]/20 rounded-full blur-[50px] scale-150 pointer-events-none"></div>
+
+                        <img
+                            src="./images/frappe-3d.png"
+                            alt="Frappé Tradicional Coffee"
+                            className="relative z-10 w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.6)] scale-[1.3] md:scale-[1.5] group-hover:-translate-y-3 group-hover:scale-[1.35] md:group-hover:scale-[1.55] transition-all duration-700 ease-out"
+                        />
+                    </div>
+
+                    {/* --- DERECHA: INSTAGRAM --- */}
+                    <a
+                        href="https://www.instagram.com/tradicional_coffee_roldanillo/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative z-10 flex flex-col items-center gap-1 hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+                        aria-label="Ir a Instagram"
+                    >
+                        <svg className="w-8 h-8 md:w-10 md:h-10 fill-[#D4B88E] mb-3 drop-shadow-md" viewBox="0 0 448 512">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                        </svg>
+                        <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-[#B89B72]">Instagram</span>
+                    </a>
+
+                </ScrollReveal>
 
                 {/* --- 3. BANNER CENTRAL (EXPLORA MENÚ) --- */}
                 <ScrollReveal animation="zoom-in" className="bg-[#3A2818]/90 backdrop-blur-sm rounded-3xl p-5 flex items-center justify-between border border-white/5 group cursor-pointer hover:bg-[#4A3522] transition-colors">
