@@ -65,7 +65,7 @@ export function LandingAccordionItem() {
 
   return (
     // 1. AQUÍ ESTÁ LA MAGIA: min-h-[100dvh] flex flex-col justify-center
-    <div className="bg-[#D2B48C] font-body min-h-[100dvh] flex flex-col justify-center">
+    <div className="bg-[#D2B48C] font-body min-h-100dvh flex flex-col justify-center">
 
       {/* 2. Reduje py-12 md:py-24 a py-8 md:py-12 para que no empuje el contenido hacia afuera */}
       <section className="container mx-auto px-4 py-8 md:py-12 w-full max-w-6xl">

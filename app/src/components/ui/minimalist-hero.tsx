@@ -147,7 +147,7 @@ export const MinimalistHero = ({
         className="absolute inset-0 z-0 h-full w-full bg-cover bg-center brightness-50"
         style={{ backgroundImage: `url('${bgImageSrc}')`, filter: 'grayscale(20%) brightness(0.5)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-coffee-dark via-coffee-dark/40 to-coffee-dark/80 z-0"></div>
+      <div className="absolute inset-0 bg-linear-to-t from-coffee-dark via-coffee-dark/40 to-coffee-dark/80 z-0"></div>
 
       {/* Header */}
       <header className="z-30 flex w-full max-w-7xl items-center justify-between">

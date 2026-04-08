@@ -88,7 +88,7 @@ const MenuPage: React.FC = () => {
                 style={{ backgroundImage: `url('/images/fondo-hero.jpeg')`, filter: 'grayscale(30%) brightness(0.2)' }}
             />
             {/* Dark gradient overlay */}
-            <div className="fixed inset-0 z-0 bg-gradient-to-t from-[#1C110C] via-[#1C110C]/80 to-transparent"></div>
+            <div className="fixed inset-0 z-0 bg-linear-to-t from-[#1C110C] via-[#1C110C]/80 to-transparent"></div>
 
             {/* Header / Hero */}
             <header className="relative pt-20 pb-32 px-6 overflow-hidden z-10">
@@ -119,7 +119,7 @@ const MenuPage: React.FC = () => {
                             <button
                                 key={cat.id}
                                 onClick={() => handleCategoryChange(cat.id)}
-                                className={`filter-btn relative flex-shrink-0 font-modern text-[11px] font-bold uppercase tracking-[0.2em] transition-colors py-2 ${activeCategory === cat.id ? 'text-white' : 'text-white/40 hover:text-white'
+                                className={`filter-btn relative shrink-0 font-modern text-[11px] font-bold uppercase tracking-[0.2em] transition-colors py-2 ${activeCategory === cat.id ? 'text-white' : 'text-white/40 hover:text-white'
                                     }`}
                             >
                                 {cat.label}
@@ -144,10 +144,10 @@ const MenuPage: React.FC = () => {
                                 className="product-card group flex flex-col sm:flex-row items-center sm:items-start gap-8 cursor-pointer pb-12 border-b border-white/10"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="h-48 w-40 sm:h-48 sm:w-36 flex-shrink-0 rounded-2xl overflow-hidden relative shadow-2xl bg-[#2A1B14]">
+                                <div className="h-48 w-40 sm:h-48 sm:w-36 shrink-0 rounded-2xl overflow-hidden relative shadow-2xl bg-[#2A1B14]">
                                     {product.image ? (
                                         <div
-                                            className="absolute inset-0 bg-cover bg-center grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000 ease-out"
+                                            className="absolute inset-0 bg-cover bg-center grayscale-20 group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000 ease-out"
                                             style={{ backgroundImage: `url('${product.image}')` }}
                                         ></div>
                                     ) : (
@@ -157,7 +157,7 @@ const MenuPage: React.FC = () => {
                                     )}
                                 </div>
 
-                                <div className="flex-grow flex flex-col justify-between h-full pt-1 text-center sm:text-left">
+                                <div className="grow flex flex-col justify-between h-full pt-1 text-center sm:text-left">
                                     <div>
                                         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start mb-4 gap-2 sm:gap-4">
                                             <h3 className="font-display text-3xl md:text-4xl text-white leading-none group-hover:text-[#D4B88E] transition-colors">{product.name}</h3>
@@ -168,7 +168,7 @@ const MenuPage: React.FC = () => {
 
                                     <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
                                         <span className="font-modern text-[9px] font-bold uppercase tracking-widest text-[#D4B88E] bg-[#D4B88E]/10 px-3 py-1 rounded-full">{product.category}</span>
-                                        <span className="hidden sm:block w-12 h-[1px] bg-white/10"></span>
+                                        <span className="hidden sm:block w-12 h-1 bg-white/10"></span>
                                         <button className="font-modern text-[9px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover:text-white transition-colors flex items-center gap-2">
                                             Ver detalles
                                             <span className="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
