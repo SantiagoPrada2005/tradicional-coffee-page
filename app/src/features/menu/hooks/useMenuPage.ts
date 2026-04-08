@@ -3,7 +3,8 @@ import gsap from 'gsap';
 import { Flip, ScrollTrigger } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
 import { flushSync } from 'react-dom';
-import { exploreProducts, type Product } from '../../../data/products';
+import { exploreProducts } from '../../../data/products';
+import type { Product } from '../../../types';
 
 gsap.registerPlugin(Flip, ScrollTrigger, useGSAP);
 
@@ -62,8 +63,8 @@ export function useMenuPage(containerRef: React.RefObject<HTMLDivElement | null>
             .from('.filter-btn', { y: 20, opacity: 0, duration: 0.5, stagger: 0.1 }, '-=0.5');
 
         // ScrollTrigger para las tarjetas de productos
-        gsap.utils.toArray('.product-card').forEach((card: any) => {
-            gsap.from(card, {
+        gsap.utils.toArray('.product-card').forEach((card: unknown) => {
+            gsap.from(card as HTMLElement, {
                 scrollTrigger: {
                     trigger: card as HTMLElement,
                     start: "top 85%",

@@ -1,5 +1,6 @@
+import type { SiteConfig, SocialCard } from '../types';
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
     brand: {
         name: "Tradicional Coffee",
         shortName: "Tradicional Coffee",
@@ -64,7 +65,7 @@ export const siteConfig = {
     }
 };
 
-export const socialCards = [
+export const socialCards: SocialCard[] = [
     {
         id: "instagram",
         platform: "Instagram",

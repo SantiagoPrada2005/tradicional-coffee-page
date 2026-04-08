@@ -1,16 +1,4 @@
-export interface Product {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
-    image: string;
-    alt: string;
-    category: 'nitro' | 'latte' | 'frappe' | 'cold' | 'hot' | 'dessert';
-    tag?: {
-        label: string;
-        icon?: string;
-    };
-}
+import type { Product, AccordionItemData } from '../types';
 
 
 //menu completo
@@ -69,12 +57,6 @@ export const exploreProducts: Product[] = [
 
 
 //los mas pedidos 
-export interface AccordionItemData {
-    id: number;
-    title: string;
-    imageUrl: string;
-}
-
 export const accordionItems: AccordionItemData[] = [
     {
         id: 1,
