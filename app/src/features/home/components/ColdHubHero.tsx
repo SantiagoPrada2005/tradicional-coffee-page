@@ -1,6 +1,6 @@
 import React from 'react';
-import { MinimalistHero } from './ui/minimalist-hero';
-import { siteConfig } from '../data/site-config';
+import { MinimalistHero } from '../../../components/ui/minimalist-hero';
+import { siteConfig } from '../../../data/site-config';
 
 const ColdHubHero: React.FC = () => {
     const navLinks = siteConfig.navigation.header.map(item => ({

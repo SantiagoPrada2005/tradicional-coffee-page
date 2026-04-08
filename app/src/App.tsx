@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import ColdHubHero from './components/ColdHubHero'
-import SocialLocationHub from './components/SocialLocationHub'
-import MenuPage from './components/MenuPage'
+import ColdHubHero from './features/home/components/ColdHubHero'
+import SocialLocationHub from './features/home/components/SocialLocationHub'
+import MenuPage from './features/menu/components/MenuPage'
 import { siteConfig } from './data/site-config'
-import { LandingAccordionItem } from './components/interactive-image-accordion'
+import { LandingAccordionItem } from './features/menu/components/interactive-image-accordion'
 
 function App() {
   const location = useLocation();

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import type { Product } from '../data/products';
-import { siteConfig } from '../data/site-config';
+import type { Product } from '../../../data/products';
+import { siteConfig } from '../../../data/site-config';
 
 interface ProductModalProps {
     product: Product | null;

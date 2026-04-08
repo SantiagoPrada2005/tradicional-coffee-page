@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollReveal from './ui/ScrollReveal';
+import ScrollReveal from '../../../components/animations/ScrollReveal';
 import { LocationMap } from './expand-map';
 
 const SocialLocationHub: React.FC = () => {

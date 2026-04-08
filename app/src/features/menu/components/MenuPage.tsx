@@ -4,7 +4,7 @@ import { Flip, ScrollTrigger } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
 import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { exploreProducts, type Product } from '../data/products';
+import { exploreProducts, type Product } from '../../../data/products';
 import ProductModal from './ProductModal';
 
 gsap.registerPlugin(Flip, ScrollTrigger, useGSAP);

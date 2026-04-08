@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { accordionItems, type AccordionItemData } from '../data/products';
+import { accordionItems, type AccordionItemData } from '../../../data/products';
 
 // --- Types ---
 interface AccordionItemProps {
