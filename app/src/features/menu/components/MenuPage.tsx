@@ -38,7 +38,7 @@ const MenuPage: React.FC = () => {
 
                     <div className="menu-hero-text max-w-4xl">
                         <span className="font-modern text-xs font-bold uppercase tracking-[0.4em] text-[#D4B88E] mb-6 block">Nuestra Carta</span>
-                        <h1 className="font-display text-7xl md:text-9xl leading-[0.85] mb-12 italic text-white">
+                        <h1 className="font-display text-4xl sm:text-7xl md:text-9xl leading-[0.85] mb-12 italic text-white">
                             Sabores que <br /> <span className="not-italic text-[#D4B88E] font-modern font-black uppercase tracking-tighter">Cuentan Historias</span>
                         </h1>
                         <p className="text-white/60 text-xl leading-relaxed max-w-2xl">

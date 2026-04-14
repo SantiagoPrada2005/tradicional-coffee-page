@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollReveal from '../../../components/animations/ScrollReveal';
 const SocialLocationHub: React.FC = () => {
     return (
-        <section className="bg-[#1C110C] font-body text-white relative min-h-[100dvh] flex flex-col justify-between py-4 overflow-hidden">
+        <section className="bg-[#1C110C] font-body text-white relative min-h-100dvh flex flex-col justify-between py-4 overflow-hidden">
 
             {/* --- FONDO DE IMAGEN --- */}
             <div
@@ -39,7 +39,7 @@ const SocialLocationHub: React.FC = () => {
 
                     {/* CAMBIO 2: Agregué un div contenedor con 'overflow-hidden rounded-3xl' solo para la luz de fondo, para que el degradado no se salga de las esquinas */}
                     <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#3A2818]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-[#3A2818]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     </div>
 
                     {/* --- IZQUIERDA: TIKTOK --- */}
@@ -57,7 +57,7 @@ const SocialLocationHub: React.FC = () => {
                     </a>
 
                     {/* --- CENTRO: IMAGEN 3D --- */}
-                    <div className="relative z-10 w-56 md:w-72 lg:w-80 flex-shrink-0 flex justify-center items-center">
+                    <div className="relative z-10 w-56 md:w-72 lg:w-80 shrink-0 flex justify-center items-center">
                         <div className="absolute w-40 h-40 bg-[#D4B88E]/20 rounded-full blur-[50px] scale-150 pointer-events-none"></div>
 
                         <img
@@ -116,13 +116,13 @@ const SocialLocationHub: React.FC = () => {
                         <div className="relative w-full h-full min-h-[240px] md:min-h-[200px] rounded-[1.5rem] overflow-hidden border border-white/10 bg-[#1C110C]/80 shadow-lg group">
                             {/* Subtle hover overlay to match the theme */}
                             <div className="absolute inset-0 pointer-events-none z-10 box-border border border-transparent group-hover:border-white/5 transition-colors duration-300 rounded-[1.5rem]"></div>
-                            <iframe 
-                                src="https://maps.google.com/maps?q=Tradicional%20Coffee%20Roldanillo&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                                width="100%" 
-                                height="100%" 
-                                style={{ border: 0 }} 
-                                allowFullScreen 
-                                loading="lazy" 
+                            <iframe
+                                src="https://maps.google.com/maps?q=Tradicional%20Coffee%20Roldanillo&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 className="absolute inset-0 w-full h-full"
                             ></iframe>

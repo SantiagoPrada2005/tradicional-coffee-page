@@ -21,8 +21,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
     useGSAP(() => {
         if (isOpen) {
             // Animate IN
-            gsap.fromTo('.backdrop', 
-                { opacity: 0 }, 
+            gsap.fromTo('.backdrop',
+                { opacity: 0 },
                 { opacity: 1, duration: 0.4, ease: 'power2.out' }
             );
             gsap.fromTo('.modal-content',
@@ -40,7 +40,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
         } else if (renderModal) {
             // Animate OUT
             gsap.to('.backdrop', { opacity: 0, duration: 0.3, ease: 'power3.in' });
-            gsap.to('.modal-content', { 
+            gsap.to('.modal-content', {
                 opacity: 0, y: 30, scale: 0.95, duration: 0.4, ease: 'power3.in',
                 onComplete: () => setRenderModal(false)
             });
