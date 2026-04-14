@@ -39,7 +39,7 @@ export const exploreProducts: Product[] = [
     { id: 28, name: "Frappe de Milo", description: "Granizado de milo.", price: "$10.000", image: "/images/frappe-milo.jpeg", alt: "Frappe Milo", category: 'frappe' },
     { id: 29, name: "Frappe de Café", description: "Clásico sabor a café helado.", price: "$10.000", image: "/images/frappe-cafe.jpeg", alt: "Frappe Café", category: 'frappe' },
     { id: 30, name: "Frappe de Nutella", description: "Para los amantes del chocolate y avellana.", price: "$10.000", image: "/images/frappe-nutella.jpeg", alt: "Frappe Nutella", category: 'frappe' },
-    { id: 31, name: "Frappe de Mocca", description: "Mezcla de café y chocolate.", price: "$10.000", image: "/images/frappe-mocca.png", alt: "Frappe Mocca", category: 'frappe' },
+    { id: 31, name: "Frappe de Mocca", description: "Mezcla de café y chocolate.", price: "$10.000", image: "/images/frappe-moca.jpeg", alt: "Frappe Mocca", category: 'frappe' },
     { id: 32, name: "Frappe de Coco Limón", description: "Refrescante y tropical.", price: "$10.000", image: "/images/frappe-coco-limon.jpeg", alt: "Frappe Coco Limón", category: 'frappe' },
     { id: 33, name: "Frappe Té Chai", description: "Especias y frescura.", price: "$12.000", image: "/images/frappe-te-chai.jpeg", alt: "Frappe Té Chai", category: 'frappe' },
 
@@ -61,26 +61,26 @@ export const accordionItems: AccordionItemData[] = [
     {
         id: 1,
         title: 'Frappé',
-        imageUrl: '/images/frappe-oreo.jpeg',
+        imageUrl: "/images/frappe-oreo.jpeg",
     },
     {
         id: 2,
         title: 'Café',
-        imageUrl: '/images/frappe-cafe.jpeg',
+        imageUrl: "/images/capuccino.jpeg",
     },
     {
         id: 3,
         title: 'Latte',
-        imageUrl: '/images/latte-frio.jpeg',
+        imageUrl: "/images/latte-frio.jpeg",
     },
     {
         id: 4,
         title: 'Bebidas Calientes',
-        imageUrl: '/images/chocolatemars.jpeg',
+        imageUrl: "/images/chocolatemars.jpeg",
     },
     {
         id: 5,
         title: 'Bebidas Frías',
-        imageUrl: '/images/cerezada.png',
+        imageUrl: "/images/cerezada.png",
     },
 ];
