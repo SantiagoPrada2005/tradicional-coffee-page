@@ -66,7 +66,7 @@ export const accordionItems: AccordionItemData[] = [
     {
         id: 2,
         title: 'Café',
-        imageUrl: "/images/capuccino.jpeg",
+        imageUrl: "/images/torta.jpeg",
     },
     {
         id: 3,
