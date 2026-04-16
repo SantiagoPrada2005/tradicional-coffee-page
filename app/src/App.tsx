@@ -17,6 +17,18 @@ function App() {
         metaDesc.setAttribute('content', siteConfig.brand.description);
       }
     }
+
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [location]);
 
   return (

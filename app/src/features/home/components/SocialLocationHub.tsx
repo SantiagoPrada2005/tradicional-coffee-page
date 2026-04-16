@@ -35,7 +35,7 @@ const SocialLocationHub: React.FC = () => {
                 </div>
 
                 {/* --- 2. SOCIAL HUB (DISEÑO CENTRALIZADO) --- */}
-                <ScrollReveal animation="fade-up" className="relative w-full bg-[#241710]/80 backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-12 flex flex-col md:flex-row items-center justify-around gap-10 md:gap-4 group mb-4">
+                <ScrollReveal id="redes" animation="fade-up" className="relative w-full bg-[#241710]/80 backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-12 flex flex-col md:flex-row items-center justify-around gap-10 md:gap-4 group mb-4">
 
                     {/* CAMBIO 2: Agregué un div contenedor con 'overflow-hidden rounded-3xl' solo para la luz de fondo, para que el degradado no se salga de las esquinas */}
                     <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none z-0">
@@ -95,7 +95,7 @@ const SocialLocationHub: React.FC = () => {
                 </ScrollReveal>
 
                 {/* --- 4. BOTTOM BENTO (INFO Y UBICACIÓN) --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div id="mapa" className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {/* Info Card */}
                     <ScrollReveal animation="fade-right" className="bg-[#1C110C]/80 backdrop-blur-sm rounded-[1.5rem] p-6 md:p-8 border border-white/10 w-full h-full flex flex-col justify-center">
                         <span className="font-modern text-[9px] font-bold uppercase tracking-[0.3em] text-[#B89B72] mb-4 block">Encuéntranos</span>

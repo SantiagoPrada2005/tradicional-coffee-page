@@ -14,6 +14,7 @@ interface ScrollRevealProps {
     duration?: number;
     className?: string;
     staggerChildren?: number;
+    id?: string;
 }
 
 const animationConfigs: Record<AnimationType, gsap.TweenVars> = {
@@ -32,6 +33,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     duration = 0.8,
     className = '',
     staggerChildren = 0,
+    id,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -70,7 +72,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className={className}>
+        <div id={id} ref={containerRef} className={className}>
             {children}
         </div>
     );

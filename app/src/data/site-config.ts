@@ -20,8 +20,8 @@ export const siteConfig: SiteConfig = {
     navigation: {
         header: [
             { label: "Menú", href: "/menu" },
-            { label: "Ubicación", href: "/social" },
-            { label: "Nosotros", href: "/social" }
+            { label: "Ubicación", href: "/#mapa" },
+            { label: "Nosotros", href: "/#redes" }
         ],
         actionButton: {
             label: "Cómo llegar",
