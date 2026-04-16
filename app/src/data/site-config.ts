@@ -25,7 +25,7 @@ export const siteConfig: SiteConfig = {
         ],
         actionButton: {
             label: "Cómo llegar",
-            href: "https://maps.app.goo.gl/27562592929292929292929292929292"
+            href: "https://www.google.com/maps/search/?api=1&query=Tradicional+Coffee+Roldanillo"
         }
     },
     social: {
