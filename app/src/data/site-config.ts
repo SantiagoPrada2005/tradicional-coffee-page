@@ -19,6 +19,7 @@ export const siteConfig: SiteConfig = {
     },
     navigation: {
         header: [
+            { label: "Pedir Frappes", href: "/order" },
             { label: "Menú", href: "/menu" },
             { label: "Ubicación", href: "/#mapa" },
             { label: "Nosotros", href: "/#redes" }

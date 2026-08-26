@@ -1,0 +1,3941 @@
+{
+  "version": "2.17",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "H1Lto7",
+      "x": 120,
+      "y": -1600,
+      "name": "Frappe Medallion",
+      "reusable": true,
+      "width": 380,
+      "height": 400,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "g21XD",
+          "x": 150,
+          "y": 140,
+          "name": "Glow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "opacity": 0,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E2C38F",
+                "position": 0
+              },
+              {
+                "color": "#E2C38F",
+                "position": 0.6
+              },
+              {
+                "color": "#E2C38F",
+                "position": 1
+              }
+            ]
+          },
+          "width": 320,
+          "height": 320
+        },
+        {
+          "type": "frame",
+          "id": "Ew8PE",
+          "x": 40,
+          "y": 50,
+          "name": "Plate",
+          "clip": true,
+          "width": 300,
+          "height": 300,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./assets/frappe/frappe-oreo.jpeg",
+            "mode": "fill"
+          },
+          "cornerRadius": 150,
+          "layout": "none"
+        },
+        {
+          "type": "ellipse",
+          "id": "SUKMg",
+          "x": 40,
+          "y": 50,
+          "name": "Ring",
+          "fill": "#00000000",
+          "width": 300,
+          "height": 300,
+          "stroke": "#C49C64",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "ellipse",
+          "id": "o8WQuK",
+          "x": 44,
+          "y": 336,
+          "name": "Shadow",
+          "opacity": 0.22,
+          "fill": "#1C110C",
+          "width": 292,
+          "height": 54,
+          "effect": {
+            "type": "blur",
+            "radius": 20
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "K9dXi",
+      "x": 900,
+      "y": -1600,
+      "name": "Desktop · Pedido",
+      "clip": true,
+      "width": 1460,
+      "height": 1040,
+      "fill": "#1C110C",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "j67lVd",
+          "x": -140,
+          "y": 120,
+          "name": "Ambient Left",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "opacity": 0.16,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E2C38F",
+                "position": 0
+              },
+              {
+                "color": "#E2C38F",
+                "position": 0.7
+              }
+            ]
+          },
+          "width": 560,
+          "height": 560
+        },
+        {
+          "type": "ellipse",
+          "id": "DCjNF",
+          "x": 1060,
+          "y": 680,
+          "name": "Ambient Right",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "opacity": 0.12,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E2C38F",
+                "position": 0
+              },
+              {
+                "color": "#E2C38F",
+                "position": 0.8
+              }
+            ]
+          },
+          "width": 400,
+          "height": 400
+        },
+        {
+          "type": "frame",
+          "id": "WGmlu",
+          "x": 64,
+          "y": 50,
+          "name": "Header",
+          "width": 1332,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "GUb5A",
+              "name": "Brand",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fUmVK",
+                  "name": "Wordmark",
+                  "fill": "$cream",
+                  "content": "TRADICIONAL COFFEE",
+                  "fontFamily": "$font-label",
+                  "fontSize": 21,
+                  "fontWeight": "bold",
+                  "letterSpacing": 4
+                },
+                {
+                  "type": "text",
+                  "id": "beiGF",
+                  "name": "Tagline",
+                  "fill": "$gold",
+                  "content": "Elige tu frappe favorito",
+                  "fontFamily": "$font-display",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "a6F9B",
+              "name": "Order Pill",
+              "fill": "#2B1B12",
+              "cornerRadius": 999,
+              "gap": 12,
+              "padding": [
+                12,
+                20
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "nXQeI",
+                  "name": "cart-ico",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "shopping-bag",
+                  "library": "lucide",
+                  "fill": "$gold-bright"
+                },
+                {
+                  "type": "frame",
+                  "id": "gwoZE",
+                  "name": "pill-info",
+                  "layout": "vertical",
+                  "gap": 1,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eTbzg",
+                      "name": "t1",
+                      "fill": "#F4EDDF",
+                      "content": "6 frappes",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "q8ke2",
+                      "name": "t2",
+                      "fill": "$gold-bright",
+                      "content": "$96.000",
+                      "fontFamily": "$font-label",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IMvXA",
+          "x": 64,
+          "y": 316,
+          "name": "Info",
+          "width": 330,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "gqrLv",
+              "name": "label-row",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gHvhz",
+                  "name": "rule",
+                  "width": 34,
+                  "height": 2,
+                  "fill": "$gold"
+                },
+                {
+                  "type": "text",
+                  "id": "ZIQQq",
+                  "name": "eyebrow",
+                  "fill": "$gold",
+                  "content": "Frappe · Clásico",
+                  "fontFamily": "$font-label",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "letterSpacing": 3
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Q7tzb",
+              "name": "name",
+              "fill": "$cream",
+              "content": "Oreo",
+              "fontFamily": "$font-display",
+              "fontSize": 96,
+              "fontWeight": "bold",
+              "letterSpacing": -1,
+              "fontStyle": "italic"
+            },
+            {
+              "type": "text",
+              "id": "I50gl",
+              "name": "desc",
+              "opacity": 0.85,
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 320,
+              "content": "Frappe de café, con leche y trocitos de galleta Oreo, coronado con crema batida.",
+              "lineHeight": 1.45,
+              "fontFamily": "$font-body",
+              "fontSize": 17,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "Smtwm",
+              "name": "price-row",
+              "gap": 10,
+              "padding": [
+                26,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yorSG",
+                  "name": "price",
+                  "fill": "$gold-bright",
+                  "content": "$16.000",
+                  "fontFamily": "$font-display",
+                  "fontSize": 44,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "mVulB",
+                  "name": "price-soft",
+                  "opacity": 0.85,
+                  "fill": "$gold-bright",
+                  "content": "/cada",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "D9fvs",
+          "x": 414,
+          "y": 120,
+          "name": "Center",
+          "width": 620,
+          "height": 800,
+          "layout": "none",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "xJkr5",
+              "x": 60,
+              "y": 70,
+              "name": "Glow",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "radial",
+                "enabled": true,
+                "opacity": 0,
+                "rotation": 0,
+                "size": {
+                  "width": 1,
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#E2C38F",
+                    "position": 0
+                  },
+                  {
+                    "color": "#E2C38F",
+                    "position": 1
+                  }
+                ]
+              },
+              "width": 500,
+              "height": 500
+            },
+            {
+              "type": "ellipse",
+              "id": "q3jqxT",
+              "x": 90,
+              "y": 100,
+              "name": "GlowCore",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "radial",
+                "enabled": true,
+                "opacity": 0.55,
+                "rotation": 0,
+                "size": {
+                  "width": 1,
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#EDD6AB",
+                    "position": 0
+                  },
+                  {
+                    "color": "#E2C38F",
+                    "position": 0.7
+                  }
+                ]
+              },
+              "width": 430,
+              "height": 430
+            },
+            {
+              "type": "frame",
+              "id": "SHRkb",
+              "x": 0,
+              "y": 250,
+              "name": "PrevPeek",
+              "opacity": 0.5,
+              "clip": true,
+              "width": 110,
+              "height": 110,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./assets/frappe/frappe-coco-limon.jpeg",
+                "mode": "fill"
+              },
+              "cornerRadius": 55,
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "RKHXJ",
+              "x": 496,
+              "y": 250,
+              "name": "NextPeek",
+              "opacity": 0.5,
+              "clip": true,
+              "width": 110,
+              "height": 110,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./assets/frappe/frappe-nutella.jpeg",
+                "mode": "fill"
+              },
+              "cornerRadius": 55,
+              "layout": "none"
+            },
+            {
+              "type": "ellipse",
+              "id": "d2NNy",
+              "x": 62,
+              "y": 650,
+              "name": "Shadow",
+              "opacity": 0.28,
+              "fill": "#1C110C",
+              "width": 500,
+              "height": 60,
+              "effect": {
+                "type": "blur",
+                "radius": 26
+              }
+            },
+            {
+              "type": "frame",
+              "id": "u1Xb2m",
+              "x": 78,
+              "y": 92,
+              "name": "Plate",
+              "clip": true,
+              "width": 470,
+              "height": 470,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./assets/frappe/frappe-oreo.jpeg",
+                "mode": "fill"
+              },
+              "cornerRadius": 235,
+              "layout": "none"
+            },
+            {
+              "type": "ellipse",
+              "id": "xAOPl",
+              "x": 78,
+              "y": 92,
+              "name": "Ring",
+              "fill": "#00000000",
+              "width": 470,
+              "height": 470,
+              "stroke": "$gold-bright",
+              "strokeWidth": 2
+            },
+            {
+              "type": "text",
+              "id": "K8dcz",
+              "x": 470,
+              "y": 560,
+              "name": "cat",
+              "fill": "$ink-soft",
+              "content": "— 01 · de 14 —",
+              "fontFamily": "$font-label",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "frame",
+              "id": "UXD0s",
+              "x": 6,
+              "y": 292,
+              "name": "Arrow prev",
+              "width": 52,
+              "height": 52,
+              "fill": "$ink",
+              "cornerRadius": 26,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "oNNqg",
+                  "x": 0,
+                  "y": 0,
+                  "name": "i",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "#FBF8F0"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iEUc0",
+              "x": 560,
+              "y": 292,
+              "name": "Arrow next",
+              "width": 52,
+              "height": 52,
+              "fill": "$ink",
+              "cornerRadius": 26,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "WZehd",
+                  "x": 0,
+                  "y": 0,
+                  "name": "i",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FBF8F0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "q1N8xY",
+          "x": 1064,
+          "y": 96,
+          "name": "Right",
+          "width": 334,
+          "fill": "#FBF6EB",
+          "cornerRadius": 28,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#C7B38C",
+            "offset": {
+              "x": 0,
+              "y": 18
+            },
+            "blur": 44
+          },
+          "layout": "vertical",
+          "gap": 18,
+          "padding": 26,
+          "children": [
+            {
+              "type": "text",
+              "id": "qmSvc",
+              "name": "cap",
+              "fill": "$ink",
+              "content": "Configura tu pedido",
+              "fontFamily": "$font-label",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "letterSpacing": 3
+            },
+            {
+              "type": "frame",
+              "id": "XDt7D",
+              "name": "Qty",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YZ3d6",
+                  "name": "ql",
+                  "fill": "$ink-soft",
+                  "content": "Cantidad",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "BLBsO",
+                  "name": "Stepper",
+                  "fill": "#EFE4CD",
+                  "cornerRadius": 40,
+                  "gap": 18,
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "KwSHJ",
+                      "name": "m",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "minus",
+                      "library": "lucide",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YT4lg",
+                      "name": "n",
+                      "fill": "$ink",
+                      "content": "1",
+                      "fontFamily": "$font-body",
+                      "fontSize": 19,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "ixIAh",
+                      "name": "p",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "plus",
+                      "library": "lucide",
+                      "fill": "$gold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iqSZ4",
+              "name": "Add",
+              "width": "fill_container",
+              "fill": "$gold",
+              "cornerRadius": 18,
+              "gap": 12,
+              "padding": [
+                16,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Y6zQd",
+                  "name": "a",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "plus",
+                  "library": "lucide",
+                  "fill": "$espresso"
+                },
+                {
+                  "type": "text",
+                  "id": "sCT2o",
+                  "name": "at",
+                  "fill": "$espresso",
+                  "content": "AGREGAR AL PEDIDO",
+                  "fontFamily": "$font-label",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "R1inmp",
+              "name": "div",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$line"
+            },
+            {
+              "type": "text",
+              "id": "cIMZT",
+              "name": "scap",
+              "fill": "$ink-soft",
+              "content": "PEDIDO ACUMULADO",
+              "fontFamily": "$font-label",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "frame",
+              "id": "qUfBi",
+              "name": "Sum",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zmFzJ",
+                  "name": "Oreo",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "XrlhQ",
+                      "name": "t",
+                      "clip": true,
+                      "width": 34,
+                      "height": 34,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "assets/frappe/frappe-oreo.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 17,
+                      "layout": "none"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Z6eir",
+                      "name": "nm",
+                      "fill": "$ink",
+                      "content": "Oreo",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hrkch",
+                      "name": "x",
+                      "fill": "$ink-soft",
+                      "content": "2 · $32.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H7wIx",
+                  "name": "Mocha",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Sb24E",
+                      "name": "t",
+                      "clip": true,
+                      "width": 34,
+                      "height": 34,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-moca.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 17,
+                      "layout": "none"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EMbwR",
+                      "name": "nm",
+                      "fill": "$ink",
+                      "content": "Mocha",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OuLEn",
+                      "name": "x",
+                      "fill": "$ink-soft",
+                      "content": "1 · $16.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qauYi",
+                  "name": "Maracuyá",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "g0x0Yo",
+                      "name": "t",
+                      "clip": true,
+                      "width": 34,
+                      "height": 34,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-milo.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 17,
+                      "layout": "none"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rICVK",
+                      "name": "nm",
+                      "fill": "$ink",
+                      "content": "Maracuyá",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B8ucHa",
+                      "name": "x",
+                      "fill": "$ink-soft",
+                      "content": "3 · $48.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aSzZq",
+              "name": "tot",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TUFHR",
+                  "name": "tl",
+                  "fill": "$ink-soft",
+                  "content": "6 frappes",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JmoDt",
+                  "name": "tv",
+                  "fill": "$ink",
+                  "content": "$96.000",
+                  "fontFamily": "$font-display",
+                  "fontSize": 28,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wqdMF",
+              "name": "note",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "y46LlW",
+                  "name": "nt",
+                  "fill": "$ink-soft",
+                  "content": "+ Agregar nota",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GKoyZ",
+              "name": "CTA",
+              "width": "fill_container",
+              "fill": "$espresso",
+              "cornerRadius": 999,
+              "gap": 12,
+              "padding": [
+                16,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "x79zQw",
+                  "name": "w",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "message-circle",
+                  "library": "lucide",
+                  "fill": "$gold-bright"
+                },
+                {
+                  "type": "text",
+                  "id": "e6W3CX",
+                  "name": "ct",
+                  "fill": "$gold-bright",
+                  "content": "HACER PEDIDO",
+                  "fontFamily": "$font-label",
+                  "fontSize": 15,
+                  "fontWeight": "bold",
+                  "letterSpacing": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "I04QP",
+      "x": 2440,
+      "y": -1600,
+      "name": "Tablet · Pedido",
+      "clip": true,
+      "width": 860,
+      "height": 1180,
+      "fill": "$bg",
+      "layout": "vertical",
+      "gap": 8,
+      "padding": [
+        48,
+        44,
+        28,
+        44
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "cdfui",
+          "name": "Brand",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "KLDYG",
+              "name": "Wordmark",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F5d33k",
+                  "name": "WordmarkText",
+                  "fill": "$ink",
+                  "content": "TRADICIONAL COFFEE",
+                  "fontFamily": "$font-label",
+                  "fontSize": 22,
+                  "fontWeight": "600",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "Gvm6K",
+                  "name": "Tag",
+                  "fill": "$ink-soft",
+                  "content": "Elige tu favorita y déjalo frío.",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "x5y9YP",
+              "name": "CurrentOrderPill",
+              "fill": "$surface-2",
+              "cornerRadius": 999,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                12,
+                18
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "N9JeD",
+                  "name": "N",
+                  "fill": "$ink",
+                  "content": "6 frappes",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "wTJ7G",
+                  "name": "P",
+                  "fill": "$gold",
+                  "content": "·",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "g48z1P",
+                  "name": "T",
+                  "fill": "$gold",
+                  "content": "$96.000",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tZj6q",
+          "layoutPosition": "absolute",
+          "x": 0,
+          "y": 132,
+          "name": "Hero",
+          "width": 860,
+          "height": 560,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "V9EVB",
+              "x": 90,
+              "y": 40,
+              "name": "Product",
+              "width": 380,
+              "height": 470,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "z7olb",
+                  "x": 30,
+                  "y": 16,
+                  "name": "Glow",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "radial",
+                    "enabled": true,
+                    "rotation": 0,
+                    "size": {
+                      "width": 1,
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#e2c38fd9",
+                        "position": 0
+                      },
+                      {
+                        "color": "#e2c38f59",
+                        "position": 0.55
+                      },
+                      {
+                        "color": "#e2c38f00",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "width": 340,
+                  "height": 340
+                },
+                {
+                  "type": "frame",
+                  "id": "BS7ui",
+                  "x": 12,
+                  "y": 4,
+                  "name": "Plate",
+                  "clip": true,
+                  "width": 344,
+                  "height": 344,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./assets/frappe/frappe-oreo.jpeg",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 172,
+                  "layout": "none"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "spcce",
+                  "x": 12,
+                  "y": 4,
+                  "name": "Ring",
+                  "fill": "#00000000",
+                  "width": 344,
+                  "height": 344,
+                  "stroke": "$gold",
+                  "strokeWidth": 1.5
+                },
+                {
+                  "type": "ellipse",
+                  "id": "UBQt7",
+                  "x": 52,
+                  "y": 352,
+                  "name": "Shadow",
+                  "opacity": 0.35,
+                  "fill": "#1C110C",
+                  "width": 276,
+                  "height": 52,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 18
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FNbHk",
+              "x": 24,
+              "y": 170,
+              "name": "Prev",
+              "width": 48,
+              "height": 48,
+              "fill": "$surface",
+              "cornerRadius": 999,
+              "stroke": "$gold",
+              "strokeWidth": 1.5,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#2b1b122e",
+                "offset": {
+                  "x": 0,
+                  "y": 4
+                },
+                "blur": 16
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "v7Ume",
+                  "name": "c",
+                  "fill": "$gold",
+                  "content": "‹",
+                  "fontFamily": "$font-body",
+                  "fontSize": 28,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sBHsl",
+              "x": 482,
+              "y": 170,
+              "name": "Next",
+              "width": 48,
+              "height": 48,
+              "fill": "$surface",
+              "cornerRadius": 999,
+              "stroke": "$gold",
+              "strokeWidth": 1.5,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#2b1b122e",
+                "offset": {
+                  "x": 0,
+                  "y": 4
+                },
+                "blur": 16
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JDBbu",
+                  "name": "c",
+                  "fill": "$gold",
+                  "content": "›",
+                  "fontFamily": "$font-body",
+                  "fontSize": 28,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xeZ11",
+              "x": -26,
+              "y": 120,
+              "name": "HintCafe",
+              "opacity": 0.5,
+              "clip": true,
+              "width": 94,
+              "height": 94,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./assets/frappe/frappe-cafe.jpeg",
+                "mode": "fill"
+              },
+              "cornerRadius": 47,
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "y5eoC",
+              "x": 760,
+              "y": 120,
+              "name": "HintMoca",
+              "opacity": 0.5,
+              "clip": true,
+              "width": 94,
+              "height": 94,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./assets/frappe/frappe-moca.jpeg",
+                "mode": "fill"
+              },
+              "cornerRadius": 47,
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "beNwJ",
+              "x": 532,
+              "y": 64,
+              "name": "Info",
+              "width": 328,
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "WHX2e",
+                  "name": "CatRow",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cT3vK",
+                      "name": "div",
+                      "width": 26,
+                      "height": 1,
+                      "fill": "$gold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e5xTHl",
+                      "name": "cat",
+                      "fill": "$ink-soft",
+                      "content": "FRAPPE DE LA CASA",
+                      "fontFamily": "$font-label",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 2
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "WhkIm",
+                  "name": "Name",
+                  "fill": "$ink",
+                  "content": "Frappe\nOreo",
+                  "lineHeight": 0.95,
+                  "fontFamily": "$font-display",
+                  "fontSize": 58,
+                  "fontWeight": "600",
+                  "fontStyle": "italic"
+                },
+                {
+                  "type": "text",
+                  "id": "Rxc8H",
+                  "name": "Desc",
+                  "fill": "$ink-soft",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Frappe de café, leche y galleta Oreo. Cremoso, helado y delicioso.",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "rDkcz",
+                  "name": "Price",
+                  "gap": 10,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PY3BL",
+                      "name": "amt",
+                      "fill": "$ink",
+                      "content": "$16.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 40,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "o9Xh7",
+                      "name": "per",
+                      "fill": "$gold",
+                      "content": "CADA UNO",
+                      "fontFamily": "$font-label",
+                      "fontSize": 11,
+                      "fontWeight": "normal",
+                      "letterSpacing": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wKEgA",
+          "name": "Spacer1",
+          "width": "fill_container",
+          "height": 600
+        },
+        {
+          "type": "frame",
+          "id": "Hds2F",
+          "name": "StepAddRow",
+          "width": "fill_container",
+          "gap": 18,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "W4k4TL",
+              "name": "Stepper",
+              "fill": "$espresso",
+              "cornerRadius": 999,
+              "stroke": "$gold",
+              "strokeWidth": 1,
+              "padding": [
+                14,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "A01da",
+                  "name": "Minus",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 999,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Przuf",
+                      "name": "t",
+                      "fill": "$cream",
+                      "content": "−",
+                      "fontFamily": "$font-body",
+                      "fontSize": 26,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L1lbf",
+                  "name": "Qty",
+                  "width": 60,
+                  "height": 44,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Gwkn4",
+                      "name": "t",
+                      "fill": "$gold-bright",
+                      "content": "1",
+                      "fontFamily": "$font-body",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fMc0U",
+                  "name": "Plus",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 999,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sfqgt",
+                      "name": "t",
+                      "fill": "$cream",
+                      "content": "+",
+                      "fontFamily": "$font-body",
+                      "fontSize": 26,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Y5Ere",
+              "name": "AddBtn",
+              "fill": "$ink",
+              "cornerRadius": 999,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#2b1b1247",
+                "offset": {
+                  "x": 0,
+                  "y": 6
+                },
+                "blur": 22
+              },
+              "gap": 10,
+              "padding": [
+                16,
+                30
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hIZRF",
+                  "name": "t",
+                  "fill": "$gold-bright",
+                  "content": "AGREGAR AL PEDIDO",
+                  "fontFamily": "$font-label",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "TJTgd",
+                  "name": "s",
+                  "fill": "$gold",
+                  "content": "·",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "F7B828",
+                  "name": "amt",
+                  "fill": "$cream",
+                  "content": "$16.000",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "J3nAo",
+          "name": "OrderIndicator",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "OzP8W",
+              "name": "dot",
+              "fill": "$gold",
+              "width": 8,
+              "height": 8
+            },
+            {
+              "type": "text",
+              "id": "Jb5IN",
+              "name": "t",
+              "fill": "$ink-soft",
+              "content": "6 frappes en tu pedido ·",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "I4iIe",
+              "name": "amt",
+              "fill": "$gold",
+              "content": "$96.000",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "o8zlxZ",
+              "name": "open",
+              "fill": "$ink-soft",
+              "content": "  ver",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "G43JG",
+              "name": "ch",
+              "fill": "$gold",
+              "content": "⌃",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dyCNH",
+          "name": "NoteRow",
+          "width": "fill_container",
+          "gap": 8,
+          "padding": [
+            14,
+            0,
+            0,
+            0
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "eQaX8",
+              "name": "plus",
+              "fill": "$gold",
+              "content": "+",
+              "fontFamily": "$font-body",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "gqaKX",
+              "name": "t",
+              "fill": "$ink-soft",
+              "content": "Agregar nota",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UDLnR",
+          "name": "CTAFoot",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "sRqHR",
+              "name": "CTA",
+              "width": "fill_container",
+              "fill": "$ink",
+              "cornerRadius": 999,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#2b1b124d",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 26
+              },
+              "gap": 12,
+              "padding": [
+                20,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gc3Vn",
+                  "name": "t",
+                  "fill": "$gold-bright",
+                  "content": "HACER PEDIDO",
+                  "fontFamily": "$font-label",
+                  "fontSize": 15,
+                  "fontWeight": "600",
+                  "letterSpacing": 2.5
+                },
+                {
+                  "type": "text",
+                  "id": "i0b9P",
+                  "name": "wa",
+                  "fill": "$gold",
+                  "content": "·",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "m8z2s",
+                  "name": "www",
+                  "fill": "$cream",
+                  "content": "WhatsApp",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "yAMhL",
+              "name": "hint",
+              "fill": "$ink-soft",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "TAP PARA ABRIR EN WHATSAPP",
+              "textAlign": "center",
+              "fontFamily": "$font-label",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "XTsPh",
+      "x": 3380,
+      "y": -1600,
+      "name": "Mobile · Pedido",
+      "clip": true,
+      "width": 414,
+      "height": 900,
+      "fill": "#1C110C",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "c2ngNr",
+          "x": 60,
+          "y": 220,
+          "name": "Ambient",
+          "opacity": 0.9,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "opacity": 0.16,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#E2C38F",
+                "position": 0
+              },
+              {
+                "color": "#E2C38F",
+                "position": 1
+              }
+            ]
+          },
+          "width": 420,
+          "height": 420
+        },
+        {
+          "type": "frame",
+          "id": "waQfe",
+          "x": 28,
+          "y": 516,
+          "name": "Info",
+          "width": 358,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "text",
+              "id": "zlXUm",
+              "name": "name",
+              "fill": "$cream",
+              "content": "Frappe Oreo",
+              "fontFamily": "$font-display",
+              "fontSize": 42,
+              "fontWeight": "bold",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "text",
+              "id": "IJUXV",
+              "name": "desc",
+              "opacity": 0.85,
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 358,
+              "content": "Clásico sabor de café helado, cremoso y refrescante.",
+              "lineHeight": 1.4,
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "qiTD5",
+              "name": "price-row",
+              "gap": 8,
+              "padding": [
+                6,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pyqX9",
+                  "name": "price",
+                  "fill": "$gold-bright",
+                  "content": "$16.000",
+                  "fontFamily": "$font-display",
+                  "fontSize": 34,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "LaoHP",
+                  "name": "ps",
+                  "opacity": 0.85,
+                  "fill": "$gold-bright",
+                  "content": "/cada",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uOjiR",
+          "x": 24,
+          "y": 28,
+          "name": "Header",
+          "width": 366,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "BDLt7",
+              "type": "ref",
+              "ref": "PoGjE",
+              "name": "Brand"
+            },
+            {
+              "id": "I9aM6",
+              "type": "ref",
+              "ref": "epl4b",
+              "name": "Count",
+              "descendants": {
+                "MMd1r": {
+                  "content": "2"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "CqhkQ",
+          "x": 0,
+          "y": 128,
+          "name": "Stage",
+          "width": 414,
+          "height": 380,
+          "layout": "none",
+          "children": [
+            {
+              "id": "EljeQ",
+              "type": "ref",
+              "ref": "WuhjO",
+              "name": "Medallion",
+              "x": 12,
+              "y": -40,
+              "descendants": {
+                "hJBPX": {
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./assets/frappe/frappe-oreo.jpeg",
+                    "mode": "fill"
+                  }
+                }
+              }
+            },
+            {
+              "id": "ZdceD",
+              "type": "ref",
+              "ref": "hMbgU",
+              "name": "Prev Arrow",
+              "x": 4,
+              "y": 132,
+              "descendants": {
+                "dB2fN": {
+                  "icon": "arrow-left",
+                  "x": 13,
+                  "y": 13
+                }
+              }
+            },
+            {
+              "id": "CHPqf",
+              "type": "ref",
+              "ref": "hMbgU",
+              "name": "Next Arrow",
+              "x": 344,
+              "y": 132,
+              "descendants": {
+                "dB2fN": {
+                  "icon": "arrow-right",
+                  "x": 13,
+                  "y": 13
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "GwNBJ",
+              "x": 118,
+              "y": 300,
+              "name": "cat",
+              "fill": "$ink-soft",
+              "content": "— 01 · de 14 —",
+              "fontFamily": "$font-label",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HjWub",
+          "x": 28,
+          "y": 516,
+          "name": "Info",
+          "width": 358,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "text",
+              "id": "oUKlk",
+              "name": "name",
+              "fill": "$cream",
+              "content": "Frappe Oreo",
+              "fontFamily": "$font-display",
+              "fontSize": 42,
+              "fontWeight": "bold",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "text",
+              "id": "LKKJ6",
+              "name": "desc",
+              "opacity": 0.85,
+              "fill": "$cream",
+              "textGrowth": "fixed-width",
+              "width": 358,
+              "content": "Clásico sabor de café helado, cremoso y refrescante.",
+              "lineHeight": 1.4,
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "zXBqn",
+              "name": "price-row",
+              "gap": 8,
+              "padding": [
+                6,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wfSUH",
+                  "name": "price",
+                  "fill": "$gold-bright",
+                  "content": "$16.000",
+                  "fontFamily": "$font-display",
+                  "fontSize": 34,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "jwiqc",
+                  "name": "ps",
+                  "opacity": 0.85,
+                  "fill": "$gold-bright",
+                  "content": "/cada",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ugeCh",
+          "x": 28,
+          "y": 650,
+          "name": "QtyRow",
+          "width": 358,
+          "gap": 16,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "NpYGS",
+              "type": "ref",
+              "ref": "U0c4hA",
+              "name": "Stepper"
+            },
+            {
+              "id": "p6GD9b",
+              "type": "ref",
+              "ref": "c2H83",
+              "name": "Add"
+            }
+          ]
+        },
+        {
+          "id": "N48wI1",
+          "type": "ref",
+          "ref": "ZyWOT",
+          "name": "OrderBar",
+          "x": 24,
+          "y": 742,
+          "width": 366
+        },
+        {
+          "id": "flGSe",
+          "type": "ref",
+          "ref": "Id13G",
+          "name": "CTA",
+          "x": 24,
+          "y": 812,
+          "width": 366
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rXn9b",
+      "x": 900,
+      "y": -470,
+      "name": "Panel · Pedido acumulado",
+      "clip": true,
+      "width": 940,
+      "height": 920,
+      "fill": "#1C110C",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "AInDD",
+          "x": 40,
+          "y": 36,
+          "name": "Espresso Header",
+          "width": 360,
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "text",
+              "id": "m0paO",
+              "name": "Brand mark",
+              "fill": "$gold-bright",
+              "content": "Tradicional Coffee",
+              "fontFamily": "$font-display",
+              "fontSize": 24,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "text",
+              "id": "cHPvS",
+              "name": "Brand sub",
+              "fill": "$gold",
+              "content": "PEDIDO ACUMULADO",
+              "fontFamily": "$font-label",
+              "fontSize": 10,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WfSXA",
+          "x": 0,
+          "y": 148,
+          "name": "Order Sheet",
+          "width": 940,
+          "fill": "$surface",
+          "cornerRadius": [
+            28,
+            28,
+            7,
+            7
+          ],
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            30,
+            44,
+            28,
+            44
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "YizRv",
+              "name": "Grab handle",
+              "opacity": 0.9,
+              "width": 56,
+              "height": 5,
+              "fill": "$gold-bright",
+              "cornerRadius": 3
+            },
+            {
+              "type": "frame",
+              "id": "aOP8X",
+              "name": "Header",
+              "width": "fill_container",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bCcLV",
+                  "name": "Title group",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cl0Ry",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "content": "Tu pedido",
+                      "fontFamily": "$font-display",
+                      "fontSize": 40,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "O5j5U",
+                      "name": "Count",
+                      "fill": "$ink-soft",
+                      "content": "4 PRODUCTOS   ·   $112.000",
+                      "fontFamily": "$font-label",
+                      "fontSize": 11,
+                      "fontWeight": "normal",
+                      "letterSpacing": 3
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XjEyM",
+                  "name": "Close",
+                  "width": 40,
+                  "height": 40,
+                  "cornerRadius": 20,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "PiuEP",
+                      "name": "close icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "x",
+                      "library": "lucide",
+                      "fill": "$ink"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Py9aQ",
+              "name": "Gold divider",
+              "opacity": 0.55,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$gold-bright"
+            },
+            {
+              "type": "frame",
+              "id": "TgBWm",
+              "name": "Product rows",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "QNqJy",
+                  "name": "Frappe Oreo",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "vsXEK",
+                      "name": "Thumb",
+                      "clip": true,
+                      "width": 58,
+                      "height": 58,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-oreo.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 29,
+                      "stroke": "$gold",
+                      "strokeWidth": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "agx2z",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "oQELl",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Frappe Oreo",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mwWrk",
+                          "name": "Price each",
+                          "fill": "$ink-soft",
+                          "content": "$16000 c/u",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TedlB",
+                      "name": "Stepper",
+                      "gap": 2,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "N9NY0",
+                          "name": "Minus",
+                          "width": 30,
+                          "height": 30,
+                          "cornerRadius": 15,
+                          "stroke": "$line",
+                          "strokeWidth": 1,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MokPO",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$ink",
+                              "content": "−",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "s2MLJN",
+                          "name": "Qty",
+                          "fill": "$ink",
+                          "content": "2",
+                          "textAlign": "center",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yH2O3",
+                          "name": "Plus",
+                          "width": 30,
+                          "height": 30,
+                          "fill": "$gold",
+                          "cornerRadius": 15,
+                          "stroke": "$gold",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "i9GcW",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$espresso",
+                              "content": "+",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mSLLa",
+                      "name": "Line total",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yxFLM",
+                          "name": "Total",
+                          "fill": "$ink",
+                          "content": "$32000",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WtVkB",
+                          "name": "sub",
+                          "fill": "$gold",
+                          "content": "TOTAL · 2x",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "kro7q",
+                  "name": "Frappe Mochaccino",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mK5E5",
+                      "name": "Thumb",
+                      "clip": true,
+                      "width": 58,
+                      "height": 58,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-moca.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 29,
+                      "stroke": "$gold",
+                      "strokeWidth": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DOJcc",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A4zjXa",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Frappe Mochaccino",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SQAf0",
+                          "name": "Price each",
+                          "fill": "$ink-soft",
+                          "content": "$16000 c/u",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eZO6U",
+                      "name": "Stepper",
+                      "gap": 2,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "weq0A",
+                          "name": "Minus",
+                          "width": 30,
+                          "height": 30,
+                          "cornerRadius": 15,
+                          "stroke": "$line",
+                          "strokeWidth": 1,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ZEmi5",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$ink",
+                              "content": "−",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "tZIEL",
+                          "name": "Qty",
+                          "fill": "$ink",
+                          "content": "1",
+                          "textAlign": "center",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "cAN2u",
+                          "name": "Plus",
+                          "width": 30,
+                          "height": 30,
+                          "fill": "$gold",
+                          "cornerRadius": 15,
+                          "stroke": "$gold",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "F4fRyp",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$espresso",
+                              "content": "+",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XMTyO",
+                      "name": "Line total",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QwHdP",
+                          "name": "Total",
+                          "fill": "$ink",
+                          "content": "$16000",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "izPbp",
+                          "name": "sub",
+                          "fill": "$gold",
+                          "content": "TOTAL · 1x",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MgjMV",
+                  "name": "Frappe Maracuyá",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QuhMn",
+                      "name": "Thumb",
+                      "clip": true,
+                      "width": 58,
+                      "height": 58,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-cafe.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 29,
+                      "stroke": "$gold",
+                      "strokeWidth": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UZ22o",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W1OwtB",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Frappe Maracuyá",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GEu3o",
+                          "name": "Price each",
+                          "fill": "$ink-soft",
+                          "content": "$16000 c/u",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MjHaS",
+                      "name": "Stepper",
+                      "gap": 2,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "gMlo6",
+                          "name": "Minus",
+                          "width": 30,
+                          "height": 30,
+                          "cornerRadius": 15,
+                          "stroke": "$line",
+                          "strokeWidth": 1,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Q4FqV",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$ink",
+                              "content": "−",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "QENFx",
+                          "name": "Qty",
+                          "fill": "$ink",
+                          "content": "3",
+                          "textAlign": "center",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YcAwp",
+                          "name": "Plus",
+                          "width": 30,
+                          "height": 30,
+                          "fill": "$gold",
+                          "cornerRadius": 15,
+                          "stroke": "$gold",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "p9pti",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$espresso",
+                              "content": "+",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GZPMW",
+                      "name": "Line total",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yrRZQ",
+                          "name": "Total",
+                          "fill": "$ink",
+                          "content": "$48000",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "DISUb",
+                          "name": "sub",
+                          "fill": "$gold",
+                          "content": "TOTAL · 3x",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xKy5C",
+                  "name": "Frappe Milo",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "h6ycMm",
+                      "name": "Thumb",
+                      "clip": true,
+                      "width": 58,
+                      "height": 58,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./assets/frappe/frappe-milo.jpeg",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 29,
+                      "stroke": "$gold",
+                      "strokeWidth": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vHT29",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "J0xIm",
+                          "name": "Name",
+                          "fill": "$ink",
+                          "content": "Frappe Milo",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S83U7F",
+                          "name": "Price each",
+                          "fill": "$ink-soft",
+                          "content": "$16000 c/u",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TOWdW",
+                      "name": "Stepper",
+                      "gap": 2,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "lHFSY",
+                          "name": "Minus",
+                          "width": 30,
+                          "height": 30,
+                          "cornerRadius": 15,
+                          "stroke": "$line",
+                          "strokeWidth": 1,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ti8Jq",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$ink",
+                              "content": "−",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "m2sHZL",
+                          "name": "Qty",
+                          "fill": "$ink",
+                          "content": "1",
+                          "textAlign": "center",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tqsmx",
+                          "name": "Plus",
+                          "width": 30,
+                          "height": 30,
+                          "fill": "$gold",
+                          "cornerRadius": 15,
+                          "stroke": "$gold",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ksL4w",
+                              "x": 0,
+                              "y": 0,
+                              "fill": "$espresso",
+                              "content": "+",
+                              "fontFamily": "$font-body",
+                              "fontSize": 18,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "oCAhm",
+                      "name": "Line total",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yX92i",
+                          "name": "Total",
+                          "fill": "$ink",
+                          "content": "$16000",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "h2qj9",
+                          "name": "sub",
+                          "fill": "$gold",
+                          "content": "TOTAL · 1x",
+                          "textAlign": "right",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "J9rog",
+              "name": "Divider note",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$line"
+            },
+            {
+              "type": "frame",
+              "id": "sAEoY",
+              "name": "Nota de preparación",
+              "width": "fill_container",
+              "fill": "$cream",
+              "cornerRadius": 14,
+              "gap": 14,
+              "padding": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GfvmS",
+                  "name": "Add note",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "$gold",
+                  "cornerRadius": 16,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "xDA2s",
+                      "name": "plus",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "plus",
+                      "library": "lucide",
+                      "fill": "$espresso"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "HfzDE",
+                  "name": "Label",
+                  "fill": "$ink",
+                  "content": "Nota de preparación",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "QaI6p",
+                  "name": "Note",
+                  "fill": "$ink",
+                  "content": "“Sin mucho hielo.”",
+                  "fontFamily": "$font-display",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QulSS",
+              "name": "Summary",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NMQHp",
+                  "name": "Subtotal row",
+                  "width": "fill_container",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Hizfl",
+                      "name": "Lbl",
+                      "fill": "$ink-soft",
+                      "content": "Subtotal",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pimSL",
+                      "name": "val",
+                      "fill": "$ink",
+                      "content": "$112.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zBPNH",
+                  "name": "Delivery row",
+                  "width": "fill_container",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qdVpb",
+                      "name": "Lbl",
+                      "fill": "$ink-soft",
+                      "content": "Costo de envío",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mvHlO",
+                      "name": "val",
+                      "fill": "$gold",
+                      "content": "GRATIS",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "N8INb",
+                  "name": "Total row",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dX3r4",
+                      "name": "Lbl",
+                      "fill": "$ink",
+                      "content": "Total",
+                      "fontFamily": "$font-display",
+                      "fontSize": 26,
+                      "fontWeight": "normal",
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DeV45",
+                      "name": "val",
+                      "fill": "$ink",
+                      "content": "$112.000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 30,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nLuZD",
+              "name": "CTA wrap",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "q0a11",
+                  "name": "CTA pill",
+                  "width": "fill_container",
+                  "fill": "$ink",
+                  "cornerRadius": 30,
+                  "gap": 10,
+                  "padding": 18,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TqTej",
+                      "name": "CTA",
+                      "fill": "$gold-bright",
+                      "content": "HACER PEDIDO",
+                      "fontFamily": "$font-label",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "icon",
+                      "id": "WX8Y4",
+                      "name": "arrow",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-right",
+                      "library": "lucide",
+                      "fill": "$gold-bright"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "iCIBI",
+                  "name": "WhatsApp hint",
+                  "fill": "$ink-soft",
+                  "content": "Confirmaremos por vía WhatsApp",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "KLTxI",
+      "x": 1920,
+      "y": -470,
+      "name": "Modal · Nota de preparación",
+      "clip": true,
+      "width": 460,
+      "height": 660,
+      "fill": "#1C110C",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LsY7P",
+          "x": 16,
+          "y": 18,
+          "name": "Close · ×",
+          "opacity": 0.9,
+          "width": 44,
+          "height": 44,
+          "fill": "#00000000",
+          "cornerRadius": 22,
+          "stroke": "$gold",
+          "strokeWidth": 1.4,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "P64e9",
+              "name": "×",
+              "fill": "$gold-bright",
+              "content": "×",
+              "fontFamily": "$font-body",
+              "fontSize": 24,
+              "fontWeight": "300"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vYIvL",
+          "x": 0,
+          "y": 52,
+          "name": "Sheet · Empty",
+          "clip": true,
+          "width": 460,
+          "height": 344,
+          "fill": "$surface",
+          "cornerRadius": 30,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            26,
+            26,
+            24,
+            26
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "e3CPqo",
+              "name": "Grab handle",
+              "width": "fill_container",
+              "height": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2.5,
+                  "id": "aeEdg",
+                  "name": "Handle bar",
+                  "fill": "$gold",
+                  "width": 46,
+                  "height": 5
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "F0Hlg",
+              "name": "Label",
+              "fill": "$gold",
+              "content": "NOTA DE PREPARACIÓN",
+              "fontFamily": "$font-label",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "E2Rdsi",
+              "name": "Title",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "¿Algo especial con tu pedido?",
+              "fontFamily": "$font-display",
+              "fontSize": 30,
+              "fontWeight": "500",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "frame",
+              "id": "IMaCx",
+              "name": "Input",
+              "width": "fill_container",
+              "height": 118,
+              "fill": "$cream",
+              "cornerRadius": 16,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "padding": 16,
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vuj4d",
+                  "name": "Placeholder",
+                  "fill": "$ink-soft",
+                  "content": "Escribe aquí…",
+                  "fontFamily": "$font-body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "GGwhe",
+                  "name": "Hint",
+                  "opacity": 0.85,
+                  "fill": "$gold",
+                  "content": "por ejemplo: sin mucho hielo",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12.5,
+                  "fontWeight": "normal",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tgJIB",
+              "name": "Button",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "$gold",
+              "cornerRadius": 26,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fP8FG",
+                  "name": "Btn label",
+                  "fill": "$espresso",
+                  "content": "GUARDAR NOTA",
+                  "fontFamily": "$font-label",
+                  "fontSize": 12,
+                  "fontWeight": "700",
+                  "letterSpacing": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Hx5qf",
+          "x": 0,
+          "y": 408,
+          "name": "Sheet · Filled",
+          "clip": true,
+          "width": 460,
+          "height": 248,
+          "fill": "$surface",
+          "cornerRadius": 30,
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            20,
+            26
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "yYDAV",
+              "name": "Grab handle 2",
+              "width": "fill_container",
+              "height": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2.5,
+                  "id": "M9AgbF",
+                  "name": "Handle bar 2",
+                  "fill": "$gold",
+                  "width": 46,
+                  "height": 5
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "nq4GH",
+              "name": "Label 2",
+              "fill": "$gold",
+              "content": "NOTA DE PREPARACIÓN",
+              "fontFamily": "$font-label",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "EKDdH",
+              "name": "Title 2",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "¿Algo especial con tu pedido?",
+              "fontFamily": "$font-display",
+              "fontSize": 30,
+              "fontWeight": "500",
+              "fontStyle": "italic"
+            },
+            {
+              "type": "frame",
+              "id": "nIBoI",
+              "name": "Note filled",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "$cream",
+              "cornerRadius": 14,
+              "stroke": "$gold",
+              "strokeWidth": 1.2,
+              "gap": 10,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zssWX",
+                  "name": "check",
+                  "fill": "$gold",
+                  "content": "✓",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "jmjQc",
+                  "name": "note text",
+                  "fill": "$ink",
+                  "content": "Sin mucho hielo.",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WDK7P",
+              "name": "Saved button",
+              "width": "fill_container",
+              "height": 44,
+              "fill": "$gold-bright",
+              "cornerRadius": 22,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "NyBHx",
+                  "name": "saved check",
+                  "fill": "$espresso",
+                  "content": "✓",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "IjSY5",
+                  "name": "saved label",
+                  "fill": "$espresso",
+                  "content": "NOTA GUARDADA",
+                  "fontFamily": "$font-label",
+                  "fontSize": 12,
+                  "fontWeight": "700",
+                  "letterSpacing": 3
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "GrXZI",
+              "name": "Caption 2",
+              "fill": "$ink-soft",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Tu barista la tendrá en cuenta al preparar tu frappé.",
+              "textAlign": "center",
+              "fontFamily": "$font-body",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "rectangle",
+      "id": "tCTHI",
+      "x": -2340,
+      "y": 87,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "images/Extraccio%CC%81n_y_normalizacio%CC%81n_de_pr%E2%80%A6_202608261659.jpeg",
+        "mode": "fill"
+      },
+      "width": 1792,
+      "height": 2400
+    },
+    {
+      "type": "rectangle",
+      "id": "A9mXT",
+      "x": -2340,
+      "y": -2600,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "images/frappehero.webp",
+        "mode": "fill"
+      },
+      "width": 1792,
+      "height": 2400
+    },
+    {
+      "type": "path",
+      "id": "C50sW",
+      "x": -1990,
+      "y": -1365,
+      "geometry": "M0 0l1091 0 0 1365-1091 0 0-1365z m3694.5 5017.5l0-1891.5 481.5 495.5-922.5 666 922.5-919.5-686 0 431.673 253.5-431.673 230.5-236.5 435.5 441-1161.5 0 1891.5z m1084.5-157l-482-433.5 543 0-61 433.5z",
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "images/frappehero.webp",
+        "mode": "fill"
+      },
+      "width": 4840,
+      "height": 5017.5
+    },
+    {
+      "type": "frame",
+      "id": "PoGjE",
+      "x": 120,
+      "y": -2200,
+      "name": "Brand Mark",
+      "reusable": true,
+      "layout": "vertical",
+      "gap": 1,
+      "children": [
+        {
+          "type": "text",
+          "id": "em17H",
+          "name": "Wordmark",
+          "fill": "$cream",
+          "content": "TRADICIONAL COFFEE",
+          "fontFamily": "$font-label",
+          "fontSize": 15,
+          "fontWeight": "bold",
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "id": "EbGIH",
+          "name": "Tagline",
+          "fill": "$gold",
+          "content": "Elige tu favorito",
+          "fontFamily": "$font-display",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "epl4b",
+      "x": 0,
+      "y": 0,
+      "name": "Order Pill",
+      "reusable": true,
+      "fill": "#2B1B12",
+      "cornerRadius": 999,
+      "gap": 7,
+      "padding": [
+        9,
+        13
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "dne2S",
+          "name": "icon",
+          "width": 15,
+          "height": 15,
+          "icon": "shopping-bag",
+          "library": "lucide",
+          "fill": "$gold-bright"
+        },
+        {
+          "type": "text",
+          "id": "MMd1r",
+          "name": "count",
+          "fill": "#F4EDDF",
+          "content": "0",
+          "fontFamily": "$font-body",
+          "fontSize": 14,
+          "fontWeight": "bold"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "U0c4hA",
+      "x": 0,
+      "y": 0,
+      "name": "Stepper",
+      "reusable": true,
+      "fill": "#EFE4CD",
+      "cornerRadius": 40,
+      "gap": 22,
+      "padding": [
+        10,
+        18
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "NFORN",
+          "name": "minus",
+          "width": 20,
+          "height": 20,
+          "icon": "minus",
+          "library": "lucide",
+          "fill": "$ink"
+        },
+        {
+          "type": "text",
+          "id": "WrYrA",
+          "name": "value",
+          "fill": "$ink",
+          "content": "1",
+          "fontFamily": "$font-body",
+          "fontSize": 22,
+          "fontWeight": "bold"
+        },
+        {
+          "type": "icon",
+          "id": "j4TDR",
+          "name": "plus2",
+          "width": 20,
+          "height": 20,
+          "icon": "plus",
+          "library": "lucide",
+          "fill": "$gold"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "c2H83",
+      "x": 0,
+      "y": 0,
+      "name": "Add Button",
+      "reusable": true,
+      "fill": "$gold",
+      "cornerRadius": 16,
+      "gap": 10,
+      "padding": [
+        17,
+        22
+      ],
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "dmSPY",
+          "name": "plus",
+          "width": 18,
+          "height": 18,
+          "icon": "plus",
+          "library": "lucide",
+          "fill": "$espresso"
+        },
+        {
+          "type": "text",
+          "id": "I9riYx",
+          "name": "label",
+          "fill": "$espresso",
+          "content": "AGREGAR",
+          "fontFamily": "$font-label",
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "letterSpacing": 1.5
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Id13G",
+      "x": 0,
+      "y": 0,
+      "name": "CTA Button",
+      "reusable": true,
+      "fill": "$espresso",
+      "cornerRadius": 999,
+      "gap": 10,
+      "padding": [
+        18,
+        28
+      ],
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "mp4iw",
+          "name": "whatsapp",
+          "width": 18,
+          "height": 18,
+          "icon": "message-circle",
+          "library": "lucide",
+          "fill": "$gold-bright"
+        },
+        {
+          "type": "text",
+          "id": "zyJtj",
+          "name": "label",
+          "fill": "$gold-bright",
+          "content": "HACER PEDIDO",
+          "fontFamily": "$font-label",
+          "fontSize": 15,
+          "fontWeight": "bold",
+          "letterSpacing": 2
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZyWOT",
+      "x": 0,
+      "y": 0,
+      "name": "Order Bar",
+      "reusable": true,
+      "fill": "#2B1B12",
+      "cornerRadius": 22,
+      "gap": 12,
+      "padding": [
+        14,
+        18
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "YnL0v",
+          "name": "info",
+          "layout": "vertical",
+          "gap": 1,
+          "children": [
+            {
+              "type": "text",
+              "id": "SEzkP",
+              "name": "summary",
+              "fill": "#F4EDDF",
+              "content": "2 frappes · $32.000",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "text",
+              "id": "velVj",
+              "name": "hint",
+              "fill": "$gold-bright",
+              "content": "Ver pedido",
+              "fontFamily": "$font-label",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 1.5
+            }
+          ]
+        },
+        {
+          "type": "icon",
+          "id": "OTmav",
+          "name": "chev",
+          "width": 18,
+          "height": 18,
+          "icon": "chevron-right",
+          "library": "lucide",
+          "fill": "$gold-bright"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "hMbgU",
+      "x": 0,
+      "y": 0,
+      "name": "Carousel Arrow",
+      "reusable": true,
+      "width": 46,
+      "height": 46,
+      "fill": "#2B1B12",
+      "cornerRadius": 23,
+      "layout": "none",
+      "children": [
+        {
+          "type": "icon",
+          "id": "dB2fN",
+          "layoutPosition": "absolute",
+          "x": 13,
+          "y": 13,
+          "name": "icon",
+          "width": 20,
+          "height": 20,
+          "icon": "arrow-right",
+          "library": "lucide",
+          "fill": "#FBF8F0"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "WuhjO",
+      "x": 120,
+      "y": -2450,
+      "name": "Frappe Medallion 2",
+      "reusable": true,
+      "width": 380,
+      "height": 420,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "MsHUx",
+          "x": 90,
+          "y": 20,
+          "name": "Glow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "opacity": 0.6,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#F0D9AE",
+                "position": 0
+              },
+              {
+                "color": "#E2C38F",
+                "position": 0.8
+              }
+            ]
+          },
+          "width": 270,
+          "height": 270
+        },
+        {
+          "type": "ellipse",
+          "id": "jRMJg",
+          "x": 85,
+          "y": 330,
+          "name": "Shadow",
+          "opacity": 0.26,
+          "fill": "#1C110C",
+          "width": 280,
+          "height": 40,
+          "effect": {
+            "type": "blur",
+            "radius": 20
+          }
+        },
+        {
+          "type": "frame",
+          "id": "hJBPX",
+          "x": 95,
+          "y": 70,
+          "name": "Plate",
+          "clip": true,
+          "width": 250,
+          "height": 250,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./assets/frappe/frappe-oreo.jpeg",
+            "mode": "fill"
+          },
+          "cornerRadius": 125,
+          "layout": "none"
+        },
+        {
+          "type": "ellipse",
+          "id": "bIXYb",
+          "x": 95,
+          "y": 70,
+          "name": "Ring",
+          "fill": "#00000000",
+          "width": 250,
+          "height": 250,
+          "stroke": "$gold-bright",
+          "strokeWidth": 2
+        }
+      ]
+    },
+    {
+      "id": "PnHXI",
+      "type": "ref",
+      "ref": "H1Lto7",
+      "x": 3834,
+      "y": -2600
+    },
+    {
+      "id": "i3vqY",
+      "type": "ref",
+      "ref": "WuhjO",
+      "x": 4254,
+      "y": -2600
+    },
+    {
+      "id": "V46T2",
+      "type": "ref",
+      "ref": "hMbgU",
+      "x": 4674,
+      "y": -2600
+    }
+  ],
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#F4EDDF"
+    },
+    "bg-soft": {
+      "type": "color",
+      "value": "#EDE3CF"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#FBF6EB"
+    },
+    "surface-2": {
+      "type": "color",
+      "value": "#EFE4CD"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#2B1B12"
+    },
+    "ink-soft": {
+      "type": "color",
+      "value": "#7A6854"
+    },
+    "espresso": {
+      "type": "color",
+      "value": "#422B19"
+    },
+    "gold": {
+      "type": "color",
+      "value": "#C49C64"
+    },
+    "gold-bright": {
+      "type": "color",
+      "value": "#E2C38F"
+    },
+    "line": {
+      "type": "color",
+      "value": "#E2D3BB"
+    },
+    "cream": {
+      "type": "color",
+      "value": "#F4EDDF"
+    },
+    "font-display": {
+      "type": "string",
+      "value": "Cormorant Garamond"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Plus Jakarta Sans"
+    },
+    "font-label": {
+      "type": "string",
+      "value": "Syne"
+    },
+    "space": {
+      "type": "number",
+      "value": 16
+    },
+    "radius": {
+      "type": "number",
+      "value": 26
+    }
+  },
+  "fileToken": "6303670f-566b-418f-a7e8-0655a3c0f571"
+}

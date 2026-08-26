@@ -45,14 +45,13 @@ export const exploreProducts: Product[] = [
 
     // LIMONADAS Y BEBIDAS [cite: 102, 104]
     { id: 34, name: "Limonada de Coco", description: "Cremosa y refrescante.", price: "$9.000", image: "", alt: "Limonada Coco", category: 'cold' },
-    { id: 35, name: "Limonada de Mango Biche", description: "Con el toque ácido del mango.", price: "$10.000", image: "", alt: "Limonada Mango Biche", category: 'cold' },
-    { id: 36, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/cerezada.png", alt: "Limonada Cerezada", category: 'cold' },
-    { id: 37, name: "Tamarindo / Michelada", description: "Jugo de tamarindo solo o michelado.", price: "$4.000 - $6.000", image: "", alt: "Tamarindo", category: 'cold' },
-    { id: 38, name: "Cervezas (Corona, Club, Águila, Poker)", description: "Variedad de cervezas nacionales e internacionales.", price: "$4.000 - $7.000", image: "", alt: "Cerveza", category: 'cold' },
+    { id: 35, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/cerezada.png", alt: "Limonada Cerezada", category: 'cold' },
+    { id: 36, name: "Tamarindo / Michelada", description: "Jugo de tamarindo solo o michelado.", price: "$4.000 - $6.000", image: "", alt: "Tamarindo", category: 'cold' },
+    { id: 37, name: "Cervezas (Corona, Club, Águila, Poker)", description: "Variedad de cervezas nacionales e internacionales.", price: "$4.000 - $7.000", image: "", alt: "Cerveza", category: 'cold' },
 
     // DELICIAS [cite: 90]
-    { id: 39, name: "Torta", description: "Porción de torta del día.", price: "$4.000", image: "/images/torta.jpeg", alt: "Torta", category: 'dessert' },
-    { id: 40, name: "Cuaresmeros", description: "Tradición local.", price: "$1.200", image: "", alt: "Cuaresmeros", category: 'dessert' }
+    { id: 38, name: "Torta", description: "Porción de torta del día.", price: "$4.000", image: "/images/torta.jpeg", alt: "Torta", category: 'dessert' },
+    { id: 39, name: "Cuaresmeros", description: "Tradición local.", price: "$1.200", image: "", alt: "Cuaresmeros", category: 'dessert' }
 ];
 
 

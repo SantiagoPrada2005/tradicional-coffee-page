@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import ColdHubHero from './features/home/components/ColdHubHero'
 import SocialLocationHub from './features/home/components/SocialLocationHub'
 import MenuPage from './features/menu/components/MenuPage'
+import OrderPage from './features/order/components/OrderPage'
 import { siteConfig } from './data/site-config'
 import { LandingAccordionItem } from './features/menu/components/interactive-image-accordion'
 
@@ -16,6 +17,9 @@ function App() {
       if (metaDesc) {
         metaDesc.setAttribute('content', siteConfig.brand.description);
       }
+    } else if (location.pathname === '/order') {
+      document.title = `${siteConfig.brand.name} | Pedir Frappes`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     if (location.hash) {
@@ -48,6 +52,7 @@ function App() {
           </>
         } />
         <Route path="/menu" element={<MenuPage />} />
+        <Route path="/order" element={<OrderPage />} />
       </Routes>
     </div>
   )
