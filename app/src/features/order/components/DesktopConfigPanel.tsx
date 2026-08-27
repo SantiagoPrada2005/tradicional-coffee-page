@@ -18,6 +18,7 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
     totalAmount,
     addToCart,
     preparationNote,
+    deliveryAddress,
     setIsNoteModalOpen,
     setIsCartOpen,
   } = useOrder();
@@ -35,7 +36,7 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
 
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
-    const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote);
+    const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

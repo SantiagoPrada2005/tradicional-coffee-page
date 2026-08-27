@@ -23,27 +23,27 @@ export function generateWhatsAppOrderUrl(
 ): string {
   const cleanPhone = phoneNumber.replace(/\D/g, '');
 
-  let message = `☕ *¡Hola Tradicional Coffee! Quiero hacer el siguiente pedido:*\n\n`;
-
-  items.forEach(item => {
-    const unitPrice = parseProductPrice(item.product.price);
-    const subtotal = unitPrice * item.quantity;
-    message += `• *${item.quantity}x* ${item.product.name} — $${formatCurrency(subtotal).replace('$', '')}\n`;
-  });
-
-  if (preparationNote && preparationNote.trim().length > 0) {
-    message += `\n📝 *Nota de preparación:* ${preparationNote.trim()}\n`;
-  }
+  const lines: string[] = [
+    '*Pedido - Tradicional Coffee*',
+    '',
+    '*Detalle:*',
+    ...items.map(item => {
+      const unitPrice = parseProductPrice(item.product.price);
+      const subtotal = unitPrice * item.quantity;
+      return `- ${item.quantity}x ${item.product.name} ($${formatCurrency(subtotal).replace('$', '')})`;
+    }),
+    '',
+    `*Total:* $${formatCurrency(totalAmount).replace('$', '')}`,
+  ];
 
   if (deliveryAddress && deliveryAddress.trim().length > 0) {
-    message += `\n📍 *Lugar de entrega:* ${deliveryAddress.trim()}\n`;
-  } else {
-    message += `\n📍 *Lugar de entrega / Mesa:* (por favor indicar)\n`;
+    lines.push(`*Entrega:* ${deliveryAddress.trim()}`);
   }
 
-  message += `\n💰 *Total del pedido:* $${formatCurrency(totalAmount).replace('$', '')}\n`;
-  message += `\n_Enviado desde el portal de pedidos de Tradicional Coffee_`;
+  if (preparationNote && preparationNote.trim().length > 0) {
+    lines.push(`*Nota:* ${preparationNote.trim()}`);
+  }
 
-  const encodedMessage = encodeURIComponent(message);
+  const encodedMessage = encodeURIComponent(lines.join('\n'));
   return `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
 }
