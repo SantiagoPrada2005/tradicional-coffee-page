@@ -9,12 +9,14 @@ interface FrappeCarouselProps {
   products?: Product[];
   activeIndex: number;
   onIndexChange: (index: number) => void;
+  showIndexBadge?: boolean;
 }
 
 export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
   products = orderProducts,
   activeIndex,
   onIndexChange,
+  showIndexBadge = true,
 }) => {
   const total = products.length;
 
@@ -46,29 +48,34 @@ export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
   const prevProduct = products[prevIndex];
   const nextProduct = products[nextIndex];
 
-  return (
-    <div className="relative w-full flex items-center justify-center py-4 sm:py-8 select-none">
-      {/* Navigation Arrow Left */}
-      <motion.button
-        type="button"
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.08 }}
-        onClick={handlePrev}
-        className="absolute left-2 sm:left-4 md:left-8 lg:left-12 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#2B1B12]/80 hover:bg-[#422B19] border border-[#E2C38F]/30 text-[#E2C38F] flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all cursor-pointer backdrop-blur-sm"
-        aria-label="Ver producto anterior"
-      >
-        <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 -translate-x-0.5" />
-      </motion.button>
+  const formattedCurrent = safeIndex + 1 < 10 ? `0${safeIndex + 1}` : `${safeIndex + 1}`;
+  const formattedTotal = total < 10 ? `0${total}` : `${total}`;
 
-      {/* Main Carousel Presentation Area */}
-      <div className="relative flex items-center justify-center w-full max-w-4xl px-2 sm:px-4">
+  return (
+    <div className="relative w-full flex flex-col items-center justify-center select-none py-1 flex-1 min-h-0">
+      {/* 3-Item Presentation Track */}
+      <div className="relative flex items-center justify-center w-full max-w-xl px-1 sm:px-4 min-h-[220px] xs:min-h-[260px] sm:min-h-[310px] md:min-h-[350px] lg:min-h-[400px]">
         {/* Left Peek (Previous Product) */}
-        <div
+        <motion.div
+          whileTap={{ scale: 0.9 }}
           onClick={handlePrev}
-          className="hidden md:block absolute -left-12 lg:-left-20 transform -translate-x-1/2 opacity-35 hover:opacity-70 scale-75 transition-all duration-300 cursor-pointer z-0 filter blur-[1px] hover:blur-none"
+          className="absolute -left-3 xs:left-0 sm:left-4 md:left-8 z-10 opacity-35 hover:opacity-75 transition-all cursor-pointer flex flex-col items-center filter blur-[0.5px] hover:blur-none"
+          title="Ver producto anterior"
         >
           <FrappeMedallion product={prevProduct} size="sm" isCurrent={false} />
-        </div>
+        </motion.div>
+
+        {/* Navigation Arrow Left */}
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.06 }}
+          onClick={handlePrev}
+          className="absolute left-1 xs:left-2 sm:left-4 z-20 w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 rounded-full bg-[#2B1B12]/90 hover:bg-[#422B19] border border-[#E2C38F]/30 text-[#E2C38F] flex items-center justify-center shadow-xl transition-all cursor-pointer backdrop-blur-sm"
+          aria-label="Anterior"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 -translate-x-0.5" />
+        </motion.button>
 
         {/* Center Protagonist Medallion with Swipe Handling */}
         <motion.div
@@ -76,14 +83,14 @@ export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.25}
           onDragEnd={(_, info) => {
-            const swipeThreshold = 50;
+            const swipeThreshold = 35;
             if (info.offset.x > swipeThreshold) {
               handlePrev();
             } else if (info.offset.x < -swipeThreshold) {
               handleNext();
             }
           }}
-          className="relative z-10 cursor-grab active:cursor-grabbing flex flex-col items-center justify-center"
+          className="relative z-15 cursor-grab active:cursor-grabbing flex flex-col items-center justify-center"
         >
           <FrappeMedallion
             product={currentProduct}
@@ -93,25 +100,36 @@ export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
         </motion.div>
 
         {/* Right Peek (Next Product) */}
-        <div
+        <motion.div
+          whileTap={{ scale: 0.9 }}
           onClick={handleNext}
-          className="hidden md:block absolute -right-12 lg:-right-20 transform translate-x-1/2 opacity-35 hover:opacity-70 scale-75 transition-all duration-300 cursor-pointer z-0 filter blur-[1px] hover:blur-none"
+          className="absolute -right-3 xs:right-0 sm:right-4 md:right-8 z-10 opacity-35 hover:opacity-75 transition-all cursor-pointer flex flex-col items-center filter blur-[0.5px] hover:blur-none"
+          title="Ver producto siguiente"
         >
           <FrappeMedallion product={nextProduct} size="sm" isCurrent={false} />
-        </div>
+        </motion.div>
+
+        {/* Navigation Arrow Right */}
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.06 }}
+          onClick={handleNext}
+          className="absolute right-1 xs:right-2 sm:right-4 z-20 w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 rounded-full bg-[#2B1B12]/90 hover:bg-[#422B19] border border-[#E2C38F]/30 text-[#E2C38F] flex items-center justify-center shadow-xl transition-all cursor-pointer backdrop-blur-sm"
+          aria-label="Siguiente"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 translate-x-0.5" />
+        </motion.button>
       </div>
 
-      {/* Navigation Arrow Right */}
-      <motion.button
-        type="button"
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.08 }}
-        onClick={handleNext}
-        className="absolute right-2 sm:right-4 md:right-8 lg:right-12 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#2B1B12]/80 hover:bg-[#422B19] border border-[#E2C38F]/30 text-[#E2C38F] flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all cursor-pointer backdrop-blur-sm"
-        aria-label="Ver producto siguiente"
-      >
-        <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 translate-x-0.5" />
-      </motion.button>
+      {/* Index indicator badge under medallion */}
+      {showIndexBadge && (
+        <div className="mt-1 text-center flex-shrink-0">
+          <span className="font-['Syne'] text-[10px] sm:text-xs font-bold tracking-[0.2em] text-[#C49C64] uppercase">
+            — {formattedCurrent} · DE {formattedTotal} —
+          </span>
+        </div>
+      )}
     </div>
   );
 };
