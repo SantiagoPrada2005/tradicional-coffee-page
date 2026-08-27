@@ -204,6 +204,8 @@ export const CartDrawer: React.FC = () => {
                           <div className="flex flex-col items-end gap-1 flex-shrink-0">
                             <Stepper
                               size="sm"
+                              min={0}
+                              showTrashAtMin={true}
                               value={item.quantity}
                               onIncrement={() => updateQuantity(item.product.id, 1)}
                               onDecrement={() => updateQuantity(item.product.id, -1)}

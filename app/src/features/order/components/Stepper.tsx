@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Trash2 } from 'lucide-react';
 
 interface StepperProps {
   value: number;
@@ -8,6 +9,7 @@ interface StepperProps {
   min?: number;
   max?: number;
   size?: 'sm' | 'md' | 'lg';
+  showTrashAtMin?: boolean;
   className?: string;
 }
 
@@ -18,9 +20,12 @@ export const Stepper: React.FC<StepperProps> = ({
   min = 1,
   max = 99,
   size = 'lg',
+  showTrashAtMin = false,
   className = '',
 }) => {
   const isSm = size === 'sm';
+  const isAtMin = value <= min;
+  const isOne = value === 1;
 
   return (
     <div
@@ -32,13 +37,18 @@ export const Stepper: React.FC<StepperProps> = ({
         type="button"
         whileTap={{ scale: 0.85 }}
         onClick={onDecrement}
-        disabled={value <= min}
-        aria-label="Disminuir cantidad"
-        className={`flex items-center justify-center rounded-full font-medium transition-colors text-[#2B1B12] hover:bg-[#E2D3BB]/80 disabled:opacity-40 disabled:cursor-not-allowed ${
+        disabled={isAtMin && !showTrashAtMin}
+        aria-label={isOne && showTrashAtMin ? 'Eliminar producto' : 'Disminuir cantidad'}
+        title={isOne && showTrashAtMin ? 'Eliminar producto' : 'Disminuir cantidad'}
+        className={`flex items-center justify-center rounded-full font-medium transition-colors text-[#2B1B12] hover:bg-[#E2D3BB]/80 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer ${
           isSm ? 'w-6 h-6 text-sm' : 'w-9 h-9 text-xl'
-        }`}
+        } ${isOne && showTrashAtMin ? 'text-[#A84836] hover:text-[#C93B24]' : ''}`}
       >
-        −
+        {isOne && showTrashAtMin ? (
+          <Trash2 className={isSm ? 'w-3 h-3' : 'w-4 h-4'} />
+        ) : (
+          '−'
+        )}
       </motion.button>
 
       <motion.span
@@ -59,7 +69,7 @@ export const Stepper: React.FC<StepperProps> = ({
         onClick={onIncrement}
         disabled={value >= max}
         aria-label="Aumentar cantidad"
-        className={`flex items-center justify-center rounded-full font-medium transition-colors bg-[#C49C64] text-[#2B1B12] hover:bg-[#D6A354] disabled:opacity-40 disabled:cursor-not-allowed ${
+        className={`flex items-center justify-center rounded-full font-medium transition-colors bg-[#C49C64] text-[#2B1B12] hover:bg-[#D6A354] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer ${
           isSm ? 'w-6 h-6 text-sm' : 'w-9 h-9 text-xl'
         }`}
       >
