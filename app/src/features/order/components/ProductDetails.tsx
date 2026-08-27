@@ -29,30 +29,30 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto flex flex-col items-center text-center px-3 sm:px-4 z-10 flex-shrink-0 py-1">
+    <div className="w-full max-w-md mx-auto flex flex-col items-center text-center px-3 sm:px-4 z-10 flex-shrink-0">
       {/* Main Title (Product Name - Styled like Pen Design) */}
       <AnimatePresence mode="wait">
         <motion.h1
           key={product.id + '-title'}
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.22 }}
-          className="font-['Cormorant_Garamond'] text-2xl xs:text-3xl sm:text-4xl font-bold italic text-[#F4EDDF] tracking-tight leading-tight mb-1"
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.2 }}
+          className="font-['Cormorant_Garamond'] text-2xl xs:text-3xl sm:text-4xl font-bold italic text-[#F4EDDF] tracking-tight leading-none mb-0"
         >
           {product.name}
         </motion.h1>
       </AnimatePresence>
 
-      {/* Description */}
+      {/* Description tightly attached below title */}
       <AnimatePresence mode="wait">
         <motion.p
           key={product.id + '-desc'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.22, delay: 0.03 }}
-          className="text-xs xs:text-sm text-[#F4EDDF]/80 font-['Plus_Jakarta_Sans'] max-w-[320px] xs:max-w-[360px] line-clamp-2 mb-1.5 leading-relaxed"
+          transition={{ duration: 0.2, delay: 0.02 }}
+          className="mt-0.5 text-xs xs:text-sm text-[#F4EDDF]/80 font-['Plus_Jakarta_Sans'] max-w-[320px] xs:max-w-[360px] line-clamp-2 mb-2 leading-snug"
         >
           {product.description}
         </motion.p>
