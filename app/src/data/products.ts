@@ -31,21 +31,23 @@ export const exploreProducts: Product[] = [
 
     // COLADAS Y MILO [cite: 85, 92]
     { id: 24, name: "Colada (Cereza, Vainilla, Milo o Café)", description: "Elige tu sabor favorito.", price: "$6.000", image: "/images/colada.jpeg", alt: "Colada", category: 'hot' },
-    { id: 25, name: "Milo frío", description: "Bebida achocolatada fría.", price: "$8.000", image: "", alt: "Milo frío", category: 'cold' },
+    { id: 25, name: "Milo frío", description: "Bebida achocolatada fría.", price: "$8.000", image: "/images/milo-frio.jpeg", alt: "Milo frío", category: 'cold' },
     { id: 26, name: "Milo caliente", description: "Milo reconfortante.", price: "$5.000", image: "", alt: "Milo caliente", category: 'hot' },
     { id: 27, name: "Milo marsmellos", description: "Milo con malvaviscos.", price: "$7.000", image: "", alt: "Milo con marshmallow", category: 'hot' },
 
     // FRAPPES [cite: 100]
-    { id: 28, name: "Frappe de Milo", description: "Granizado de milo.", price: "$10.000", image: "/images/frappe-milo.jpeg", alt: "Frappe Milo", category: 'frappe' },
-    { id: 29, name: "Frappe de Café", description: "Clásico sabor a café helado.", price: "$10.000", image: "/images/frappe-cafe.jpeg", alt: "Frappe Café", category: 'frappe' },
-    { id: 30, name: "Frappe de Nutella", description: "Para los amantes del chocolate y avellana.", price: "$10.000", image: "/images/frappe-nutella.jpeg", alt: "Frappe Nutella", category: 'frappe' },
-    { id: 31, name: "Frappe de Mocca", description: "Mezcla de café y chocolate.", price: "$10.000", image: "/images/frappe-moca.jpeg", alt: "Frappe Mocca", category: 'frappe' },
-    { id: 32, name: "Frappe de Coco Limón", description: "Refrescante y tropical.", price: "$10.000", image: "/images/frappe-coco-limon.jpeg", alt: "Frappe Coco Limón", category: 'frappe' },
-    { id: 33, name: "Frappe Té Chai", description: "Especias y frescura.", price: "$12.000", image: "/images/frappe-te-chai.jpeg", alt: "Frappe Té Chai", category: 'frappe' },
+    { id: 28, name: "Frappe de Milo", description: "Granizado de milo.", price: "$12.000", image: "/images/frappe-milo.jpeg", alt: "Frappe Milo", category: 'frappe' },
+    { id: 29, name: "Frappe de Café", description: "Clásico sabor a café helado.", price: "$12.000", image: "/images/frappe-cafe.jpeg", alt: "Frappe Café", category: 'frappe' },
+    { id: 30, name: "Frappe de Nutella", description: "Para los amantes del chocolate y avellana.", price: "$12.000", image: "/images/frappe-nutella.jpeg", alt: "Frappe Nutella", category: 'frappe' },
+    { id: 31, name: "Frappe de Mocca", description: "Mezcla de café y chocolate.", price: "$12.000", image: "/images/frappe-moca.jpeg", alt: "Frappe Mocca", category: 'frappe' },
+    { id: 32, name: "Frappe de Coco Limón", description: "Refrescante y tropical.", price: "$12.000", image: "/images/frappe-coco-limon.jpeg", alt: "Frappe Coco Limón", category: 'frappe' },
+    { id: 40, name: "Frappe de Oreo", description: "Delicioso frappé con galletas Oreo y crema chantilly.", price: "$12.000", image: "/images/frappe-oreo.jpeg", alt: "Frappe de Oreo", category: 'frappe' },
+    { id: 33, name: "Frappe Té Chai", description: "Especias y frescura.", price: "$15.000", image: "/images/frappe-te-chai.jpeg", alt: "Frappe Té Chai", category: 'frappe' },
+    { id: 41, name: "Frappuccino", description: "Café espresso batido con hielo y crema especial.", price: "$15.000", image: "/images/frappucchino.jpeg", alt: "Frappuccino", category: 'frappe' },
 
     // LIMONADAS Y BEBIDAS [cite: 102, 104]
     { id: 34, name: "Limonada de Coco", description: "Cremosa y refrescante.", price: "$9.000", image: "", alt: "Limonada Coco", category: 'cold' },
-    { id: 35, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/limonada-cereza.webp", alt: "Limonada Cerezada", category: 'cold' },
+    { id: 35, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$10.000", image: "/images/limonada-cereza.webp", alt: "Limonada Cerezada", category: 'cold' },
     { id: 36, name: "Tamarindo / Michelada", description: "Jugo de tamarindo solo o michelado.", price: "$4.000 - $6.000", image: "", alt: "Tamarindo", category: 'cold' },
     { id: 37, name: "Cervezas (Corona, Club, Águila, Poker)", description: "Variedad de cervezas nacionales e internacionales.", price: "$4.000 - $7.000", image: "", alt: "Cerveza", category: 'cold' },
 
