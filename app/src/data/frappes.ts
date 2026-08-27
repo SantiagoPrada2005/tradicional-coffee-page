@@ -14,7 +14,7 @@ export const orderProducts: Product[] = [
     name: "Americano frío",
     description: "Expresso doble, agua y hielo.",
     price: "$5.000",
-    image: "/images/americano-frio.jpeg",
+    image: "/images/americano-frio.webp",
     alt: "Americano frío",
     category: 'cold',
     tag: { label: "CAFÉ FRÍO" }
@@ -24,7 +24,7 @@ export const orderProducts: Product[] = [
     name: "Latte frío",
     description: "Expresso sencillo, leche y hielo.",
     price: "$8.000",
-    image: "/images/latte-frio.jpeg",
+    image: "/images/latte-frio.webp",
     alt: "Latte frío",
     category: 'latte',
     tag: { label: "LATTE FRÍO" }
@@ -34,7 +34,7 @@ export const orderProducts: Product[] = [
     name: "Hielato",
     description: "Leche condensada, espresso y leche espumada.",
     price: "$8.000",
-    image: "/images/hielato.jpeg",
+    image: "/images/hielato.webp",
     alt: "Hielato",
     category: 'cold',
     tag: { label: "ESPECIALIDAD" }
@@ -46,7 +46,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Milo",
     description: "Granizado de milo.",
     price: "$12.000",
-    image: "/images/frappe-milo.jpeg",
+    image: "/images/frappe-milo.webp",
     alt: "Frappe Milo",
     category: 'frappe',
     tag: { label: "FRAPPÉ" }
@@ -56,7 +56,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Café",
     description: "Clásico sabor a café helado.",
     price: "$12.000",
-    image: "/images/frappe-cafe.jpeg",
+    image: "/images/frappe-cafe.webp",
     alt: "Frappe Café",
     category: 'frappe',
     tag: { label: "FRAPPÉ" }
@@ -66,7 +66,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Nutella",
     description: "Para los amantes del chocolate y avellana.",
     price: "$12.000",
-    image: "/images/frappe-nutella.jpeg",
+    image: "/images/frappe-nutella.webp",
     alt: "Frappe Nutella",
     category: 'frappe',
     tag: { label: "FRAPPÉ · FAVORITO" }
@@ -76,7 +76,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Mocca",
     description: "Mezcla de café y chocolate.",
     price: "$12.000",
-    image: "/images/frappe-moca.jpeg",
+    image: "/images/frappe-moca.webp",
     alt: "Frappe Mocca",
     category: 'frappe',
     tag: { label: "FRAPPÉ" }
@@ -86,7 +86,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Coco Limón",
     description: "Refrescante y tropical.",
     price: "$12.000",
-    image: "/images/frappe-coco-limon.jpeg",
+    image: "/images/frappe-coco-limon.webp",
     alt: "Frappe Coco Limón",
     category: 'frappe',
     tag: { label: "FRAPPÉ" }
@@ -96,7 +96,7 @@ export const orderProducts: Product[] = [
     name: "Frappe de Oreo",
     description: "Delicioso frappé con galletas Oreo y crema chantilly.",
     price: "$12.000",
-    image: "/images/frappe-oreo.jpeg",
+    image: "/images/frappe-oreo.webp",
     alt: "Frappe de Oreo",
     category: 'frappe',
     tag: { label: "FRAPPÉ · POPULAR" }
@@ -106,7 +106,7 @@ export const orderProducts: Product[] = [
     name: "Frappe Té Chai",
     description: "Especias y frescura.",
     price: "$15.000",
-    image: "/images/frappe-te-chai.jpeg",
+    image: "/images/frappe-te-chai.webp",
     alt: "Frappe Té Chai",
     category: 'frappe',
     tag: { label: "FRAPPÉ ESPECIAL" }
@@ -116,7 +116,7 @@ export const orderProducts: Product[] = [
     name: "Frappuccino",
     description: "Café espresso batido con hielo y crema especial.",
     price: "$15.000",
-    image: "/images/frappucchino.jpeg",
+    image: "/images/frappucchino.webp",
     alt: "Frappuccino",
     category: 'frappe',
     tag: { label: "ESPECIALIDAD" }
@@ -128,7 +128,7 @@ export const orderProducts: Product[] = [
     name: "Milo frío",
     description: "Bebida achocolatada fría.",
     price: "$8.000",
-    image: "/images/milo-frio.jpeg",
+    image: "/images/milo-frio.webp",
     alt: "Milo frío",
     category: 'cold',
     tag: { label: "BEBIDA FRÍA" }
@@ -140,7 +140,7 @@ export const orderProducts: Product[] = [
     name: "Limonada de Coco",
     description: "Cremosa y refrescante.",
     price: "$9.000",
-    image: "/images/frappe-coco-limon.jpeg",
+    image: "/images/frappe-coco-limon.webp",
     alt: "Limonada Coco",
     category: 'cold',
     tag: { label: "LIMONADA" }

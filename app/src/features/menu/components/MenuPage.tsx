@@ -22,7 +22,7 @@ const MenuPage: React.FC = () => {
             {/* Background Image - Match Hero */}
             <div
                 className="fixed inset-0 z-0 h-full w-full bg-cover bg-center"
-                style={{ backgroundImage: `url('/images/fondo-hero.jpeg')`, filter: 'grayscale(30%) brightness(0.2)' }}
+                style={{ backgroundImage: `url('/images/fondo-hero.webp')`, filter: 'grayscale(30%) brightness(0.2)' }}
             />
             {/* Dark gradient overlay */}
             <div className="fixed inset-0 z-0 bg-linear-to-t from-[#1C110C] via-[#1C110C]/80 to-transparent"></div>

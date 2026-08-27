@@ -15,7 +15,7 @@ const ColdHubHero: React.FC = () => {
                 navLinks={navLinks}
                 mainText="Disfruta de la mejor experiencia en café frío. Preparado con los mejores granos de origen y nuestra receta tradicional."
                 readMoreLink="/menu"
-                bgImageSrc="/images/fondo-hero.jpeg"
+                bgImageSrc="/images/fondo-hero.webp"
                 imageSrc="/images/frappehero.webp"
                 imageAlt="Frappé Oreo Tradicional Coffee"
                 overlayText={{

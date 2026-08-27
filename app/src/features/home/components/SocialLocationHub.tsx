@@ -8,7 +8,7 @@ const SocialLocationHub: React.FC = () => {
             <div
                 className="absolute inset-0 z-0 opacity-30"
                 style={{
-                    backgroundImage: 'url("/images/fondo-hero.jpeg")',
+                    backgroundImage: 'url("/images/fondo-hero.webp")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}
@@ -61,7 +61,7 @@ const SocialLocationHub: React.FC = () => {
                         <div className="absolute w-40 h-40 bg-[#D4B88E]/20 rounded-full blur-[50px] scale-150 pointer-events-none"></div>
 
                         <img
-                            src="./images/frappe-3d.png"
+                            src="/images/frappe-3d.webp"
                             alt="Frappé Tradicional Coffee"
                             className="relative z-10 w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.6)] scale-[1.3] md:scale-[1.5] group-hover:-translate-y-3 group-hover:scale-[1.35] md:group-hover:scale-[1.55] transition-all duration-700 ease-out"
                         />

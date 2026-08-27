@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
     brand: {
         name: "Tradicional Coffee",
         shortName: "Tradicional Coffee",
-        logo: "/images/logo.png",
+        logo: "/images/logo.webp",
         description: "Disfruta de la tradición del café en cada sorbo.\nLa experiencia definitiva en el corazón de Roldanillo, ofreciendo café artesanal de alta calidad, innovadores granizados y bebidas refrescantes. Un espacio para conectar y crear momentos memorables."
     },
     hero: {
@@ -14,7 +14,7 @@ export const siteConfig: SiteConfig = {
     },
     contact: {
         email: "hola@tradicionalcoldhub.com",
-        phone: "+57 300 123 4567",
+        phone: "+57 314 777 4388",
         address: "Roldanillo, Valle del Cauca, Colombia"
     },
     navigation: {

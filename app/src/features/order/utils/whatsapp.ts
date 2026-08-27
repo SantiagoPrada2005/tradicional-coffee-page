@@ -18,7 +18,7 @@ export function generateWhatsAppOrderUrl(
   items: CartItem[],
   totalAmount: number,
   preparationNote?: string,
-  phoneNumber: string = "573126120456"
+  phoneNumber: string = "573147774388"
 ): string {
   const cleanPhone = phoneNumber.replace(/\D/g, '');
 
