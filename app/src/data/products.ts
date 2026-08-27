@@ -10,9 +10,9 @@ export const exploreProducts: Product[] = [
     { id: 7, name: "Americano", description: "Espresso sencillo con agua.", price: "$3.500", image: "", alt: "Café Americano", category: 'hot' },
     { id: 8, name: "Latte", description: "Espresso y leche cremada.", price: "$5.000", image: "", alt: "Café Latte", category: 'latte' },
     { id: 9, name: "Latte pequeño", description: "Versión reducida de nuestro Latte clásico.", price: "$4.000", image: "/images/latte-pequeño.jpeg", alt: "Latte pequeño", category: 'latte' },
-    { id: 10, name: "Cappuccino Tradicional", description: "1 espresso sencillo y leche cremada.", price: "$5.000", image: "/images/cappuccino.jpeg", alt: "Cappuccino", category: 'hot' },
-    { id: 11, name: "Cappuccino Especial", description: "1 espresso doble y leche cremada, con chantilly.", price: "$7.000", image: "/images/cappuccino-especial.jpeg", alt: "Cappuccino Especial", category: 'hot' },
-    { id: 12, name: "Cappuccino con licor", description: "Expresso, leche cremada y el licor de su preferencia.", price: "$9.000", image: "/images/cappuccino.jpeg", alt: "Cappuccino con licor", category: 'hot' },
+    { id: 10, name: "Cappuccino Tradicional", description: "1 espresso sencillo y leche cremada.", price: "$5.000", image: "/images/capuccino.jpeg", alt: "Cappuccino", category: 'hot' },
+    { id: 11, name: "Cappuccino Especial", description: "1 espresso doble y leche cremada, con chantilly.", price: "$7.000", image: "/images/capuccino-especial.jpeg", alt: "Cappuccino Especial", category: 'hot' },
+    { id: 12, name: "Cappuccino con licor", description: "Expresso, leche cremada y el licor de su preferencia.", price: "$9.000", image: "/images/capuccino.jpeg", alt: "Cappuccino con licor", category: 'hot' },
     { id: 13, name: "Cappuccino con marshmallow", description: "Expresso, leche cremada, crema chantilly y marshmallow.", price: "$9.000", image: "/images/marshmallow.webp", alt: "Cappuccino con marshmallow", category: 'hot' },
 
     // CAFÉS FRÍOS [cite: 70, 71]
@@ -45,7 +45,7 @@ export const exploreProducts: Product[] = [
 
     // LIMONADAS Y BEBIDAS [cite: 102, 104]
     { id: 34, name: "Limonada de Coco", description: "Cremosa y refrescante.", price: "$9.000", image: "", alt: "Limonada Coco", category: 'cold' },
-    { id: 35, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/cerezada.png", alt: "Limonada Cerezada", category: 'cold' },
+    { id: 35, name: "Limonada Cerezada", description: "Refrescante sabor a cereza.", price: "$6.500", image: "/images/limonada-cereza.webp", alt: "Limonada Cerezada", category: 'cold' },
     { id: 36, name: "Tamarindo / Michelada", description: "Jugo de tamarindo solo o michelado.", price: "$4.000 - $6.000", image: "", alt: "Tamarindo", category: 'cold' },
     { id: 37, name: "Cervezas (Corona, Club, Águila, Poker)", description: "Variedad de cervezas nacionales e internacionales.", price: "$4.000 - $7.000", image: "", alt: "Cerveza", category: 'cold' },
 
@@ -80,6 +80,6 @@ export const accordionItems: AccordionItemData[] = [
     {
         id: 5,
         title: 'Bebidas Frías',
-        imageUrl: "/images/cerezada.png",
+        imageUrl: "/images/limonada-cereza.webp",
     },
 ];

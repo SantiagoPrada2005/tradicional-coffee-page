@@ -130,7 +130,7 @@ export const orderProducts: Product[] = [
     name: "Limonada Cerezada",
     description: "Refrescante sabor a cereza.",
     price: "$6.500",
-    image: "/images/cerezada.png",
+    image: "/images/limonada-cereza.webp",
     alt: "Limonada Cerezada",
     category: 'cold',
     tag: { label: "LIMONADA" }
