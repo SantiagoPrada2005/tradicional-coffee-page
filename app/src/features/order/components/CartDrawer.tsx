@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2, ArrowRight, MessageSquarePlus, Edit3 } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
 import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
+import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
 
 export const CartDrawer: React.FC = () => {
@@ -88,14 +89,14 @@ export const CartDrawer: React.FC = () => {
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-16 space-y-4">
                   <div className="w-20 h-20 rounded-full bg-[#EFE4CD] flex items-center justify-center text-3xl text-[#C49C64]">
-                    🥤
+                    ☕
                   </div>
                   <div>
                     <h3 className="font-['Cormorant_Garamond'] text-2xl font-bold text-[#2B1B12]">
-                      Aún no has agregado frappes
+                      Aún no has agregado productos
                     </h3>
                     <p className="text-xs sm:text-sm text-[#7A6854] font-['Plus_Jakarta_Sans'] max-w-xs mt-1">
-                      Explora el carrusel y elige tus combinaciones favoritas para armar tu pedido.
+                      Explora el carrusel y elige tus bebidas favoritas para armar tu pedido.
                     </p>
                   </div>
                   <button
@@ -103,53 +104,63 @@ export const CartDrawer: React.FC = () => {
                     onClick={() => setIsCartOpen(false)}
                     className="mt-2 px-6 py-2.5 rounded-full bg-[#2B1B12] text-[#E2C38F] font-['Syne'] text-xs uppercase font-bold tracking-wider hover:bg-[#422B19] transition-all cursor-pointer"
                   >
-                    Explorar frappes
+                    Explorar bebidas
                   </button>
                 </div>
               ) : (
                 <div className="space-y-3.5">
-                  {cart.map(item => (
-                    <motion.div
-                      key={item.frappe.id}
-                      layout
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      className="flex items-center gap-3.5 p-3 sm:p-4 rounded-2xl bg-[#F4EDDF] border border-[#E2D3BB]/80 shadow-sm"
-                    >
-                      {/* Product Thumbnail */}
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border border-[#C49C64]/40 flex-shrink-0 bg-[#2B1B12]">
-                        <img
-                          src={item.frappe.image}
-                          alt={item.frappe.alt}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                  {cart.map(item => {
+                    const unitPrice = parseProductPrice(item.product.price);
+                    const subtotal = unitPrice * item.quantity;
+                    const hasImg = Boolean(item.product.image && item.product.image.trim().length > 0);
 
-                      {/* Product Info */}
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-['Plus_Jakarta_Sans'] font-semibold text-sm sm:text-base text-[#2B1B12] truncate">
-                          {item.frappe.name}
-                        </h4>
-                        <p className="text-xs text-[#7A6854] font-['Plus_Jakarta_Sans']">
-                          {formatCurrency(item.frappe.price)} c/u
-                        </p>
-                      </div>
+                    return (
+                      <motion.div
+                        key={item.product.id}
+                        layout
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="flex items-center gap-3.5 p-3 sm:p-4 rounded-2xl bg-[#F4EDDF] border border-[#E2D3BB]/80 shadow-sm"
+                      >
+                        {/* Product Thumbnail */}
+                        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border border-[#C49C64]/40 flex-shrink-0 bg-[#2B1B12] flex items-center justify-center">
+                          {hasImg ? (
+                            <img
+                              src={item.product.image}
+                              alt={item.product.alt || item.product.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <span className="text-xl">☕</span>
+                          )}
+                        </div>
 
-                      {/* Quantity Stepper */}
-                      <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                        <Stepper
-                          size="sm"
-                          value={item.quantity}
-                          onIncrement={() => updateQuantity(item.frappe.id, 1)}
-                          onDecrement={() => updateQuantity(item.frappe.id, -1)}
-                        />
-                        <span className="text-[11px] font-bold text-[#C49C64] font-['Plus_Jakarta_Sans']">
-                          {formatCurrency(item.frappe.price * item.quantity)}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
+                        {/* Product Info */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-['Plus_Jakarta_Sans'] font-semibold text-sm sm:text-base text-[#2B1B12] truncate">
+                            {item.product.name}
+                          </h4>
+                          <p className="text-xs text-[#7A6854] font-['Plus_Jakarta_Sans']">
+                            {item.product.price} c/u
+                          </p>
+                        </div>
+
+                        {/* Quantity Stepper */}
+                        <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                          <Stepper
+                            size="sm"
+                            value={item.quantity}
+                            onIncrement={() => updateQuantity(item.product.id, 1)}
+                            onDecrement={() => updateQuantity(item.product.id, -1)}
+                          />
+                          <span className="text-[11px] font-bold text-[#C49C64] font-['Plus_Jakarta_Sans']">
+                            {formatCurrency(subtotal)}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               )}
             </div>

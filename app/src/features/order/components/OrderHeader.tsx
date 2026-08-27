@@ -31,7 +31,7 @@ export const OrderHeader: React.FC = () => {
             </span>
           </Link>
           <span className="text-[11px] sm:text-xs text-[#E2C38F]/80 font-['Plus_Jakarta_Sans'] font-medium">
-            Elige tu frappe favorito
+            Elige tus bebidas favoritas
           </span>
         </div>
       </div>
@@ -43,7 +43,7 @@ export const OrderHeader: React.FC = () => {
         whileHover={{ scale: 1.02 }}
         onClick={() => setIsCartOpen(true)}
         className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 rounded-full bg-[#2B1B12]/95 hover:bg-[#422B19] border border-[#E2C38F]/30 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all cursor-pointer text-left"
-        aria-label={`Ver pedido actual con ${totalCount} frappes`}
+        aria-label={`Ver pedido actual con ${totalCount} productos`}
       >
         <div className="relative flex items-center justify-center">
           <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#E2C38F]" />
@@ -64,7 +64,7 @@ export const OrderHeader: React.FC = () => {
 
         <div className="flex items-center gap-1.5 text-xs sm:text-sm font-['Plus_Jakarta_Sans']">
           <span className="font-semibold text-[#F4EDDF]">
-            {totalCount === 1 ? '1 frappe' : `${totalCount} frappes`}
+            {totalCount === 1 ? '1 producto' : `${totalCount} productos`}
           </span>
           {totalCount > 0 && (
             <>

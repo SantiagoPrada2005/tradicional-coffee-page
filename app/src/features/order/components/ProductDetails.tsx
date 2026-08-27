@@ -1,26 +1,39 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Check, MessageSquarePlus } from 'lucide-react';
-import type { FrappeItem } from '../../../data/frappes';
+import type { Product } from '../../../types/product';
+import { parseProductPrice } from '../../../data/frappes';
 import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
 import { formatCurrency } from '../utils/whatsapp';
 
 interface ProductDetailsProps {
-  frappe: FrappeItem;
+  product: Product;
+  currentIndex: number;
   totalCount: number;
 }
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({
-  frappe,
+  product,
+  currentIndex,
   totalCount,
 }) => {
   const { addToCart, setIsNoteModalOpen, preparationNote } = useOrder();
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
 
+  const unitPrice = parseProductPrice(product.price);
+  const formattedIndex = currentIndex + 1 < 10 ? `0${currentIndex + 1}` : `${currentIndex + 1}`;
+  const formattedTotal = totalCount < 10 ? `0${totalCount}` : `${totalCount}`;
+
+  const categoryLabel = product.tag?.label || (
+    product.category === 'frappe' ? 'FRAPPÉ' :
+    product.category === 'latte' ? 'LATTE FRÍO' :
+    product.category === 'cold' ? 'BEBIDA FRÍA' : 'ESPECIALIDAD'
+  );
+
   const handleAdd = () => {
-    addToCart(frappe, quantity);
+    addToCart(product, quantity);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 900);
   };
@@ -30,7 +43,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
       {/* Category & Index Indicator */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={frappe.id + '-cat'}
+          key={product.id + '-cat'}
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
@@ -38,48 +51,46 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
           className="flex items-center gap-2 mb-2"
         >
           <span className="font-['Syne'] text-[11px] sm:text-xs font-bold tracking-[0.2em] text-[#C49C64] uppercase">
-            — {frappe.number} · DE {totalCount < 10 ? `0${totalCount}` : totalCount} —
+            — {formattedIndex} · DE {formattedTotal} —
           </span>
-          {frappe.badge && (
-            <span className="bg-[#C49C64] text-[#1C110C] text-[10px] font-['Syne'] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider shadow">
-              {frappe.badge}
-            </span>
-          )}
+          <span className="bg-[#C49C64]/20 border border-[#C49C64]/40 text-[#E2C38F] text-[10px] font-['Syne'] font-extrabold uppercase px-2.5 py-0.5 rounded-full tracking-wider">
+            {categoryLabel}
+          </span>
         </motion.div>
       </AnimatePresence>
 
-      {/* Main Title (Frappe Name) */}
+      {/* Main Title (Product Name) */}
       <AnimatePresence mode="wait">
         <motion.h1
-          key={frappe.id + '-title'}
+          key={product.id + '-title'}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
           className="font-['Cormorant_Garamond'] text-4xl sm:text-5xl md:text-6xl font-bold text-[#F4EDDF] tracking-tight leading-[1.1] mb-2"
         >
-          {frappe.name}
+          {product.name}
         </motion.h1>
       </AnimatePresence>
 
       {/* Description */}
       <AnimatePresence mode="wait">
         <motion.p
-          key={frappe.id + '-desc'}
+          key={product.id + '-desc'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
           className="text-xs sm:text-sm md:text-base text-[#F4EDDF]/75 font-['Plus_Jakarta_Sans'] max-w-md line-clamp-2 sm:line-clamp-none mb-4 leading-relaxed"
         >
-          {frappe.description}
+          {product.description}
         </motion.p>
       </AnimatePresence>
 
       {/* Price Display */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={frappe.id + '-price'}
+          key={product.id + '-price'}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -87,7 +98,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
           className="flex items-baseline gap-2 mb-6"
         >
           <span className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl md:text-5xl font-bold text-[#E2C38F]">
-            {frappe.formattedPrice}
+            {product.price}
           </span>
           <span className="font-['Syne'] text-[10px] sm:text-xs tracking-widest text-[#C49C64] uppercase font-semibold">
             CADA UNO
@@ -116,7 +127,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
               ? 'bg-[#2B1B12] text-[#E2C38F] border border-[#E2C38F]'
               : 'bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12]'
           }`}
-          aria-label={`Agregar ${quantity} ${frappe.name} al pedido`}
+          aria-label={`Agregar ${quantity} ${product.name} al pedido`}
         >
           {justAdded ? (
             <>
@@ -127,7 +138,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
             <>
               <Plus className="w-4 h-4" />
               <span>AGREGAR AL PEDIDO</span>
-              <span className="text-[11px] opacity-80">· {formatCurrency(frappe.price * quantity)}</span>
+              <span className="text-[11px] opacity-80">· {formatCurrency(unitPrice * quantity)}</span>
             </>
           )}
         </motion.button>

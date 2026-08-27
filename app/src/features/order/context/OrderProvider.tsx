@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import type { FrappeItem } from '../../../data/frappes';
+import type { Product } from '../../../types/product';
 import type { CartItem } from '../utils/whatsapp';
+import { parseProductPrice } from '../../../data/frappes';
 import { OrderContext } from './OrderContextDef';
 
 const STORAGE_KEY_CART = 'tc_order_cart';
@@ -44,26 +45,26 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   };
 
-  const addToCart = (frappe: FrappeItem, quantity: number = 1) => {
+  const addToCart = (product: Product, quantity: number = 1) => {
     if (quantity <= 0) return;
     setCart(prev => {
-      const existing = prev.find(item => item.frappe.id === frappe.id);
+      const existing = prev.find(item => item.product.id === product.id);
       if (existing) {
         return prev.map(item =>
-          item.frappe.id === frappe.id
+          item.product.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prev, { frappe, quantity }];
+      return [...prev, { product, quantity }];
     });
   };
 
-  const updateQuantity = (frappeId: string, delta: number) => {
+  const updateQuantity = (productId: number, delta: number) => {
     setCart(prev =>
       prev
         .map(item => {
-          if (item.frappe.id === frappeId) {
+          if (item.product.id === productId) {
             const nextQty = item.quantity + delta;
             return nextQty > 0 ? { ...item, quantity: nextQty } : null;
           }
@@ -73,20 +74,20 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     );
   };
 
-  const setQuantity = (frappeId: string, quantity: number) => {
+  const setQuantity = (productId: number, quantity: number) => {
     if (quantity <= 0) {
-      removeFromCart(frappeId);
+      removeFromCart(productId);
       return;
     }
     setCart(prev =>
       prev.map(item =>
-        item.frappe.id === frappeId ? { ...item, quantity } : item
+        item.product.id === productId ? { ...item, quantity } : item
       )
     );
   };
 
-  const removeFromCart = (frappeId: string) => {
-    setCart(prev => prev.filter(item => item.frappe.id !== frappeId));
+  const removeFromCart = (productId: number) => {
+    setCart(prev => prev.filter(item => item.product.id !== productId));
   };
 
   const clearCart = () => {
@@ -96,13 +97,16 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     sessionStorage.removeItem(STORAGE_KEY_NOTE);
   };
 
-  const getFrappeQuantity = (frappeId: string) => {
-    const item = cart.find(i => i.frappe.id === frappeId);
+  const getProductQuantity = (productId: number) => {
+    const item = cart.find(i => i.product.id === productId);
     return item ? item.quantity : 0;
   };
 
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = cart.reduce((sum, item) => sum + item.frappe.price * item.quantity, 0);
+  const totalAmount = cart.reduce((sum, item) => {
+    const unitPrice = parseProductPrice(item.product.price);
+    return sum + unitPrice * item.quantity;
+  }, 0);
 
   return (
     <OrderContext.Provider
@@ -121,7 +125,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setPreparationNote,
         setIsCartOpen,
         setIsNoteModalOpen,
-        getFrappeQuantity,
+        getProductQuantity,
       }}
     >
       {children}

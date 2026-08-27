@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { FrappeItem } from '../../../data/frappes';
+import type { Product } from '../../../types/product';
 
 interface FrappeMedallionProps {
-  frappe: FrappeItem;
+  product: Product;
   size?: 'sm' | 'md' | 'lg';
   isCurrent?: boolean;
   onClick?: () => void;
@@ -11,34 +11,47 @@ interface FrappeMedallionProps {
 }
 
 export const FrappeMedallion: React.FC<FrappeMedallionProps> = ({
-  frappe,
+  product,
   size = 'lg',
   isCurrent = true,
   onClick,
   className = '',
 }) => {
-  const [imgError, setImgError] = useState(false);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   const sizeDimensions = {
     sm: {
       container: 'w-[140px] h-[140px] md:w-[180px] md:h-[180px]',
       plate: 'w-[120px] h-[120px] md:w-[150px] md:h-[150px]',
       glow: 'w-[140px] h-[140px]',
-      stroke: 1.5,
     },
     md: {
       container: 'w-[220px] h-[220px] md:w-[260px] md:h-[260px]',
       plate: 'w-[200px] h-[200px] md:w-[230px] md:h-[230px]',
       glow: 'w-[220px] h-[220px]',
-      stroke: 2,
     },
     lg: {
       container: 'w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]',
       plate: 'w-[250px] h-[250px] sm:w-[290px] sm:h-[290px] md:w-[340px] md:h-[340px] lg:w-[380px] lg:h-[380px]',
       glow: 'w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px]',
-      stroke: 2.5,
     },
   }[size];
+
+  const imageKey = `${product.id}-${product.image}`;
+  const isImageFailed = Boolean(failedImages[imageKey]);
+  const hasImage = Boolean(product.image && product.image.trim().length > 0 && !isImageFailed);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'frappe':
+        return '🥤';
+      case 'cold':
+      case 'latte':
+        return '🧊';
+      default:
+        return '☕';
+    }
+  };
 
   return (
     <div
@@ -101,26 +114,34 @@ export const FrappeMedallion: React.FC<FrappeMedallionProps> = ({
       >
         <AnimatePresence mode="wait">
           <motion.div
-            key={frappe.id}
+            key={product.id}
             initial={{ scale: 0.92, opacity: 0, rotate: -4 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             exit={{ scale: 0.92, opacity: 0, rotate: 4 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="w-full h-full"
           >
-            {!imgError ? (
+            {hasImage ? (
               <img
-                src={frappe.image}
-                alt={frappe.alt}
-                onError={() => setImgError(true)}
+                key={imageKey}
+                src={product.image}
+                alt={product.alt || product.name}
+                onError={() => {
+                  setFailedImages(prev => ({ ...prev, [imageKey]: true }));
+                }}
                 className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
                 loading="eager"
               />
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-[#2B1B12] to-[#1C110C]">
-                <span className="text-3xl mb-1">🥤</span>
-                <span className="text-[#E2C38F] font-['Syne'] text-xs font-semibold uppercase tracking-wider">
-                  {frappe.name}
+              <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-[#2B1B12] via-[#352217] to-[#1C110C]">
+                <span className="text-4xl md:text-5xl mb-2 filter drop-shadow">
+                  {getCategoryIcon(product.category)}
+                </span>
+                <span className="text-[#E2C38F] font-['Syne'] text-xs font-bold uppercase tracking-wider max-w-[85%]">
+                  {product.name}
+                </span>
+                <span className="text-[10px] text-[#C49C64] font-['Plus_Jakarta_Sans'] mt-0.5">
+                  {product.price}
                 </span>
               </div>
             )}

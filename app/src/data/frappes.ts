@@ -1,202 +1,140 @@
-export interface FrappeItem {
-  id: string;
-  number: string;
-  name: string;
-  tagline: string;
-  category: string;
-  description: string;
-  price: number;
-  formattedPrice: string;
-  image: string;
-  alt: string;
-  badge?: string;
-  accentColor?: string;
+import type { Product } from '../types/product';
+
+export type { Product };
+
+export function parseProductPrice(priceStr: string): number {
+  const numeric = priceStr.replace(/[^0-9]/g, '');
+  return numeric ? parseInt(numeric, 10) : 0;
 }
 
-export const FRAPPES_CATALOG: FrappeItem[] = [
+export const orderProducts: Product[] = [
+  // CAFÉS FRÍOS
   {
-    id: "frappe-oreo",
-    number: "01",
-    name: "Frappe Oreo",
-    tagline: "El consentido de la casa",
-    category: "FRAPPE · CLÁSICO",
-    description: "Frappe de café, leche cremada y abundante galleta Oreo triturada, coronado con chantilly y lluvia de galleta.",
-    price: 16000,
-    formattedPrice: "$16.000",
-    image: "/images/frappe-oreo.jpeg",
-    alt: "Frappe Oreo Tradicional Coffee",
-    badge: "MÁS PEDIDO",
-    accentColor: "#E2C38F"
+    id: 14,
+    name: "Americano frío",
+    description: "Expresso doble, agua y hielo.",
+    price: "$5.000",
+    image: "/images/americano-frio.jpeg",
+    alt: "Americano frío",
+    category: 'cold',
+    tag: { label: "CAFÉ FRÍO" }
   },
   {
-    id: "frappe-mochaccino",
-    number: "02",
-    name: "Frappe Mochaccino",
-    tagline: "Café de origen & chocolate",
-    category: "FRAPPE · ESPECIAL",
-    description: "Mezcla perfecta de espresso doble recién extraído, salsa de chocolate artesanal y leche batida con hielo.",
-    price: 16000,
-    formattedPrice: "$16.000",
-    image: "/images/frappe-moca.jpeg",
-    alt: "Frappe Mochaccino Tradicional Coffee",
-    accentColor: "#D6A354"
+    id: 15,
+    name: "Latte frío",
+    description: "Expresso sencillo, leche y hielo.",
+    price: "$8.000",
+    image: "/images/latte-frio.jpeg",
+    alt: "Latte frío",
+    category: 'latte',
+    tag: { label: "LATTE FRÍO" }
   },
   {
-    id: "frappe-milo",
-    number: "03",
+    id: 16,
+    name: "Hielato",
+    description: "Leche condensada, espresso y leche espumada.",
+    price: "$8.000",
+    image: "/images/hielato.jpeg",
+    alt: "Hielato",
+    category: 'cold',
+    tag: { label: "ESPECIALIDAD" }
+  },
+
+  // FRAPPES
+  {
+    id: 28,
     name: "Frappe de Milo",
-    tagline: "El sabor de siempre, ultra frío",
-    category: "FRAPPE · CLÁSICO",
-    description: "Granizado cremoso con generoso concentrado de Milo, leche espumada y una capa crocante en la cima.",
-    price: 14000,
-    formattedPrice: "$14.000",
+    description: "Granizado de milo.",
+    price: "$10.000",
     image: "/images/frappe-milo.jpeg",
-    alt: "Frappe de Milo",
-    accentColor: "#9C6239"
+    alt: "Frappe Milo",
+    category: 'frappe',
+    tag: { label: "FRAPPÉ" }
   },
   {
-    id: "frappe-cafe",
-    number: "04",
+    id: 29,
     name: "Frappe de Café",
-    tagline: "Intensidad pura y frescura",
-    category: "FRAPPE · ORIGEN",
-    description: "Nuestra selección de café especial de Roldanillo batido al punto de nieve con leche fría y un toque dulce sutil.",
-    price: 14000,
-    formattedPrice: "$14.000",
+    description: "Clásico sabor a café helado.",
+    price: "$10.000",
     image: "/images/frappe-cafe.jpeg",
-    alt: "Frappe de Café Clásico",
-    accentColor: "#C49C64"
+    alt: "Frappe Café",
+    category: 'frappe',
+    tag: { label: "FRAPPÉ" }
   },
   {
-    id: "frappe-nutella",
-    number: "05",
+    id: 30,
     name: "Frappe de Nutella",
-    tagline: "Pura avellana y chocolate",
-    category: "FRAPPE · GOURMET",
-    description: "Auténtica Nutella mezclada con café suave, leche fresca y textura densa para los amantes del cacao.",
-    price: 16000,
-    formattedPrice: "$16.000",
+    description: "Para los amantes del chocolate y avellana.",
+    price: "$10.000",
     image: "/images/frappe-nutella.jpeg",
-    alt: "Frappe de Nutella",
-    badge: "FAVORITO",
-    accentColor: "#704128"
+    alt: "Frappe Nutella",
+    category: 'frappe',
+    tag: { label: "FRAPPÉ · FAVORITO" }
   },
   {
-    id: "frappe-coco-limon",
-    number: "06",
-    name: "Frappe Coco Limón",
-    tagline: "Cítrico, tropical y adictivo",
-    category: "FRAPPE · FRUTAL",
-    description: "Crema de coco natural combinada con extracto fresco de limón Tahití para un golpe refrescante inigualable.",
-    price: 14000,
-    formattedPrice: "$14.000",
+    id: 31,
+    name: "Frappe de Mocca",
+    description: "Mezcla de café y chocolate.",
+    price: "$10.000",
+    image: "/images/frappe-moca.jpeg",
+    alt: "Frappe Mocca",
+    category: 'frappe',
+    tag: { label: "FRAPPÉ" }
+  },
+  {
+    id: 32,
+    name: "Frappe de Coco Limón",
+    description: "Refrescante y tropical.",
+    price: "$10.000",
     image: "/images/frappe-coco-limon.jpeg",
     alt: "Frappe Coco Limón",
-    accentColor: "#E2D3BB"
+    category: 'frappe',
+    tag: { label: "FRAPPÉ" }
   },
   {
-    id: "frappe-te-chai",
-    number: "07",
+    id: 33,
     name: "Frappe Té Chai",
-    tagline: "Especias aromáticas y frío",
-    category: "FRAPPE · ESPECIAL",
-    description: "Infusión de canela, cardamomo, clavo y jengibre en leche fría batida con hielo frappé.",
-    price: 15000,
-    formattedPrice: "$15.000",
-    image: "/images/frappe-techai.jpeg",
+    description: "Especias y frescura.",
+    price: "$12.000",
+    image: "/images/frappe-te-chai.jpeg",
     alt: "Frappe Té Chai",
-    accentColor: "#C58B43"
+    category: 'frappe',
+    tag: { label: "FRAPPÉ ESPECIAL" }
+  },
+
+  // BEBIDAS FRÍAS
+  {
+    id: 25,
+    name: "Milo frío",
+    description: "Bebida achocolatada fría.",
+    price: "$8.000",
+    image: "/images/colada.jpeg",
+    alt: "Milo frío",
+    category: 'cold',
+    tag: { label: "BEBIDA FRÍA" }
+  },
+
+  // LIMONADAS Y BEBIDAS
+  {
+    id: 34,
+    name: "Limonada de Coco",
+    description: "Cremosa y refrescante.",
+    price: "$9.000",
+    image: "/images/frappe-coco-limon.jpeg",
+    alt: "Limonada Coco",
+    category: 'cold',
+    tag: { label: "LIMONADA" }
   },
   {
-    id: "frappe-maracuya",
-    number: "08",
-    name: "Frappe Maracuyá",
-    tagline: "La fruta de la pasión helada",
-    category: "FRAPPE · FRUTAL",
-    description: "Pulpa 100% natural de maracuyá colombiano con base cremosa helada y equilibrio perfecto ácido-dulce.",
-    price: 15000,
-    formattedPrice: "$15.000",
+    id: 35,
+    name: "Limonada Cerezada",
+    description: "Refrescante sabor a cereza.",
+    price: "$6.500",
     image: "/images/cerezada.png",
-    alt: "Frappe de Maracuyá",
-    accentColor: "#F4C430"
-  },
-  {
-    id: "frappe-arequipe",
-    number: "09",
-    name: "Frappe de Arequipe",
-    tagline: "Tradición dulce colombiana",
-    category: "FRAPPE · CLÁSICO",
-    description: "Arequipe artesanal del Valle con café espresso suave, coronado con espiral de caramelo.",
-    price: 15000,
-    formattedPrice: "$15.000",
-    image: "/images/frappe-moca.jpeg",
-    alt: "Frappe de Arequipe",
-    accentColor: "#D19447"
-  },
-  {
-    id: "frappe-caramelo-salado",
-    number: "10",
-    name: "Frappe Caramelo Salado",
-    tagline: "Contraste dulce y salado",
-    category: "FRAPPE · GOURMET",
-    description: "Sirope de toffee tostado con escamas de sal marina, espresso y crema suave.",
-    price: 16000,
-    formattedPrice: "$16.000",
-    image: "/images/frappe-cafe.jpeg",
-    alt: "Frappe Caramelo Salado",
-    accentColor: "#BD7B35"
-  },
-  {
-    id: "frappe-frutos-rojos",
-    number: "11",
-    name: "Frappe Frutos Rojos",
-    tagline: "Explosión silvestre helada",
-    category: "FRAPPE · FRUTAL",
-    description: "Mora silvestre, fresas y arándanos reducidos en compota artesanal con textura granizada cremosa.",
-    price: 15000,
-    formattedPrice: "$15.000",
-    image: "/images/cerezada.png",
-    alt: "Frappe Frutos Rojos",
-    accentColor: "#A93A4D"
-  },
-  {
-    id: "frappe-vainilla",
-    number: "12",
-    name: "Frappe Vainilla Francesa",
-    tagline: "Aroma suave y reconfortante",
-    category: "FRAPPE · CLÁSICO",
-    description: "Vainilla bourbon macerada con leche espumada fría y base de café arábica suave.",
-    price: 14000,
-    formattedPrice: "$14.000",
-    image: "/images/latte-frio.jpeg",
-    alt: "Frappe Vainilla Francesa",
-    accentColor: "#DFD1B0"
-  },
-  {
-    id: "frappe-chocolate-blanco",
-    number: "13",
-    name: "Frappe Chocolate Blanco",
-    tagline: "Cremosidad aterciopelada",
-    category: "FRAPPE · GOURMET",
-    description: "Manteca de cacao refinada y leche condensada con toque de espresso frío y virutas de chocolate.",
-    price: 16000,
-    formattedPrice: "$16.000",
-    image: "/images/hielato.jpeg",
-    alt: "Frappe Chocolate Blanco",
-    accentColor: "#F5ECD8"
-  },
-  {
-    id: "frappe-baileys",
-    number: "14",
-    name: "Frappe Especial Baileys",
-    tagline: "Crema irlandesa & espresso",
-    category: "FRAPPE · ADULTOS",
-    description: "Nuestra creación premium con licor de crema irlandesa Baileys, doble shot de café y chantilly.",
-    price: 18000,
-    formattedPrice: "$18.000",
-    image: "/images/frappehero.webp",
-    alt: "Frappe Especial Baileys Tradicional Coffee",
-    badge: "PREMIUM",
-    accentColor: "#BE9E69"
+    alt: "Limonada Cerezada",
+    category: 'cold',
+    tag: { label: "LIMONADA" }
   }
 ];
+
+export const FRAPPES_CATALOG = orderProducts;

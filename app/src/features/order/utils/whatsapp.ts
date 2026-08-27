@@ -1,7 +1,8 @@
-import type { FrappeItem } from '../../../data/frappes';
+import type { Product } from '../../../types/product';
+import { parseProductPrice } from '../../../data/frappes';
 
 export interface CartItem {
-  frappe: FrappeItem;
+  product: Product;
   quantity: number;
 }
 
@@ -21,11 +22,12 @@ export function generateWhatsAppOrderUrl(
 ): string {
   const cleanPhone = phoneNumber.replace(/\D/g, '');
 
-  let message = `☕ *¡Hola Tradicional Coffee! Quiero hacer el siguiente pedido de frappes:*\n\n`;
+  let message = `☕ *¡Hola Tradicional Coffee! Quiero hacer el siguiente pedido:*\n\n`;
 
   items.forEach(item => {
-    const subtotal = item.frappe.price * item.quantity;
-    message += `• *${item.quantity}x* ${item.frappe.name} — $${formatCurrency(subtotal).replace('$', '')}\n`;
+    const unitPrice = parseProductPrice(item.product.price);
+    const subtotal = unitPrice * item.quantity;
+    message += `• *${item.quantity}x* ${item.product.name} — $${formatCurrency(subtotal).replace('$', '')}\n`;
   });
 
   if (preparationNote && preparationNote.trim().length > 0) {
