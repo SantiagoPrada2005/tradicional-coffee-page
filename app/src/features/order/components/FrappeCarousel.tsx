@@ -52,7 +52,7 @@ export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
   const formattedTotal = total < 10 ? `0${total}` : `${total}`;
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center select-none py-1 flex-1 min-h-0">
+    <div className="relative w-full flex flex-col items-center justify-center select-none py-1 xs:py-2 flex-1 min-h-0">
       {/* 3-Item Presentation Track */}
       <div className="relative flex items-center justify-center w-full max-w-xl px-1 sm:px-4 min-h-[220px] xs:min-h-[260px] sm:min-h-[310px] md:min-h-[350px] lg:min-h-[400px]">
         {/* Left Peek (Previous Product) */}
@@ -122,9 +122,9 @@ export const FrappeCarousel: React.FC<FrappeCarouselProps> = ({
         </motion.button>
       </div>
 
-      {/* Index indicator badge under medallion */}
+      {/* Index indicator badge under medallion with clear spacing */}
       {showIndexBadge && (
-        <div className="mt-1 text-center flex-shrink-0">
+        <div className="mt-2 xs:mt-3 text-center flex-shrink-0">
           <span className="font-['Syne'] text-[10px] sm:text-xs font-bold tracking-[0.2em] text-[#C49C64] uppercase">
             — {formattedCurrent} · DE {formattedTotal} —
           </span>
