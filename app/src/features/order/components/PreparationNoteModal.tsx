@@ -40,7 +40,7 @@ const InnerModalContent: React.FC<InnerModalProps> = ({ initialNote, onClose, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -114,7 +114,8 @@ const InnerModalContent: React.FC<InnerModalProps> = ({ initialNote, onClose, on
               placeholder="Escribe aquí tus instrucciones personalizadas..."
               rows={3}
               maxLength={200}
-              className="w-full bg-[#F4EDDF] text-[#2B1B12] placeholder-[#7A6854]/60 text-sm font-['Plus_Jakarta_Sans'] rounded-2xl p-4 border border-[#E2D3BB] focus:border-[#C49C64] focus:ring-1 focus:ring-[#C49C64] outline-none transition-all resize-none"
+              enterKeyHint="done"
+              className="w-full bg-[#F4EDDF] text-[#2B1B12] placeholder-[#7A6854]/60 text-base md:text-sm font-['Plus_Jakarta_Sans'] rounded-2xl p-4 border border-[#E2D3BB] focus:border-[#C49C64] focus:ring-1 focus:ring-[#C49C64] outline-none transition-all resize-none"
             />
             <span className="absolute bottom-3 right-3 text-[10px] text-[#7A6854] font-mono">
               {localNote.length}/200
@@ -162,16 +163,16 @@ const InnerModalContent: React.FC<InnerModalProps> = ({ initialNote, onClose, on
 export const PreparationNoteModal: React.FC = () => {
   const { isNoteModalOpen, setIsNoteModalOpen, preparationNote, setPreparationNote } = useOrder();
 
-  if (!isNoteModalOpen) return null;
-
   return (
     <AnimatePresence>
-      <InnerModalContent
-        key="note-modal"
-        initialNote={preparationNote}
-        onClose={() => setIsNoteModalOpen(false)}
-        onSave={setPreparationNote}
-      />
+      {isNoteModalOpen && (
+        <InnerModalContent
+          key="note-modal"
+          initialNote={preparationNote}
+          onClose={() => setIsNoteModalOpen(false)}
+          onSave={setPreparationNote}
+        />
+      )}
     </AnimatePresence>
   );
 };

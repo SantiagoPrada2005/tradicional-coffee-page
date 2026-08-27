@@ -6,6 +6,7 @@ import { OrderContext } from './OrderContextDef';
 
 const STORAGE_KEY_CART = 'tc_order_cart';
 const STORAGE_KEY_NOTE = 'tc_order_note';
+const STORAGE_KEY_ADDRESS = 'tc_order_address';
 
 export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -25,8 +26,17 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   });
 
+  const [deliveryAddress, setDeliveryAddressState] = useState<string>(() => {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY_ADDRESS) || '';
+    } catch {
+      return '';
+    }
+  });
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -42,6 +52,15 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       sessionStorage.setItem(STORAGE_KEY_NOTE, note);
     } catch (e) {
       console.error('Failed to save note to storage', e);
+    }
+  };
+
+  const setDeliveryAddress = (address: string) => {
+    setDeliveryAddressState(address);
+    try {
+      sessionStorage.setItem(STORAGE_KEY_ADDRESS, address);
+    } catch (e) {
+      console.error('Failed to save address to storage', e);
     }
   };
 
@@ -93,8 +112,10 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const clearCart = () => {
     setCart([]);
     setPreparationNoteState('');
+    setDeliveryAddressState('');
     sessionStorage.removeItem(STORAGE_KEY_CART);
     sessionStorage.removeItem(STORAGE_KEY_NOTE);
+    sessionStorage.removeItem(STORAGE_KEY_ADDRESS);
   };
 
   const getProductQuantity = (productId: number) => {
@@ -115,16 +136,20 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         totalCount,
         totalAmount,
         preparationNote,
+        deliveryAddress,
         isCartOpen,
         isNoteModalOpen,
+        isAddressModalOpen,
         addToCart,
         updateQuantity,
         setQuantity,
         removeFromCart,
         clearCart,
         setPreparationNote,
+        setDeliveryAddress,
         setIsCartOpen,
         setIsNoteModalOpen,
+        setIsAddressModalOpen,
         getProductQuantity,
       }}
     >

@@ -18,6 +18,7 @@ export function generateWhatsAppOrderUrl(
   items: CartItem[],
   totalAmount: number,
   preparationNote?: string,
+  deliveryAddress?: string,
   phoneNumber: string = "573147774388"
 ): string {
   const cleanPhone = phoneNumber.replace(/\D/g, '');
@@ -34,8 +35,13 @@ export function generateWhatsAppOrderUrl(
     message += `\n📝 *Nota de preparación:* ${preparationNote.trim()}\n`;
   }
 
+  if (deliveryAddress && deliveryAddress.trim().length > 0) {
+    message += `\n📍 *Lugar de entrega:* ${deliveryAddress.trim()}\n`;
+  } else {
+    message += `\n📍 *Lugar de entrega / Mesa:* (por favor indicar)\n`;
+  }
+
   message += `\n💰 *Total del pedido:* $${formatCurrency(totalAmount).replace('$', '')}\n`;
-  message += `\n📍 *Lugar de entrega / Mesa:* (por favor indicar)\n`;
   message += `\n_Enviado desde el portal de pedidos de Tradicional Coffee_`;
 
   const encodedMessage = encodeURIComponent(message);

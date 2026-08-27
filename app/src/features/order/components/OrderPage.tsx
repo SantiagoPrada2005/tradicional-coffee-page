@@ -9,6 +9,7 @@ import { ProductDetails } from './ProductDetails';
 import { OrderBar } from './OrderBar';
 import { CartDrawer } from './CartDrawer';
 import { PreparationNoteModal } from './PreparationNoteModal';
+import { DeliveryAddressModal } from './DeliveryAddressModal';
 
 type FilterTab = 'all' | 'frappe' | 'cold' | 'latte';
 
@@ -131,6 +132,7 @@ const OrderPageContent: React.FC = () => {
       <OrderBar />
       <CartDrawer />
       <PreparationNoteModal />
+      <DeliveryAddressModal />
     </div>
   );
 };
