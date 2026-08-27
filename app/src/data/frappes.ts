@@ -121,9 +121,6 @@ export const orderProducts: Product[] = [
     category: 'cold',
     tag: { label: "ESPECIALIDAD" }
   },
-
-
-
   // BEBIDAS FRÍAS
   {
     id: 25,
@@ -137,16 +134,6 @@ export const orderProducts: Product[] = [
   },
 
   // LIMONADAS Y BEBIDAS
-  {
-    id: 34,
-    name: "Limonada de Coco",
-    description: "Cremosa y refrescante.",
-    price: "$9.000",
-    image: "/images/frappe-coco-limon.webp",
-    alt: "Limonada Coco",
-    category: 'cold',
-    tag: { label: "LIMONADA" }
-  },
   {
     id: 35,
     name: "Limonada Cerezada",
