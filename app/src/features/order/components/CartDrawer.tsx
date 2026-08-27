@@ -237,10 +237,10 @@ export const CartDrawer: React.FC = () => {
                       </div>
                       <div className="truncate">
                         <span className="text-[10px] sm:text-[11px] font-['Syne'] uppercase font-bold text-[#7A6854] block">
-                          Lugar de entrega / Dirección <span className="text-[#C49C64]">*</span>
+                          Dirección de entrega <span className="text-[#C49C64]">*</span>
                         </span>
                         <p className="text-xs font-['Plus_Jakarta_Sans'] font-medium text-[#2B1B12] truncate">
-                          {deliveryAddress ? deliveryAddress : 'Indicar mesa, dirección o local'}
+                          {deliveryAddress ? deliveryAddress : 'Ingresar dirección y barrio'}
                         </p>
                       </div>
                     </div>
