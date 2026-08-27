@@ -8,49 +8,7 @@ export function parseProductPrice(priceStr: string): number {
 }
 
 export const orderProducts: Product[] = [
-  // CAFÉS FRÍOS
-  {
-    id: 14,
-    name: "Americano frío",
-    description: "Expresso doble, agua y hielo.",
-    price: "$5.000",
-    image: "/images/americano-frio.webp",
-    alt: "Americano frío",
-    category: 'cold',
-    tag: { label: "CAFÉ FRÍO" }
-  },
-  {
-    id: 15,
-    name: "Latte frío",
-    description: "Expresso sencillo, leche y hielo.",
-    price: "$8.000",
-    image: "/images/latte-frio.webp",
-    alt: "Latte frío",
-    category: 'latte',
-    tag: { label: "LATTE FRÍO" }
-  },
-  {
-    id: 16,
-    name: "Hielato",
-    description: "Leche condensada, espresso y leche espumada.",
-    price: "$8.000",
-    image: "/images/hielato.webp",
-    alt: "Hielato",
-    category: 'cold',
-    tag: { label: "ESPECIALIDAD" }
-  },
-
   // FRAPPES
-  {
-    id: 28,
-    name: "Frappe de Milo",
-    description: "Granizado de milo.",
-    price: "$12.000",
-    image: "/images/frappe-milo.webp",
-    alt: "Frappe Milo",
-    category: 'frappe',
-    tag: { label: "FRAPPÉ" }
-  },
   {
     id: 29,
     name: "Frappe de Café",
@@ -70,6 +28,16 @@ export const orderProducts: Product[] = [
     alt: "Frappe Nutella",
     category: 'frappe',
     tag: { label: "FRAPPÉ · FAVORITO" }
+  },
+  {
+    id: 28,
+    name: "Frappe de Milo",
+    description: "Lo mejor del Milo, cremosidad y sabor unico.",
+    price: "$12.000",
+    image: "/images/frappe-milo.webp",
+    alt: "Frappe Milo",
+    category: 'frappe',
+    tag: { label: "FRAPPÉ" }
   },
   {
     id: 31,
@@ -104,7 +72,7 @@ export const orderProducts: Product[] = [
   {
     id: 33,
     name: "Frappe Té Chai",
-    description: "Especias y frescura.",
+    description: "Preparacion americana unica con canela y especies aromáticas.",
     price: "$15.000",
     image: "/images/frappe-te-chai.webp",
     alt: "Frappe Té Chai",
@@ -114,13 +82,47 @@ export const orderProducts: Product[] = [
   {
     id: 41,
     name: "Frappuccino",
-    description: "Café espresso batido con hielo y crema especial.",
+    description: "El sabor del frappé de café, con crema de whisky logrando un sabor unico.",
     price: "$15.000",
     image: "/images/frappucchino.webp",
     alt: "Frappuccino",
     category: 'frappe',
     tag: { label: "ESPECIALIDAD" }
   },
+
+  // CAFÉS FRÍOS
+  {
+    id: 14,
+    name: "Americano frío",
+    description: "Expresso doble, agua y hielo.",
+    price: "$5.000",
+    image: "/images/americano-frio.webp",
+    alt: "Americano frío",
+    category: 'cold',
+    tag: { label: "CAFÉ FRÍO" }
+  },
+  {
+    id: 15,
+    name: "Latte frío",
+    description: "Expresso sencillo, leche y hielo.",
+    price: "$8.000",
+    image: "/images/latte-frio.webp",
+    alt: "Latte frío",
+    category: 'latte',
+    tag: { label: "LATTE FRÍO" }
+  },
+  {
+    id: 16,
+    name: "Hielato",
+    description: "Leche condensada, espresso y leche espumada.",
+    price: "$8.000",
+    image: "/images/hielato.webp",
+    alt: "Hielato",
+    category: 'cold',
+    tag: { label: "ESPECIALIDAD" }
+  },
+
+
 
   // BEBIDAS FRÍAS
   {
