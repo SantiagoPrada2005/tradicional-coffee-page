@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, MapPin, Store, Utensils, Bike, Building2, Compass } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
+import { generateWhatsAppOrderUrl } from '../utils/whatsapp';
 
 type DeliveryMode = 'pickup' | 'delivery';
 
@@ -15,6 +16,7 @@ const STREET_PREFIXES = ['Calle', 'Carrera', 'Avenida', 'Diagonal', 'Transversal
 
 interface InnerModalProps {
   initialAddress: string;
+  hasCartItems: boolean;
   onClose: () => void;
   onSave: (address: string) => void;
 }
@@ -71,7 +73,7 @@ const parseInitialAddress = (raw: string) => {
   };
 };
 
-const InnerModalContent: React.FC<InnerModalProps> = ({ initialAddress, onClose, onSave }) => {
+const InnerModalContent: React.FC<InnerModalProps> = ({ initialAddress, hasCartItems, onClose, onSave }) => {
   const initial = parseInitialAddress(initialAddress);
 
   const [mode, setMode] = useState<DeliveryMode>(initial.mode);
@@ -355,12 +357,12 @@ const InnerModalContent: React.FC<InnerModalProps> = ({ initialAddress, onClose,
               {savedSuccess ? (
                 <>
                   <Check className="w-4 h-4 text-[#E2C38F]" />
-                  <span>GUARDADO CON ÉXITO</span>
+                  <span>{hasCartItems ? 'REDIRECCIONANDO...' : 'GUARDADO CON ÉXITO'}</span>
                 </>
               ) : (
                 <>
                   <MapPin className="w-4 h-4" />
-                  <span>CONFIRMAR {mode === 'pickup' ? 'RECOGIDA' : 'DOMICILIO'}</span>
+                  <span>{hasCartItems ? 'CONFIRMAR Y PEDIR' : `CONFIRMAR ${mode === 'pickup' ? 'RECOGIDA' : 'DOMICILIO'}`}</span>
                 </>
               )}
             </motion.button>
@@ -372,7 +374,25 @@ const InnerModalContent: React.FC<InnerModalProps> = ({ initialAddress, onClose,
 };
 
 export const DeliveryAddressModal: React.FC = () => {
-  const { isAddressModalOpen, setIsAddressModalOpen, deliveryAddress, setDeliveryAddress } = useOrder();
+  const {
+    isAddressModalOpen,
+    setIsAddressModalOpen,
+    setIsCartOpen,
+    deliveryAddress,
+    setDeliveryAddress,
+    cart,
+    totalAmount,
+    preparationNote,
+  } = useOrder();
+
+  const handleSave = (address: string) => {
+    setDeliveryAddress(address);
+    if (cart.length > 0 && address.trim()) {
+      const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, address);
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setIsCartOpen(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -380,8 +400,9 @@ export const DeliveryAddressModal: React.FC = () => {
         <InnerModalContent
           key="address-modal"
           initialAddress={deliveryAddress}
+          hasCartItems={cart.length > 0}
           onClose={() => setIsAddressModalOpen(false)}
-          onSave={setDeliveryAddress}
+          onSave={handleSave}
         />
       )}
     </AnimatePresence>
