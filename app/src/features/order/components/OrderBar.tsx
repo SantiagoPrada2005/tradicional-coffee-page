@@ -5,10 +5,23 @@ import { useOrder } from '../context/useOrder';
 import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
 
 export const OrderBar: React.FC = () => {
-  const { totalCount, totalAmount, setIsCartOpen, cart, preparationNote, deliveryAddress } = useOrder();
+  const {
+    totalCount,
+    totalAmount,
+    setIsCartOpen,
+    cart,
+    preparationNote,
+    deliveryAddress,
+    setIsAddressModalOpen,
+  } = useOrder();
 
   const handleDirectWhatsApp = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (cart.length === 0) return;
+    if (!deliveryAddress.trim()) {
+      setIsAddressModalOpen(true);
+      return;
+    }
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

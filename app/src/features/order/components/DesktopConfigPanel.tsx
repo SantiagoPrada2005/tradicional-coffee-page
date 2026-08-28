@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Check, ArrowRight, MessageSquarePlus, Edit3 } from 'lucide-react';
+import { Plus, Check, ArrowRight, MessageSquarePlus, Edit3, MapPin } from 'lucide-react';
 import type { Product } from '../../../types/product';
 import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
@@ -20,6 +20,7 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
     preparationNote,
     deliveryAddress,
     setIsNoteModalOpen,
+    setIsAddressModalOpen,
     setIsCartOpen,
   } = useOrder();
 
@@ -36,6 +37,10 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
 
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
+    if (!deliveryAddress.trim()) {
+      setIsAddressModalOpen(true);
+      return;
+    }
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -152,6 +157,28 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
             )}
           </div>
         )}
+      </div>
+
+      {/* Delivery Address Shortcut */}
+      <div
+        onClick={() => setIsAddressModalOpen(true)}
+        className={`flex items-center justify-between p-2 rounded-xl border cursor-pointer transition-colors text-xs ${
+          deliveryAddress
+            ? 'bg-[#EFE4CD] hover:bg-[#E2D3BB]/70 border-[#C49C64]/60'
+            : 'bg-[#FBEED7] hover:bg-[#F4E0C0] border-[#C49C64]'
+        }`}
+      >
+        <div className="flex items-center gap-2 overflow-hidden">
+          <div className="w-6 h-6 rounded-full bg-[#C49C64] text-[#2B1B12] flex items-center justify-center flex-shrink-0">
+            <MapPin className="w-3 h-3" />
+          </div>
+          <span className="text-[11px] font-['Plus_Jakarta_Sans'] text-[#2B1B12] truncate">
+            {deliveryAddress ? deliveryAddress : '+ Definir dirección'}
+          </span>
+        </div>
+        <span className="text-[10px] font-['Syne'] font-bold text-[#C49C64] uppercase flex-shrink-0 ml-1">
+          {deliveryAddress ? 'Editar' : 'Dirección'}
+        </span>
       </div>
 
       {/* Note Shortcut */}
