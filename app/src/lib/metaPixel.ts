@@ -1,4 +1,5 @@
-// Meta Pixel TypeScript definitions and helper utilities
+// Meta Pixel (Browser) & Meta Conversions API (Server-Side via Cloudflare Pages Function)
+// Hybrid tracking with automated deduplication using eventID.
 
 declare global {
   interface Window {
@@ -18,6 +19,16 @@ export interface PixelProductPayload {
 let isInitialized = false;
 
 /**
+ * Generate a unique UUIDv4 event ID for deduplication between Pixel and CAPI.
+ */
+export function generateEventId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return 'evt_' + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+}
+
+/**
  * Helper to safely get the fbq function if attached to window.
  */
 function getFbq(): ((...args: any[]) => void) | null {
@@ -25,6 +36,56 @@ function getFbq(): ((...args: any[]) => void) | null {
     return (window as any).fbq;
   }
   return null;
+}
+
+/**
+ * Helper to read browser cookies (_fbp, _fbc).
+ */
+function getClientCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined;
+  const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+  return match ? decodeURIComponent(match[2]) : undefined;
+}
+
+/**
+ * Sends event asynchronously to Cloudflare Pages Function (/api/capi) for Server-Side CAPI.
+ */
+async function sendToCapi(
+  eventName: string,
+  eventId: string,
+  customData?: Record<string, unknown>
+): Promise<void> {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const payload = {
+      event_name: eventName,
+      event_id: eventId,
+      event_source_url: window.location.href,
+      user_data: {
+        fbp: getClientCookie('_fbp'),
+        fbc: getClientCookie('_fbc'),
+      },
+      custom_data: customData,
+    };
+
+    // Non-blocking fetch to Cloudflare Pages Function
+    fetch('/api/capi', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    }).catch(err => {
+      if (import.meta.env.DEV) {
+        console.debug('[Meta CAPI] Server-side dispatch error (ignored in client):', err);
+      }
+    });
+  } catch (e) {
+    if (import.meta.env.DEV) {
+      console.debug('[Meta CAPI] Execution error:', e);
+    }
+  }
 }
 
 /**
@@ -72,24 +133,30 @@ export const initMetaPixel = (pixelId?: string): void => {
 };
 
 /**
- * Tracks virtual page transitions in Single Page Applications.
+ * Tracks virtual page transitions in Single Page Applications (Hybrid: Browser + CAPI).
  */
 export const trackPageView = (): void => {
   if (typeof window === 'undefined') return;
+  const eventId = generateEventId();
+
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'PageView');
+    fbq('track', 'PageView', {}, { eventID: eventId });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] PageView tracked (mock/dev)');
+    console.debug('[Meta Pixel] PageView tracked (eventID:', eventId, ')');
   }
+
+  sendToCapi('PageView', eventId);
 };
 
 /**
- * Tracks viewing product details (e.g. Menu Modal or Order carousel focus).
+ * Tracks viewing product details (Hybrid: Browser + CAPI).
  */
 export const trackViewContent = (product: PixelProductPayload): void => {
   if (typeof window === 'undefined') return;
-  const payload = {
+  const eventId = generateEventId();
+
+  const customData = {
     content_name: product.name,
     content_category: product.category || 'Bebidas',
     content_ids: [String(product.id)],
@@ -100,19 +167,23 @@ export const trackViewContent = (product: PixelProductPayload): void => {
 
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'ViewContent', payload);
+    fbq('track', 'ViewContent', customData, { eventID: eventId });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] ViewContent:', payload);
+    console.debug('[Meta Pixel] ViewContent:', customData, '(eventID:', eventId, ')');
   }
+
+  sendToCapi('ViewContent', eventId, customData);
 };
 
 /**
- * Tracks adding a product to the cart.
+ * Tracks adding a product to the cart (Hybrid: Browser + CAPI).
  */
 export const trackAddToCart = (product: PixelProductPayload, quantity: number = 1): void => {
   if (typeof window === 'undefined') return;
+  const eventId = generateEventId();
   const subtotal = product.price * quantity;
-  const payload = {
+
+  const customData = {
     content_name: product.name,
     content_category: product.category || 'Bebidas',
     content_ids: [String(product.id)],
@@ -130,14 +201,16 @@ export const trackAddToCart = (product: PixelProductPayload, quantity: number = 
 
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'AddToCart', payload);
+    fbq('track', 'AddToCart', customData, { eventID: eventId });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] AddToCart:', payload);
+    console.debug('[Meta Pixel] AddToCart:', customData, '(eventID:', eventId, ')');
   }
+
+  sendToCapi('AddToCart', eventId, customData);
 };
 
 /**
- * Tracks reviewing the cart or opening the checkout drawer.
+ * Tracks reviewing the cart or opening the checkout drawer (Hybrid: Browser + CAPI).
  */
 export const trackInitiateCheckout = (
   items: PixelProductPayload[],
@@ -145,7 +218,9 @@ export const trackInitiateCheckout = (
   totalCount: number
 ): void => {
   if (typeof window === 'undefined' || items.length === 0) return;
-  const payload = {
+  const eventId = generateEventId();
+
+  const customData = {
     content_ids: items.map(item => String(item.id)),
     content_type: 'product',
     contents: items.map(item => ({
@@ -160,14 +235,16 @@ export const trackInitiateCheckout = (
 
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'InitiateCheckout', payload);
+    fbq('track', 'InitiateCheckout', customData, { eventID: eventId });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] InitiateCheckout:', payload);
+    console.debug('[Meta Pixel] InitiateCheckout:', customData, '(eventID:', eventId, ')');
   }
+
+  sendToCapi('InitiateCheckout', eventId, customData);
 };
 
 /**
- * Tracks lead conversion towards WhatsApp order closure.
+ * Tracks lead conversion towards WhatsApp order closure (Hybrid: Browser + CAPI).
  */
 export const trackWhatsAppLead = (
   totalAmount: number,
@@ -175,7 +252,9 @@ export const trackWhatsAppLead = (
   details?: string
 ): void => {
   if (typeof window === 'undefined') return;
-  const contactPayload = {
+  const eventId = generateEventId();
+
+  const customData = {
     content_name: details || 'Pedido WhatsApp Tradicional Coffee',
     num_items: itemsCount,
     value: totalAmount,
@@ -184,9 +263,12 @@ export const trackWhatsAppLead = (
 
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'Contact', contactPayload);
-    fbq('track', 'Lead', contactPayload);
+    fbq('track', 'Contact', customData, { eventID: eventId });
+    fbq('track', 'Lead', customData, { eventID: eventId });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] Contact & Lead:', contactPayload);
+    console.debug('[Meta Pixel] Contact & Lead:', customData, '(eventID:', eventId, ')');
   }
+
+  sendToCapi('Contact', eventId, customData);
+  sendToCapi('Lead', eventId, customData);
 };
