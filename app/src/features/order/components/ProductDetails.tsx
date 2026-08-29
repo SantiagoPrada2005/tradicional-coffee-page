@@ -6,6 +6,7 @@ import { parseProductPrice } from '../../../data/frappes';
 import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
 import { formatCurrency } from '../utils/whatsapp';
+import { trackAddToCart } from '../../../lib/metaPixel';
 
 interface ProductDetailsProps {
   product: Product;
@@ -24,6 +25,12 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
 
   const handleAdd = () => {
     addToCart(product, quantity);
+    trackAddToCart({
+      id: product.id,
+      name: product.name,
+      price: unitPrice,
+      category: product.category,
+    }, quantity);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 900);
   };

@@ -5,6 +5,7 @@ import { useOrder } from '../context/useOrder';
 import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
+import { trackInitiateCheckout, trackWhatsAppLead } from '../../../lib/metaPixel';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -38,12 +39,26 @@ export const CartDrawer: React.FC = () => {
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
 
+  useEffect(() => {
+    if (isCartOpen && cart.length > 0) {
+      const itemsPayload = cart.map(item => ({
+        id: item.product.id,
+        name: item.product.name,
+        price: parseProductPrice(item.product.price),
+        category: item.product.category,
+        quantity: item.quantity,
+      }));
+      trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
+    }
+  }, [isCartOpen]);
+
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
     if (!deliveryAddress.trim()) {
       setIsAddressModalOpen(true);
       return;
     }
+    trackWhatsAppLead(totalAmount, totalCount, `Pedido: ${totalCount} items`);
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

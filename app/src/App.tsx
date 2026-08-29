@@ -6,9 +6,18 @@ import MenuPage from './features/menu/components/MenuPage'
 import OrderPage from './features/order/components/OrderPage'
 import { siteConfig } from './data/site-config'
 import { LandingAccordionItem } from './features/menu/components/interactive-image-accordion'
+import { initMetaPixel, trackPageView } from './lib/metaPixel'
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    initMetaPixel();
+  }, []);
+
+  useEffect(() => {
+    trackPageView();
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     if (location.pathname === '/') {

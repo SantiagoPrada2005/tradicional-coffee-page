@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { orderProducts } from '../../../data/frappes';
+import React, { useState, useMemo, useEffect } from 'react';
+import { orderProducts, parseProductPrice } from '../../../data/frappes';
+import { trackViewContent } from '../../../lib/metaPixel';
 import { OrderProvider } from '../context/OrderProvider';
 import { OrderHeader } from './OrderHeader';
 import { FrappeCarousel } from './FrappeCarousel';
@@ -41,6 +42,17 @@ const OrderPageContent: React.FC = () => {
 
   const safeIndex = (activeIndex + filteredProducts.length) % Math.max(1, filteredProducts.length);
   const currentProduct = filteredProducts[safeIndex] || orderProducts[0];
+
+  useEffect(() => {
+    if (currentProduct) {
+      trackViewContent({
+        id: currentProduct.id,
+        name: currentProduct.name,
+        price: parseProductPrice(currentProduct.price),
+        category: currentProduct.category,
+      });
+    }
+  }, [currentProduct?.id]);
 
   return (
     <div className="relative h-screen h-[100dvh] max-h-[100dvh] w-full bg-[#1C110C] text-[#F4EDDF] flex flex-col justify-between overflow-hidden selection:bg-[#E2C38F] selection:text-[#1C110C]">

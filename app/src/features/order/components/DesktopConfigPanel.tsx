@@ -6,6 +6,7 @@ import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
 import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
+import { trackAddToCart, trackWhatsAppLead } from '../../../lib/metaPixel';
 
 interface DesktopConfigPanelProps {
   product: Product;
@@ -31,6 +32,12 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
 
   const handleAdd = () => {
     addToCart(product, quantity);
+    trackAddToCart({
+      id: product.id,
+      name: product.name,
+      price: unitPrice,
+      category: product.category,
+    }, quantity);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 900);
   };
@@ -41,6 +48,7 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
       setIsAddressModalOpen(true);
       return;
     }
+    trackWhatsAppLead(totalAmount, totalCount, `Pedido: ${totalCount} items`);
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

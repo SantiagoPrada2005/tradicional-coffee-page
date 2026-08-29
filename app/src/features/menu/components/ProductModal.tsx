@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import type { Product } from '../../../types';
 import { siteConfig } from '../../../data/site-config';
+import { trackViewContent } from '../../../lib/metaPixel';
+import { parseProductPrice } from '../../../data/frappes';
 
 interface ProductModalProps {
     product: Product | null;
@@ -15,8 +17,18 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (isOpen) setRenderModal(true);
-    }, [isOpen]);
+        if (isOpen) {
+            setRenderModal(true);
+            if (product) {
+                trackViewContent({
+                    id: product.id,
+                    name: product.name,
+                    price: parseProductPrice(product.price),
+                    category: product.category,
+                });
+            }
+        }
+    }, [isOpen, product]);
 
     useGSAP(() => {
         if (isOpen) {
