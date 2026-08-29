@@ -98,10 +98,19 @@ async function generateCatalog() {
     'link',
     'image_link',
     'brand',
-    'item_group_id'
+    'item_group_id',
+    'address',
+    'availability_circle_origin',
+    'availability_circle_radius',
+    'availability_postal_codes'
   ];
 
   const rows = [headers.join(',')];
+
+  const STORE_ADDRESS = 'Cra. 7 #7-40, Roldanillo, Valle del Cauca, Colombia';
+  const STORE_COORDINATES = '4.4110,-76.1542';
+  const DELIVERY_RADIUS = '10 km';
+  const POSTAL_CODE = '761520';
 
   for (const p of allProducts) {
     const numericPrice = parsePrice(p.price);
@@ -119,7 +128,11 @@ async function generateCatalog() {
       escapeCsv(itemLink),
       escapeCsv(imageLink),
       escapeCsv('Tradicional Coffee'),
-      escapeCsv(p.category)
+      escapeCsv(p.category),
+      escapeCsv(STORE_ADDRESS),
+      escapeCsv(STORE_COORDINATES),
+      escapeCsv(DELIVERY_RADIUS),
+      escapeCsv(POSTAL_CODE)
     ];
     rows.push(row.join(','));
   }
