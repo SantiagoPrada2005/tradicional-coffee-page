@@ -18,7 +18,7 @@ export const exploreProducts: Product[] = [
     // CAFÉS FRÍOS [cite: 70, 71]
     { id: 14, name: "Americano frío", description: "Expresso doble, agua y hielo.", price: "$5.000", image: "/images/americano-frio.webp", alt: "Americano frío", category: 'cold' },
     { id: 15, name: "Latte frío", description: "Expresso sencillo, leche y hielo.", price: "$8.000", image: "/images/latte-frio.webp", alt: "Latte frío", category: 'latte' },
-    { id: 16, name: "Hielato", description: "Leche condensada, espresso y leche espumada.", price: "$8.000", image: "/images/hielato.webp", alt: "Hielato", category: 'cold' },
+    { id: 16, name: "Hielatto", description: "Leche condensada, espresso y leche espumada.", price: "$8.000", image: "/images/hielatto.webp", alt: "Hielatto", category: 'cold' },
 
     // AGUAPANELA, JUGOS Y CHOCOLATE [cite: 73, 75, 89]
     { id: 17, name: "Aguapanela", description: "Tradicional y refrescante.", price: "$2.000", image: "", alt: "Aguapanela", category: 'hot' },

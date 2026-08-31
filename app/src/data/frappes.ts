@@ -113,11 +113,11 @@ export const orderProducts: Product[] = [
   },
   {
     id: 16,
-    name: "Hielato",
+    name: "Hielatto",
     description: "Leche condensada, espresso y leche espumada.",
     price: "$8.000",
-    image: "/images/hielato.webp",
-    alt: "Hielato",
+    image: "/images/hielatto.webp",
+    alt: "Hielatto",
     category: 'cold',
     tag: { label: "ESPECIALIDAD" }
   },
