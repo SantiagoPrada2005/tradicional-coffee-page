@@ -42,7 +42,7 @@ export const OrderHeader: React.FC = () => {
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.02 }}
         onClick={() => setIsCartOpen(true)}
-        className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#2B1B12]/95 hover:bg-[#422B19] border border-[#E2C38F]/30 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all cursor-pointer text-left flex-shrink-0"
+        className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#2B1B12]/95 hover:bg-[#422B19] border border-[#E2C38F]/30 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all cursor-pointer text-left flex-shrink-0 touch-manipulation select-none"
         aria-label={`Ver pedido actual con ${totalCount} productos`}
       >
         <div className="relative flex items-center justify-center">

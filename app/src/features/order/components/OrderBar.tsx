@@ -8,6 +8,7 @@ export const OrderBar: React.FC = () => {
   const {
     totalCount,
     totalAmount,
+    isCartOpen,
     setIsCartOpen,
     cart,
     preparationNote,
@@ -29,21 +30,25 @@ export const OrderBar: React.FC = () => {
 
   return (
     <AnimatePresence>
-      {totalCount > 0 && (
+      {totalCount > 0 && !isCartOpen && (
         <motion.div
           key="order-bar"
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 60, opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="lg:hidden fixed bottom-2.5 inset-x-2 xs:inset-x-4 max-w-md mx-auto z-40"
         >
-          <div
+          <motion.div
+            whileTap={{ scale: 0.97 }}
             onClick={() => setIsCartOpen(true)}
-            className="flex items-center justify-between p-2 pl-3 rounded-full bg-[#2B1B12]/95 backdrop-blur-md border border-[#E2C38F]/40 shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:border-[#E2C38F] transition-all"
+            role="button"
+            tabIndex={0}
+            aria-label={`Ver pedido actual con ${totalCount} productos`}
+            className="flex items-center justify-between p-2 pl-3 rounded-full bg-[#2B1B12]/95 backdrop-blur-md border border-[#E2C38F]/40 shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:border-[#E2C38F] active:border-[#E2C38F] transition-all touch-manipulation select-none"
           >
             {/* Summary info */}
-            <div className="flex items-center gap-2 xs:gap-3">
+            <div className="flex items-center gap-2 xs:gap-3 pointer-events-none">
               <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full bg-[#E2C38F] text-[#2B1B12] flex items-center justify-center font-bold text-[11px] xs:text-xs shadow font-['Syne']">
                 {totalCount}
               </div>
@@ -66,12 +71,12 @@ export const OrderBar: React.FC = () => {
               type="button"
               whileTap={{ scale: 0.94 }}
               onClick={handleDirectWhatsApp}
-              className="py-1.5 px-3 xs:py-2 xs:px-4 rounded-full bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12] font-['Syne'] text-[10px] xs:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow cursor-pointer"
+              className="py-1.5 px-3 xs:py-2 xs:px-4 rounded-full bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12] font-['Syne'] text-[10px] xs:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow cursor-pointer touch-manipulation"
             >
               <span>PEDIR</span>
               <ArrowRight className="w-3 h-3" />
             </motion.button>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

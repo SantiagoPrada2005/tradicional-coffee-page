@@ -9,8 +9,8 @@ interface DesktopInfoColumnProps {
 export const DesktopInfoColumn: React.FC<DesktopInfoColumnProps> = ({ product }) => {
   const categoryLabel = product.tag?.label || (
     product.category === 'frappe' ? 'Frappe · Clásico' :
-    product.category === 'latte' ? 'Latte · Frío' :
-    product.category === 'cold' ? 'Bebida · Fría' : 'Especialidad'
+      product.category === 'latte' ? 'Latte · Frío' :
+        product.category === 'cold' ? 'Bebida · Fría' : 'Especialidad'
   );
 
   return (
@@ -74,7 +74,7 @@ export const DesktopInfoColumn: React.FC<DesktopInfoColumnProps> = ({ product })
             {product.price}
           </span>
           <span className="font-['Plus_Jakarta_Sans'] text-sm text-[#E2C38F]/90 font-medium">
-            /cada
+            /cada uno
           </span>
         </motion.div>
       </AnimatePresence>

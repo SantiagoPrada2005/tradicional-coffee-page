@@ -9,15 +9,15 @@ import { trackInitiateCheckout } from '../../../lib/metaPixel';
 import { trackEcommerceEvent } from '../../../lib/analytics';
 
 const MOBILE_VARIANTS = {
-  initial: { y: '100%', opacity: 0.6 },
-  animate: { y: 0, opacity: 1 },
-  exit: { y: '100%', opacity: 0.6 },
+  initial: { y: '100%' },
+  animate: { y: '0%' },
+  exit: { y: '100%' },
 };
 
 const DESKTOP_VARIANTS = {
-  initial: { x: '100%', opacity: 0.6 },
-  animate: { x: 0, opacity: 1 },
-  exit: { x: '100%', opacity: 0.6 },
+  initial: { x: '100%' },
+  animate: { x: '0%' },
+  exit: { x: '100%' },
 };
 
 export const CartDrawer: React.FC = () => {
@@ -93,9 +93,9 @@ export const CartDrawer: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             onClick={() => setIsCartOpen(false)}
-            className="fixed inset-0 bg-[#0A0604]/80 backdrop-blur-sm md:backdrop-blur-md z-40 transform-gpu"
+            className="fixed inset-0 bg-[#0A0604]/80 md:backdrop-blur-md z-40 transform-gpu"
           />
 
           {/* Modal / Drawer Panel */}
@@ -105,12 +105,11 @@ export const CartDrawer: React.FC = () => {
               initial="initial"
               animate="animate"
               exit="exit"
-              transition={{
-                type: 'spring',
-                damping: 30,
-                stiffness: 320,
-                mass: 0.8,
-              }}
+              transition={
+                isMobile
+                  ? { duration: 0.32, ease: [0.32, 0.72, 0, 1] }
+                  : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+              }
               drag={isMobile ? 'y' : false}
               dragListener={false}
               dragControls={dragControls}
@@ -264,7 +263,7 @@ export const CartDrawer: React.FC = () => {
 
               {/* Bottom Section: Delivery Address, Notes & Checkout */}
               {cart.length > 0 && (
-                <div className="p-4 sm:p-6 md:p-8 border-t border-[#E2D3BB]/80 bg-[#F4EDDF]/90 backdrop-blur-sm space-y-3 flex-shrink-0 pb-[max(1rem,env(safe-area-inset-bottom))]">
+                <div className="p-4 sm:p-6 md:p-8 border-t border-[#E2D3BB]/80 bg-[#F4EDDF] space-y-3 flex-shrink-0 pb-[max(1rem,env(safe-area-inset-bottom))]">
                   {/* Delivery Address Card */}
                   <div
                     onClick={() => setIsAddressModalOpen(true)}
