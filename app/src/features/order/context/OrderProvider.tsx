@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import type { Product } from '../../../types/product';
 import type { CartItem } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
@@ -46,25 +46,25 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, [cart]);
 
-  const setPreparationNote = (note: string) => {
+  const setPreparationNote = useCallback((note: string) => {
     setPreparationNoteState(note);
     try {
       sessionStorage.setItem(STORAGE_KEY_NOTE, note);
     } catch (e) {
       console.error('Failed to save note to storage', e);
     }
-  };
+  }, []);
 
-  const setDeliveryAddress = (address: string) => {
+  const setDeliveryAddress = useCallback((address: string) => {
     setDeliveryAddressState(address);
     try {
       sessionStorage.setItem(STORAGE_KEY_ADDRESS, address);
     } catch (e) {
       console.error('Failed to save address to storage', e);
     }
-  };
+  }, []);
 
-  const addToCart = (product: Product, quantity: number = 1) => {
+  const addToCart = useCallback((product: Product, quantity: number = 1) => {
     if (quantity <= 0) return;
     setCart(prev => {
       const existing = prev.find(item => item.product.id === product.id);
@@ -77,9 +77,9 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
       return [...prev, { product, quantity }];
     });
-  };
+  }, []);
 
-  const updateQuantity = (productId: number, delta: number) => {
+  const updateQuantity = useCallback((productId: number, delta: number) => {
     setCart(prev =>
       prev
         .map(item => {
@@ -91,11 +91,11 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         })
         .filter((item): item is CartItem => item !== null)
     );
-  };
+  }, []);
 
-  const setQuantity = (productId: number, quantity: number) => {
+  const setQuantity = useCallback((productId: number, quantity: number) => {
     if (quantity <= 0) {
-      removeFromCart(productId);
+      setCart(prev => prev.filter(item => item.product.id !== productId));
       return;
     }
     setCart(prev =>
@@ -103,56 +103,84 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         item.product.id === productId ? { ...item, quantity } : item
       )
     );
-  };
+  }, []);
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = useCallback((productId: number) => {
     setCart(prev => prev.filter(item => item.product.id !== productId));
-  };
+  }, []);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCart([]);
     setPreparationNoteState('');
     setDeliveryAddressState('');
     sessionStorage.removeItem(STORAGE_KEY_CART);
     sessionStorage.removeItem(STORAGE_KEY_NOTE);
     sessionStorage.removeItem(STORAGE_KEY_ADDRESS);
-  };
+  }, []);
 
-  const getProductQuantity = (productId: number) => {
+  const getProductQuantity = useCallback((productId: number) => {
     const item = cart.find(i => i.product.id === productId);
     return item ? item.quantity : 0;
-  };
+  }, [cart]);
 
-  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = cart.reduce((sum, item) => {
-    const unitPrice = parseProductPrice(item.product.price);
-    return sum + unitPrice * item.quantity;
-  }, 0);
+  const totalCount = useMemo(
+    () => cart.reduce((sum, item) => sum + item.quantity, 0),
+    [cart]
+  );
+
+  const totalAmount = useMemo(
+    () =>
+      cart.reduce((sum, item) => {
+        const unitPrice = parseProductPrice(item.product.price);
+        return sum + unitPrice * item.quantity;
+      }, 0),
+    [cart]
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      cart,
+      totalCount,
+      totalAmount,
+      preparationNote,
+      deliveryAddress,
+      isCartOpen,
+      isNoteModalOpen,
+      isAddressModalOpen,
+      addToCart,
+      updateQuantity,
+      setQuantity,
+      removeFromCart,
+      clearCart,
+      setPreparationNote,
+      setDeliveryAddress,
+      setIsCartOpen,
+      setIsNoteModalOpen,
+      setIsAddressModalOpen,
+      getProductQuantity,
+    }),
+    [
+      cart,
+      totalCount,
+      totalAmount,
+      preparationNote,
+      deliveryAddress,
+      isCartOpen,
+      isNoteModalOpen,
+      isAddressModalOpen,
+      addToCart,
+      updateQuantity,
+      setQuantity,
+      removeFromCart,
+      clearCart,
+      setPreparationNote,
+      setDeliveryAddress,
+      getProductQuantity,
+    ]
+  );
 
   return (
-    <OrderContext.Provider
-      value={{
-        cart,
-        totalCount,
-        totalAmount,
-        preparationNote,
-        deliveryAddress,
-        isCartOpen,
-        isNoteModalOpen,
-        isAddressModalOpen,
-        addToCart,
-        updateQuantity,
-        setQuantity,
-        removeFromCart,
-        clearCart,
-        setPreparationNote,
-        setDeliveryAddress,
-        setIsCartOpen,
-        setIsNoteModalOpen,
-        setIsAddressModalOpen,
-        getProductQuantity,
-      }}
-    >
+    <OrderContext.Provider value={contextValue}>
       {children}
     </OrderContext.Provider>
   );

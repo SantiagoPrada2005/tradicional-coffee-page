@@ -154,6 +154,11 @@ export function trackEvent(
   saveToLocalBuffer(payload);
 
   // 2. Transmit to serverless ingestion endpoint (non-blocking)
+  // In development mode, events are stored in the local buffer and there is no local backend server for /api/metrics/track
+  if (import.meta.env.DEV) {
+    return;
+  }
+
   try {
     const serialized = JSON.stringify(payload);
     if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {

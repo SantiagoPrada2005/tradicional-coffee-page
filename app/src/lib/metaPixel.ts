@@ -3,8 +3,8 @@
 
 declare global {
   interface Window {
-    fbq?: ((...args: any[]) => void) | undefined;
-    _fbq?: any;
+    fbq?: ((...args: unknown[]) => void) | undefined;
+    _fbq?: unknown;
   }
 }
 
@@ -17,6 +17,10 @@ export interface PixelProductPayload {
 }
 
 let isInitialized = false;
+
+// Meta Conversions API (CAPI) is currently deactivated.
+// Set VITE_ENABLE_CAPI="true" in environment variables if required in the future.
+const IS_CAPI_ENABLED = import.meta.env.VITE_ENABLE_CAPI === 'true';
 
 /**
  * Generate a unique UUIDv4 event ID for deduplication between Pixel and CAPI.
@@ -31,9 +35,9 @@ export function generateEventId(): string {
 /**
  * Helper to safely get the fbq function if attached to window.
  */
-function getFbq(): ((...args: any[]) => void) | null {
-  if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
-    return (window as any).fbq;
+function getFbq(): ((...args: unknown[]) => void) | null {
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    return window.fbq;
   }
   return null;
 }
@@ -55,7 +59,7 @@ async function sendToCapi(
   eventId: string,
   customData?: Record<string, unknown>
 ): Promise<void> {
-  if (typeof window === 'undefined') return;
+  if (!IS_CAPI_ENABLED || typeof window === 'undefined') return;
 
   try {
     const payload = {

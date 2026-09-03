@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { X, Trash2, ArrowRight, MessageSquarePlus, Edit3, MapPin } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
 import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
@@ -7,6 +7,18 @@ import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
 import { trackInitiateCheckout } from '../../../lib/metaPixel';
 import { trackEcommerceEvent } from '../../../lib/analytics';
+
+const MOBILE_VARIANTS = {
+  initial: { y: '100%', opacity: 0.6 },
+  animate: { y: 0, opacity: 1 },
+  exit: { y: '100%', opacity: 0.6 },
+};
+
+const DESKTOP_VARIANTS = {
+  initial: { x: '100%', opacity: 0.6 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: '100%', opacity: 0.6 },
+};
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -22,6 +34,8 @@ export const CartDrawer: React.FC = () => {
     setIsNoteModalOpen,
     setIsAddressModalOpen,
   } = useOrder();
+
+  const dragControls = useDragControls();
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -42,15 +56,20 @@ export const CartDrawer: React.FC = () => {
 
   useEffect(() => {
     if (isCartOpen && cart.length > 0) {
-      const itemsPayload = cart.map(item => ({
-        id: item.product.id,
-        name: item.product.name,
-        price: parseProductPrice(item.product.price),
-        category: item.product.category,
-        quantity: item.quantity,
-      }));
-      trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
-      trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
+      // Defer analytics execution to prevent dropping initial animation frames
+      const timer = setTimeout(() => {
+        const itemsPayload = cart.map(item => ({
+          id: item.product.id,
+          name: item.product.name,
+          price: parseProductPrice(item.product.price),
+          category: item.product.category,
+          quantity: item.quantity,
+        }));
+        trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
+        trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
+      }, 100);
+
+      return () => clearTimeout(timer);
     }
   }, [isCartOpen]);
 
@@ -65,18 +84,6 @@ export const CartDrawer: React.FC = () => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const mobileVariants = {
-    initial: { y: '100%', opacity: 0.6 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: '100%', opacity: 0.6 },
-  };
-
-  const desktopVariants = {
-    initial: { x: '100%', opacity: 0.6 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: '100%', opacity: 0.6 },
-  };
-
   return (
     <AnimatePresence>
       {isCartOpen && (
@@ -88,13 +95,13 @@ export const CartDrawer: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setIsCartOpen(false)}
-            className="fixed inset-0 bg-[#0A0604]/80 backdrop-blur-md z-40"
+            className="fixed inset-0 bg-[#0A0604]/80 backdrop-blur-sm md:backdrop-blur-md z-40 transform-gpu"
           />
 
           {/* Modal / Drawer Panel */}
           <div className="relative z-50 w-full md:fixed md:inset-y-0 md:right-0 md:left-auto md:max-w-md md:w-full flex">
             <motion.div
-              variants={isMobile ? mobileVariants : desktopVariants}
+              variants={isMobile ? MOBILE_VARIANTS : DESKTOP_VARIANTS}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -105,6 +112,8 @@ export const CartDrawer: React.FC = () => {
                 mass: 0.8,
               }}
               drag={isMobile ? 'y' : false}
+              dragListener={false}
+              dragControls={dragControls}
               dragConstraints={{ top: 0, bottom: 0 }}
               dragElastic={{ top: 0.04, bottom: 0.5 }}
               onDragEnd={(_, info) => {
@@ -112,15 +121,30 @@ export const CartDrawer: React.FC = () => {
                   setIsCartOpen(false);
                 }
               }}
-              className="w-full h-[88dvh] max-h-[88dvh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-10px_35px_rgba(0,0,0,0.5)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB]"
+              className="w-full h-[88dvh] max-h-[88dvh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-10px_35px_rgba(0,0,0,0.5)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB] transform-gpu will-change-transform"
             >
               {/* Mobile Drag Indicator Handle */}
-              <div className="w-full pt-3 pb-1 flex items-center justify-center md:hidden flex-shrink-0 bg-[#F4EDDF]/60 cursor-grab active:cursor-grabbing">
-                <div className="w-12 h-1.5 rounded-full bg-[#C49C64]/40" />
+              <div
+                onPointerDown={(e) => {
+                  if (isMobile) dragControls.start(e);
+                }}
+                style={{ touchAction: 'none' }}
+                className="w-full pt-3 pb-1 flex items-center justify-center md:hidden flex-shrink-0 bg-[#F4EDDF]/60 cursor-grab active:cursor-grabbing"
+              >
+                <div className="w-12 h-1.5 rounded-full bg-[#C49C64]/40 pointer-events-none" />
               </div>
 
               {/* Drawer Header */}
-              <div className="px-5 py-4 sm:p-6 md:p-8 border-b border-[#E2D3BB]/70 flex items-center justify-between bg-[#F4EDDF]/60 flex-shrink-0">
+              <div
+                onPointerDown={(e) => {
+                  const target = e.target as HTMLElement;
+                  if (isMobile && !target.closest('button')) {
+                    dragControls.start(e);
+                  }
+                }}
+                style={{ touchAction: isMobile ? 'none' : 'auto' }}
+                className="px-5 py-4 sm:p-6 md:p-8 border-b border-[#E2D3BB]/70 flex items-center justify-between bg-[#F4EDDF]/60 flex-shrink-0"
+              >
                 <div>
                   <span className="font-['Syne'] tracking-[0.16em] text-[10px] sm:text-[11px] font-bold text-[#C49C64] uppercase block">
                     RESUMEN DE COMPRA
@@ -156,7 +180,7 @@ export const CartDrawer: React.FC = () => {
               </div>
 
               {/* Cart Items Scrollable List */}
-              <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:p-6 md:p-8 space-y-3.5 min-h-0">
+              <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:p-6 md:p-8 space-y-3.5 min-h-0 touch-pan-y">
                 {cart.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-12 sm:py-16 space-y-4">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#EFE4CD] flex items-center justify-center text-2xl sm:text-3xl text-[#C49C64]">
@@ -188,10 +212,10 @@ export const CartDrawer: React.FC = () => {
                       return (
                         <motion.div
                           key={item.product.id}
-                          layout
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
                           className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#F4EDDF] border border-[#E2D3BB]/80 shadow-sm"
                         >
                           {/* Product Thumbnail */}
