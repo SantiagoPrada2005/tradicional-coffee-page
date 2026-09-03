@@ -215,7 +215,7 @@ export const MinimalistHero = ({
       </div>
 
       {/* Footer Elements */}
-      <footer className="z-30 flex w-full max-w-7xl items-center justify-between flex-col gap-4 md:flex-row pb-4">
+      <footer className="z-30 flex w-full max-w-7xl items-center justify-between flex-col gap-4 md:flex-row pb-20 md:pb-4">
         <div className="footer-element text-[10px] md:text-xs font-modern uppercase tracking-widest text-white/50 text-center md:text-left">
           {locationText}
         </div>

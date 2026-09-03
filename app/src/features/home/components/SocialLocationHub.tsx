@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollReveal from '../../../components/animations/ScrollReveal';
 const SocialLocationHub: React.FC = () => {
     return (
-        <section className="bg-[#1C110C] font-body text-white relative min-h-100dvh flex flex-col justify-between py-4 overflow-hidden">
+        <section className="bg-[#1C110C] font-body text-white relative min-h-100dvh flex flex-col justify-between pt-4 pb-24 md:py-4 overflow-hidden">
 
             {/* --- FONDO DE IMAGEN --- */}
             <div

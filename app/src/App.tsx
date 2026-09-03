@@ -6,6 +6,7 @@ import MenuPage from './features/menu/components/MenuPage'
 import OrderPage from './features/order/components/OrderPage'
 import { siteConfig } from './data/site-config'
 import { LandingAccordionItem } from './features/menu/components/interactive-image-accordion'
+import MobileOrderFloatingCta from './features/home/components/MobileOrderFloatingCta'
 import { initMetaPixel, trackPageView } from './lib/metaPixel'
 import { captureAttribution, trackAnalyticsPageView } from './lib/analytics'
 
@@ -63,6 +64,7 @@ function App() {
             <section id="social" className="w-full">
               <SocialLocationHub />
             </section>
+            <MobileOrderFloatingCta />
           </>
         } />
         <Route path="/menu" element={<MenuPage />} />
