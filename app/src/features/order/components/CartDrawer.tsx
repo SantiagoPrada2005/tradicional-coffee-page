@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { X, Trash2, ArrowRight, MessageSquarePlus, Edit3, MapPin } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
-import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
+import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement, type CartItem } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
 import { trackInitiateCheckout } from '../../../lib/metaPixel';
@@ -19,6 +19,66 @@ const DESKTOP_VARIANTS = {
   animate: { x: '0%' },
   exit: { x: '100%' },
 };
+
+interface CartItemRowProps {
+  item: CartItem;
+  onUpdateQuantity: (id: number, delta: number) => void;
+}
+
+const CartItemRow = React.memo<CartItemRowProps>(({ item, onUpdateQuantity }) => {
+  const unitPrice = useMemo(() => parseProductPrice(item.product.price), [item.product.price]);
+  const subtotal = useMemo(() => unitPrice * item.quantity, [unitPrice, item.quantity]);
+  const hasImg = Boolean(item.product.image && item.product.image.trim().length > 0);
+
+  const handleIncrement = useCallback(() => onUpdateQuantity(item.product.id, 1), [item.product.id, onUpdateQuantity]);
+  const handleDecrement = useCallback(() => onUpdateQuantity(item.product.id, -1), [item.product.id, onUpdateQuantity]);
+
+  return (
+    <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#F4EDDF] border border-[#E2D3BB]/80 shadow-sm">
+      {/* Product Thumbnail */}
+      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-[#C49C64]/40 flex-shrink-0 bg-[#2B1B12] flex items-center justify-center">
+        {hasImg ? (
+          <img
+            src={item.product.image}
+            alt={item.product.alt || item.product.name}
+            width={56}
+            height={56}
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-lg">☕</span>
+        )}
+      </div>
+
+      {/* Product Info */}
+      <div className="flex-1 min-w-0">
+        <h4 className="font-['Plus_Jakarta_Sans'] font-semibold text-xs sm:text-sm md:text-base text-[#2B1B12] truncate">
+          {item.product.name}
+        </h4>
+        <p className="text-[11px] sm:text-xs text-[#7A6854] font-['Plus_Jakarta_Sans']">
+          {item.product.price} c/u
+        </p>
+      </div>
+
+      {/* Quantity Stepper & Price */}
+      <div className="flex flex-col items-end gap-1 flex-shrink-0">
+        <Stepper
+          size="sm"
+          min={0}
+          showTrashAtMin={true}
+          value={item.quantity}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+        />
+        <span className="text-[11px] font-bold text-[#C49C64] font-['Plus_Jakarta_Sans']">
+          {formatCurrency(subtotal)}
+        </span>
+      </div>
+    </div>
+  );
+});
+CartItemRow.displayName = 'CartItemRow';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -54,24 +114,20 @@ export const CartDrawer: React.FC = () => {
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
 
-  useEffect(() => {
-    if (isCartOpen && cart.length > 0) {
-      // Defer analytics execution to prevent dropping initial animation frames
-      const timer = setTimeout(() => {
-        const itemsPayload = cart.map(item => ({
-          id: item.product.id,
-          name: item.product.name,
-          price: parseProductPrice(item.product.price),
-          category: item.product.category,
-          quantity: item.quantity,
-        }));
-        trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
-        trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
-      }, 100);
-
-      return () => clearTimeout(timer);
+  const handleAnimationComplete = useCallback((definition: string) => {
+    if (definition === 'animate' && isCartOpen && cart.length > 0) {
+      // Fire analytics only after the drawer animation has completely reached 0px rest
+      const itemsPayload = cart.map(item => ({
+        id: item.product.id,
+        name: item.product.name,
+        price: parseProductPrice(item.product.price),
+        category: item.product.category,
+        quantity: item.quantity,
+      }));
+      trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
+      trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
     }
-  }, [isCartOpen]);
+  }, [isCartOpen, cart, totalAmount, totalCount]);
 
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
@@ -110,6 +166,7 @@ export const CartDrawer: React.FC = () => {
                   ? { duration: 0.32, ease: [0.32, 0.72, 0, 1] }
                   : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
               }
+              onAnimationComplete={handleAnimationComplete}
               drag={isMobile ? 'y' : false}
               dragListener={false}
               dragControls={dragControls}
@@ -120,7 +177,7 @@ export const CartDrawer: React.FC = () => {
                   setIsCartOpen(false);
                 }
               }}
-              className="w-full h-[88dvh] max-h-[88dvh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-10px_35px_rgba(0,0,0,0.5)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB] transform-gpu will-change-transform"
+              className="w-full h-[88dvh] max-h-[88dvh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-4px_24px_rgba(0,0,0,0.3)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB] transform-gpu will-change-transform"
             >
               {/* Mobile Drag Indicator Handle */}
               <div
@@ -128,7 +185,7 @@ export const CartDrawer: React.FC = () => {
                   if (isMobile) dragControls.start(e);
                 }}
                 style={{ touchAction: 'none' }}
-                className="w-full pt-3 pb-1 flex items-center justify-center md:hidden flex-shrink-0 bg-[#F4EDDF]/60 cursor-grab active:cursor-grabbing"
+                className="w-full pt-3 pb-1 flex items-center justify-center md:hidden flex-shrink-0 bg-[#F4EDDF]/60 cursor-grab active:cursor-grabbing select-none"
               >
                 <div className="w-12 h-1.5 rounded-full bg-[#C49C64]/40 pointer-events-none" />
               </div>
@@ -179,7 +236,10 @@ export const CartDrawer: React.FC = () => {
               </div>
 
               {/* Cart Items Scrollable List */}
-              <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:p-6 md:p-8 space-y-3.5 min-h-0 touch-pan-y">
+              <div
+                className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:p-6 md:p-8 space-y-3.5 min-h-0 touch-pan-y"
+                style={{ contain: 'content' }}
+              >
                 {cart.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-12 sm:py-16 space-y-4">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#EFE4CD] flex items-center justify-center text-2xl sm:text-3xl text-[#C49C64]">
@@ -203,60 +263,13 @@ export const CartDrawer: React.FC = () => {
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {cart.map(item => {
-                      const unitPrice = parseProductPrice(item.product.price);
-                      const subtotal = unitPrice * item.quantity;
-                      const hasImg = Boolean(item.product.image && item.product.image.trim().length > 0);
-
-                      return (
-                        <motion.div
-                          key={item.product.id}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                          className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#F4EDDF] border border-[#E2D3BB]/80 shadow-sm"
-                        >
-                          {/* Product Thumbnail */}
-                          <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-[#C49C64]/40 flex-shrink-0 bg-[#2B1B12] flex items-center justify-center">
-                            {hasImg ? (
-                              <img
-                                src={item.product.image}
-                                alt={item.product.alt || item.product.name}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <span className="text-lg">☕</span>
-                            )}
-                          </div>
-
-                          {/* Product Info */}
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-['Plus_Jakarta_Sans'] font-semibold text-xs sm:text-sm md:text-base text-[#2B1B12] truncate">
-                              {item.product.name}
-                            </h4>
-                            <p className="text-[11px] sm:text-xs text-[#7A6854] font-['Plus_Jakarta_Sans']">
-                              {item.product.price} c/u
-                            </p>
-                          </div>
-
-                          {/* Quantity Stepper & Price */}
-                          <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                            <Stepper
-                              size="sm"
-                              min={0}
-                              showTrashAtMin={true}
-                              value={item.quantity}
-                              onIncrement={() => updateQuantity(item.product.id, 1)}
-                              onDecrement={() => updateQuantity(item.product.id, -1)}
-                            />
-                            <span className="text-[11px] font-bold text-[#C49C64] font-['Plus_Jakarta_Sans']">
-                              {formatCurrency(subtotal)}
-                            </span>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
+                    {cart.map(item => (
+                      <CartItemRow
+                        key={item.product.id}
+                        item={item}
+                        onUpdateQuantity={updateQuantity}
+                      />
+                    ))}
                   </div>
                 )}
               </div>

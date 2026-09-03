@@ -51,17 +51,13 @@ export const Stepper: React.FC<StepperProps> = ({
         )}
       </motion.button>
 
-      <motion.span
-        key={value}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.15 }}
+      <span
         className={`font-semibold font-['Plus_Jakarta_Sans'] text-center tabular-nums ${
           isSm ? 'min-w-[1.2rem] text-sm' : 'min-w-[1.8rem] text-lg text-[#2B1B12]'
         }`}
       >
         {value}
-      </motion.span>
+      </span>
 
       <motion.button
         type="button"

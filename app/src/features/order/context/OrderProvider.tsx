@@ -39,11 +39,14 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   useEffect(() => {
-    try {
-      sessionStorage.setItem(STORAGE_KEY_CART, JSON.stringify(cart));
-    } catch (e) {
-      console.error('Failed to save cart to storage', e);
-    }
+    const timer = setTimeout(() => {
+      try {
+        sessionStorage.setItem(STORAGE_KEY_CART, JSON.stringify(cart));
+      } catch (e) {
+        console.error('Failed to save cart to storage', e);
+      }
+    }, 350);
+    return () => clearTimeout(timer);
   }, [cart]);
 
   const setPreparationNote = useCallback((note: string) => {
