@@ -7,6 +7,7 @@ import { Stepper } from './Stepper';
 import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
 import { trackAddToCart } from '../../../lib/metaPixel';
+import { trackEcommerceEvent } from '../../../lib/analytics';
 
 interface DesktopConfigPanelProps {
   product: Product;
@@ -38,6 +39,11 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
       price: unitPrice,
       category: product.category,
     }, quantity);
+    trackEcommerceEvent('add_to_cart', unitPrice * quantity, {
+      id: product.id,
+      name: product.name,
+      quantity,
+    });
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 900);
   };

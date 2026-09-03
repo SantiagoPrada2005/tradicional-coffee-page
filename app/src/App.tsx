@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import ColdHubHero from './features/home/components/ColdHubHero'
 import SocialLocationHub from './features/home/components/SocialLocationHub'
@@ -7,6 +7,9 @@ import OrderPage from './features/order/components/OrderPage'
 import { siteConfig } from './data/site-config'
 import { LandingAccordionItem } from './features/menu/components/interactive-image-accordion'
 import { initMetaPixel, trackPageView } from './lib/metaPixel'
+import { captureAttribution, trackAnalyticsPageView } from './lib/analytics'
+
+const AdminDashboard = lazy(() => import('./features/admin/pages/AdminDashboard'));
 
 function App() {
   const location = useLocation();
@@ -16,7 +19,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    captureAttribution();
     trackPageView();
+    trackAnalyticsPageView(location.pathname);
   }, [location.pathname, location.search]);
 
   useEffect(() => {
@@ -62,6 +67,20 @@ function App() {
         } />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/order" element={<OrderPage />} />
+        <Route
+          path="/admin"
+          element={
+            <Suspense
+              fallback={
+                <div className="min-h-screen bg-[#170E08] flex items-center justify-center text-[#E2C38F] font-mono text-xs">
+                  Cargando Tradicional Admin...
+                </div>
+              }
+            >
+              <AdminDashboard />
+            </Suspense>
+          }
+        />
       </Routes>
     </div>
   )

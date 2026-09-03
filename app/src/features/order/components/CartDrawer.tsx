@@ -6,6 +6,7 @@ import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '.
 import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
 import { trackInitiateCheckout } from '../../../lib/metaPixel';
+import { trackEcommerceEvent } from '../../../lib/analytics';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -49,6 +50,7 @@ export const CartDrawer: React.FC = () => {
         quantity: item.quantity,
       }));
       trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
+      trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
     }
   }, [isCartOpen]);
 

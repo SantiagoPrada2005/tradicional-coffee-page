@@ -7,6 +7,7 @@ import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
 import { formatCurrency } from '../utils/whatsapp';
 import { trackAddToCart } from '../../../lib/metaPixel';
+import { trackEcommerceEvent } from '../../../lib/analytics';
 
 interface ProductDetailsProps {
   product: Product;
@@ -31,6 +32,11 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
       price: unitPrice,
       category: product.category,
     }, quantity);
+    trackEcommerceEvent('add_to_cart', unitPrice * quantity, {
+      id: product.id,
+      name: product.name,
+      quantity,
+    });
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 900);
   };

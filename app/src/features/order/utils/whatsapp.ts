@@ -1,6 +1,7 @@
 import type { Product } from '../../../types/product';
 import { parseProductPrice } from '../../../data/frappes';
 import { trackOrderConversion, type PixelProductPayload } from '../../../lib/metaPixel';
+import { trackEcommerceEvent } from '../../../lib/analytics';
 
 export interface CartItem {
   product: Product;
@@ -20,6 +21,15 @@ export function trackOrderPlacement(
     quantity: item.quantity,
   }));
   trackOrderConversion(itemsPayload, totalAmount, totalCount);
+  trackEcommerceEvent('purchase', totalAmount, {
+    itemsCount: totalCount,
+    items: items.map(i => ({
+      id: i.product.id,
+      name: i.product.name,
+      quantity: i.quantity,
+      price: parseProductPrice(i.product.price),
+    })),
+  });
 }
 
 
