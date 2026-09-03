@@ -267,6 +267,31 @@ export const AdminDashboard: React.FC = () => {
     return true;
   };
 
+  const handleUpdateLink = async (updatedLink: CampaignLinkItem): Promise<boolean> => {
+    try {
+      const res = await fetch('/api/admin/links', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedLink),
+      });
+      if (res.ok) {
+        await fetchLinks();
+        return true;
+      }
+    } catch {
+      // Local fallback
+    }
+
+    const updated = links.map(l => (l.id === updatedLink.id ? updatedLink : l));
+    setLinks(updated);
+    try {
+      localStorage.setItem('tc_campaign_links', JSON.stringify(updated));
+    } catch {
+      // Ignore
+    }
+    return true;
+  };
+
   const handleDeleteLink = async (id: number): Promise<void> => {
     try {
       await fetch(`/api/admin/links?id=${id}`, { method: 'DELETE' });
@@ -313,6 +338,7 @@ export const AdminDashboard: React.FC = () => {
           <LinkBuilderView
             links={links}
             onCreateLink={handleCreateLink}
+            onUpdateLink={handleUpdateLink}
             onDeleteLink={handleDeleteLink}
             isLoading={isLoading}
           />

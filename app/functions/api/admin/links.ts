@@ -128,6 +128,95 @@ export const onRequestPost = async (context: {
   }
 };
 
+export const onRequestPut = async (context: {
+  request: Request;
+  env: Env;
+}): Promise<Response> => {
+  const { request, env } = context;
+
+  if (!env.DB) {
+    return new Response(
+      JSON.stringify({ error: 'Cloudflare D1 is not bound to this environment.' }),
+      {
+        status: 503,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON payload' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const id = typeof body.id === 'number' ? body.id : parseInt(String(body.id), 10);
+  if (!id || isNaN(id)) {
+    return new Response(JSON.stringify({ error: 'Missing or invalid link id' }), { status: 400 });
+  }
+
+  const slug = typeof body.slug === 'string' ? body.slug : '';
+  const title = typeof body.title === 'string' ? body.title : '';
+  const targetPath = typeof body.targetPath === 'string' ? body.targetPath : '/';
+  const utmSource = typeof body.utmSource === 'string' ? body.utmSource : '';
+  const utmMedium = typeof body.utmMedium === 'string' ? body.utmMedium : '';
+  const utmCampaign = typeof body.utmCampaign === 'string' ? body.utmCampaign : '';
+  const utmContent = typeof body.utmContent === 'string' ? body.utmContent : null;
+  const utmTerm = typeof body.utmTerm === 'string' ? body.utmTerm : null;
+  const tag = typeof body.tag === 'string' ? body.tag : null;
+
+  if (!slug || !title || !utmSource || !utmMedium || !utmCampaign) {
+    return new Response(
+      JSON.stringify({
+        error: 'Missing required fields: slug, title, utmSource, utmMedium, utmCampaign',
+      }),
+      {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+
+  const normalizedSlug = slug.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '-');
+
+  try {
+    const db = createDb(env.DB);
+    const [updated] = await db
+      .update(campaignLinks)
+      .set({
+        slug: normalizedSlug,
+        title: title.trim(),
+        targetPath: targetPath.trim() || '/',
+        utmSource: utmSource.trim(),
+        utmMedium: utmMedium.trim(),
+        utmCampaign: utmCampaign.trim(),
+        utmContent: utmContent?.trim() || null,
+        utmTerm: utmTerm?.trim() || null,
+        tag: tag?.trim() || null,
+      })
+      .where(eq(campaignLinks.id, id))
+      .returning();
+
+    return new Response(JSON.stringify({ success: true, link: updated }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : 'Unknown error';
+    return new Response(
+      JSON.stringify({ error: 'Could not update link (slug may be duplicate)', details: message }),
+      {
+        status: 409,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+};
+
 export const onRequestDelete = async (context: {
   request: Request;
   env: Env;
@@ -155,3 +244,5 @@ export const onRequestDelete = async (context: {
     return new Response(JSON.stringify({ error: message }), { status: 500 });
   }
 };
+
+

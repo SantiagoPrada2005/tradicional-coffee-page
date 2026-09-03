@@ -10,6 +10,8 @@ import {
   Plus,
   Trash2,
   ExternalLink,
+  Edit2,
+  X,
 } from 'lucide-react';
 
 export interface CampaignLinkItem {
@@ -30,6 +32,7 @@ export interface CampaignLinkItem {
 interface LinkBuilderViewProps {
   links: CampaignLinkItem[];
   onCreateLink: (newLink: Partial<CampaignLinkItem>) => Promise<boolean>;
+  onUpdateLink: (updatedLink: CampaignLinkItem) => Promise<boolean>;
   onDeleteLink: (id: number) => Promise<void>;
   isLoading: boolean;
 }
@@ -48,6 +51,7 @@ const PRESET_SOURCES = [
 export const LinkBuilderView: React.FC<LinkBuilderViewProps> = ({
   links,
   onCreateLink,
+  onUpdateLink,
   onDeleteLink,
 }) => {
   const [title, setTitle] = useState('');
@@ -61,6 +65,12 @@ export const LinkBuilderView: React.FC<LinkBuilderViewProps> = ({
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const qrRef = useRef<SVGSVGElement | null>(null);
+
+  // States for Modals (QR view/download & Edit Link)
+  const [selectedQrLink, setSelectedQrLink] = useState<CampaignLinkItem | null>(null);
+  const [editingLink, setEditingLink] = useState<CampaignLinkItem | null>(null);
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
+  const modalQrRef = useRef<SVGSVGElement | null>(null);
 
   const activeSource = source;
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://tradicional-coffee.shop';
@@ -107,6 +117,46 @@ export const LinkBuilderView: React.FC<LinkBuilderViewProps> = ({
     };
 
     img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+  };
+
+  const handleDownloadModalQR = () => {
+    if (!modalQrRef.current || !selectedQrLink) return;
+    const svgElement = modalQrRef.current;
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+
+    canvas.width = 600;
+    canvas.height = 600;
+
+    img.onload = () => {
+      if (!ctx) return;
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, 600, 600);
+      ctx.drawImage(img, 40, 40, 520, 520);
+      const pngFile = canvas.toDataURL('image/png');
+      const downloadLink = document.createElement('a');
+      downloadLink.download = `qr-${selectedQrLink.slug || 'campana'}.png`;
+      downloadLink.href = pngFile;
+      downloadLink.click();
+    };
+
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+  };
+
+  const handleUpdateSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingLink) return;
+    setIsSavingEdit(true);
+    try {
+      const ok = await onUpdateLink(editingLink);
+      if (ok) {
+        setEditingLink(null);
+      }
+    } finally {
+      setIsSavingEdit(false);
+    }
   };
 
   const handlePresetSelect = (selectedId: string) => {
@@ -432,7 +482,25 @@ export const LinkBuilderView: React.FC<LinkBuilderViewProps> = ({
                         {link.clicksCount.toLocaleString()}
                       </td>
                       <td className="py-3 px-3 text-right">
-                        <div className="flex items-center justify-end gap-2">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedQrLink(link)}
+                            className="p-1.5 rounded-lg bg-[#2B1B12] hover:bg-[#3D291D] text-[#C49C64] hover:text-[#E2C38F] border border-[#3D291D] transition-colors cursor-pointer"
+                            title="Ver y descargar código QR"
+                          >
+                            <QrCode className="w-3.5 h-3.5" />
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setEditingLink(link)}
+                            className="p-1.5 rounded-lg bg-[#2B1B12] hover:bg-[#3D291D] text-[#E2C38F] border border-[#3D291D] transition-colors cursor-pointer"
+                            title="Editar enlace"
+                          >
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+
                           <button
                             type="button"
                             onClick={() => handleCopy(fullUrl, `link-${link.id}`)}
@@ -474,6 +542,211 @@ export const LinkBuilderView: React.FC<LinkBuilderViewProps> = ({
           </table>
         </div>
       </div>
+
+      {/* QR Code Modal for Any Existing Link */}
+      {selectedQrLink && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="w-full max-w-md p-6 rounded-3xl bg-[#23150D] border border-[#3D291D] space-y-5 shadow-2xl relative">
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <h3 className="font-['Syne'] text-base font-bold text-[#F4EDDF] flex items-center gap-2">
+                  <QrCode className="w-4 h-4 text-[#C49C64]" />
+                  Código QR de Campaña
+                </h3>
+                <p className="text-xs text-[#A89886] truncate max-w-[280px]">
+                  {selectedQrLink.title}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedQrLink(null)}
+                className="p-1.5 rounded-full bg-[#1B1009] text-[#A89886] hover:text-[#F4EDDF] transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#FFFFFF] shadow-inner">
+              <QRCodeSVG
+                ref={modalQrRef}
+                value={`${baseUrl}${selectedQrLink.targetPath}?utm_source=${selectedQrLink.utmSource}&utm_medium=${selectedQrLink.utmMedium}&utm_campaign=${selectedQrLink.utmCampaign}${selectedQrLink.tag ? `&tag=${selectedQrLink.tag}` : ''}`}
+                size={220}
+                level="H"
+                includeMargin={true}
+              />
+              <span className="text-[11px] font-mono text-[#523B2B] mt-2 font-bold text-center">
+                TRADICIONAL COFFEE · {selectedQrLink.tag ? `#${selectedQrLink.tag}` : selectedQrLink.utmCampaign}
+              </span>
+            </div>
+
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={handleDownloadModalQR}
+                className="w-full py-3 px-4 rounded-xl bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12] text-xs font-['Syne'] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-md"
+              >
+                <Download className="w-4 h-4" />
+                <span>Descargar Código QR (PNG Alta Calidad)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedQrLink(null)}
+                className="w-full py-2 px-3 rounded-xl bg-[#2B1B12] hover:bg-[#3D291D] text-[#A89886] text-xs font-medium text-center transition-colors cursor-pointer"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Link Modal */}
+      {editingLink && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-lg p-6 rounded-3xl bg-[#23150D] border border-[#3D291D] space-y-5 shadow-2xl relative my-8">
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <h3 className="font-['Syne'] text-base font-bold text-[#F4EDDF] flex items-center gap-2">
+                  <Edit2 className="w-4 h-4 text-[#C49C64]" />
+                  Editar Enlace de Campaña
+                </h3>
+                <p className="text-xs text-[#A89886]">
+                  Modificá los parámetros o etiquetas del enlace guardado
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEditingLink(null)}
+                className="p-1.5 rounded-full bg-[#1B1009] text-[#A89886] hover:text-[#F4EDDF] transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                  Título / Nombre *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editingLink.title}
+                  onChange={e => setEditingLink({ ...editingLink, title: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] focus:outline-none focus:border-[#C49C64]"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                    Ruta de Destino
+                  </label>
+                  <select
+                    value={editingLink.targetPath}
+                    onChange={e => setEditingLink({ ...editingLink, targetPath: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] focus:outline-none focus:border-[#C49C64] cursor-pointer"
+                  >
+                    <option value="/order">/order (Hacer Pedido)</option>
+                    <option value="/">/ (Inicio / Home)</option>
+                    <option value="/menu">/menu (Carta Completa)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                    Slug Corto (/l/slug) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editingLink.slug}
+                    onChange={e =>
+                      setEditingLink({
+                        ...editingLink,
+                        slug: e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, '-'),
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] font-mono focus:outline-none focus:border-[#C49C64]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                    Fuente (utm_source) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editingLink.utmSource}
+                    onChange={e => setEditingLink({ ...editingLink, utmSource: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] font-mono focus:outline-none focus:border-[#C49C64]"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                    Medio (utm_medium) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editingLink.utmMedium}
+                    onChange={e => setEditingLink({ ...editingLink, utmMedium: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] font-mono focus:outline-none focus:border-[#C49C64]"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5]">
+                    Campaña (utm_campaign) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editingLink.utmCampaign}
+                    onChange={e => setEditingLink({ ...editingLink, utmCampaign: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] font-mono focus:outline-none focus:border-[#C49C64]"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-[#D4C4B5] flex items-center gap-1">
+                  <Tag className="w-3 h-3 text-[#C49C64]" />
+                  Etiqueta (?tag=...)
+                </label>
+                <input
+                  type="text"
+                  value={editingLink.tag || ''}
+                  onChange={e => setEditingLink({ ...editingLink, tag: e.target.value })}
+                  placeholder="ej. mesa-1, influencer, verano"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#1B1009] border border-[#3D291D] text-xs text-[#F4EDDF] font-mono focus:outline-none focus:border-[#C49C64]"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setEditingLink(null)}
+                  className="px-4 py-2.5 rounded-xl bg-[#2B1B12] hover:bg-[#3D291D] text-[#A89886] text-xs font-medium cursor-pointer transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSavingEdit}
+                  className="px-5 py-2.5 rounded-xl bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12] text-xs font-['Syne'] font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-md disabled:opacity-50"
+                >
+                  {isSavingEdit ? 'Guardando...' : 'Guardar Cambios'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
