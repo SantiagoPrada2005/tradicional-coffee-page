@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2, ArrowRight, MessageSquarePlus, Edit3, MapPin } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
-import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
+import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
 import { Stepper } from './Stepper';
-import { trackInitiateCheckout, trackWhatsAppLead } from '../../../lib/metaPixel';
+import { trackInitiateCheckout } from '../../../lib/metaPixel';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -58,7 +58,7 @@ export const CartDrawer: React.FC = () => {
       setIsAddressModalOpen(true);
       return;
     }
-    trackWhatsAppLead(totalAmount, totalCount, `Pedido: ${totalCount} items`);
+    trackOrderPlacement(cart, totalAmount, totalCount);
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

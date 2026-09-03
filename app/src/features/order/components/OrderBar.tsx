@@ -2,8 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp, ArrowRight } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
-import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
-import { trackWhatsAppLead } from '../../../lib/metaPixel';
+import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
 
 export const OrderBar: React.FC = () => {
   const {
@@ -23,7 +22,7 @@ export const OrderBar: React.FC = () => {
       setIsAddressModalOpen(true);
       return;
     }
-    trackWhatsAppLead(totalAmount, totalCount, `Pedido: ${totalCount} items`);
+    trackOrderPlacement(cart, totalAmount, totalCount);
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

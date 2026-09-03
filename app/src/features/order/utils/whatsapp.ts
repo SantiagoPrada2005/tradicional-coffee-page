@@ -1,10 +1,27 @@
 import type { Product } from '../../../types/product';
 import { parseProductPrice } from '../../../data/frappes';
+import { trackOrderConversion, type PixelProductPayload } from '../../../lib/metaPixel';
 
 export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export function trackOrderPlacement(
+  items: CartItem[],
+  totalAmount: number,
+  totalCount: number
+): void {
+  const itemsPayload: PixelProductPayload[] = items.map(item => ({
+    id: item.product.id,
+    name: item.product.name,
+    price: parseProductPrice(item.product.price),
+    category: item.product.category,
+    quantity: item.quantity,
+  }));
+  trackOrderConversion(itemsPayload, totalAmount, totalCount);
+}
+
 
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat('es-CO', {

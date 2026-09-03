@@ -4,9 +4,9 @@ import { Plus, Check, ArrowRight, MessageSquarePlus, Edit3, MapPin } from 'lucid
 import type { Product } from '../../../types/product';
 import { useOrder } from '../context/useOrder';
 import { Stepper } from './Stepper';
-import { formatCurrency, generateWhatsAppOrderUrl } from '../utils/whatsapp';
+import { formatCurrency, generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
 import { parseProductPrice } from '../../../data/frappes';
-import { trackAddToCart, trackWhatsAppLead } from '../../../lib/metaPixel';
+import { trackAddToCart } from '../../../lib/metaPixel';
 
 interface DesktopConfigPanelProps {
   product: Product;
@@ -48,7 +48,7 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
       setIsAddressModalOpen(true);
       return;
     }
-    trackWhatsAppLead(totalAmount, totalCount, `Pedido: ${totalCount} items`);
+    trackOrderPlacement(cart, totalAmount, totalCount);
     const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, deliveryAddress);
     window.open(url, '_blank', 'noopener,noreferrer');
   };

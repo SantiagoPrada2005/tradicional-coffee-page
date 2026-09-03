@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, MapPin, Store, Utensils, Bike, Building2, Compass } from 'lucide-react';
 import { useOrder } from '../context/useOrder';
-import { generateWhatsAppOrderUrl } from '../utils/whatsapp';
+import { generateWhatsAppOrderUrl, trackOrderPlacement } from '../utils/whatsapp';
 
 type DeliveryMode = 'pickup' | 'delivery';
 
@@ -382,12 +382,14 @@ export const DeliveryAddressModal: React.FC = () => {
     setDeliveryAddress,
     cart,
     totalAmount,
+    totalCount,
     preparationNote,
   } = useOrder();
 
   const handleSave = (address: string) => {
     setDeliveryAddress(address);
     if (cart.length > 0 && address.trim()) {
+      trackOrderPlacement(cart, totalAmount, totalCount);
       const url = generateWhatsAppOrderUrl(cart, totalAmount, preparationNote, address);
       window.open(url, '_blank', 'noopener,noreferrer');
       setIsCartOpen(false);

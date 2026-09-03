@@ -58,7 +58,8 @@ Este documento define la arquitectura técnica completa para sincronizar el cat�
 | `ViewContent` | Apertura de modal de producto en la carta o cambio de frappe en el carrusel de pedidos | `ProductModal.tsx` & `OrderPage.tsx` |
 | `AddToCart` | Clic en "AGREGAR AL PEDIDO" / "AGREGAR" | `DesktopConfigPanel.tsx` & `ProductDetails.tsx` |
 | `InitiateCheckout` | Apertura del Cart Drawer con productos en el carrito | `CartDrawer.tsx` |
-| `Contact` / `Lead` | Clic en "HACER PEDIDO POR WHATSAPP" | `CartDrawer.tsx`, `OrderBar.tsx`, `DesktopConfigPanel.tsx` |
+| `Purchase` / `Contact` / `Lead` | Clic en "HACER PEDIDO POR WHATSAPP" o confirmación de dirección de entrega | `CartDrawer.tsx`, `OrderBar.tsx`, `DesktopConfigPanel.tsx`, `DeliveryAddressModal.tsx` |
+
 
 ---
 

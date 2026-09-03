@@ -244,6 +244,40 @@ export const trackInitiateCheckout = (
 };
 
 /**
+ * Tracks a completed purchase / order dispatch (Hybrid: Browser + CAPI).
+ */
+export const trackPurchase = (
+  items: PixelProductPayload[],
+  totalAmount: number,
+  totalCount: number
+): void => {
+  if (typeof window === 'undefined' || items.length === 0) return;
+  const eventId = generateEventId();
+
+  const customData = {
+    content_ids: items.map(item => String(item.id)),
+    content_type: 'product',
+    contents: items.map(item => ({
+      id: String(item.id),
+      quantity: item.quantity || 1,
+      item_price: item.price,
+    })),
+    num_items: totalCount,
+    value: totalAmount,
+    currency: 'COP',
+  };
+
+  const fbq = getFbq();
+  if (fbq) {
+    fbq('track', 'Purchase', customData, { eventID: eventId });
+  } else if (import.meta.env.DEV) {
+    console.debug('[Meta Pixel] Purchase:', customData, '(eventID:', eventId, ')');
+  }
+
+  sendToCapi('Purchase', eventId, customData);
+};
+
+/**
  * Tracks lead conversion towards WhatsApp order closure (Hybrid: Browser + CAPI).
  */
 export const trackWhatsAppLead = (
@@ -252,7 +286,8 @@ export const trackWhatsAppLead = (
   details?: string
 ): void => {
   if (typeof window === 'undefined') return;
-  const eventId = generateEventId();
+  const eventIdContact = generateEventId();
+  const eventIdLead = generateEventId();
 
   const customData = {
     content_name: details || 'Pedido WhatsApp Tradicional Coffee',
@@ -263,12 +298,27 @@ export const trackWhatsAppLead = (
 
   const fbq = getFbq();
   if (fbq) {
-    fbq('track', 'Contact', customData, { eventID: eventId });
-    fbq('track', 'Lead', customData, { eventID: eventId });
+    fbq('track', 'Contact', customData, { eventID: eventIdContact });
+    fbq('track', 'Lead', customData, { eventID: eventIdLead });
   } else if (import.meta.env.DEV) {
-    console.debug('[Meta Pixel] Contact & Lead:', customData, '(eventID:', eventId, ')');
+    console.debug('[Meta Pixel] Contact & Lead:', customData, '(eventID:', eventIdLead, ')');
   }
 
-  sendToCapi('Contact', eventId, customData);
-  sendToCapi('Lead', eventId, customData);
+  sendToCapi('Contact', eventIdContact, customData);
+  sendToCapi('Lead', eventIdLead, customData);
 };
+
+/**
+ * Tracks the complete conversion when placing an order via WhatsApp.
+ * Dispatches Purchase (for Sales campaigns), Lead and Contact (for Lead campaigns).
+ */
+export const trackOrderConversion = (
+  items: PixelProductPayload[],
+  totalAmount: number,
+  totalCount: number,
+  details?: string
+): void => {
+  trackPurchase(items, totalAmount, totalCount);
+  trackWhatsAppLead(totalAmount, totalCount, details);
+};
+
