@@ -1,0 +1,17 @@
+name = "tradicional-coffee-page"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-02-17"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tradicional-coffee-db"
+database_id = "13343db0-23f4-4491-a82d-ce3160499885"
+
+[env.production.vars]
+MAP_API_KEY = "AIzaSyD5XEI5XfiSaxJ1olPw3e6rGLw4qXSsGCE"
+VITE_META_PIXEL_ID = "1393594129039839"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "tradicional-coffee-db"
+database_id = "13343db0-23f4-4491-a82d-ce3160499885"
