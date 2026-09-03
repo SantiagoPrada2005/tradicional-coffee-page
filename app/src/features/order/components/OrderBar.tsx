@@ -35,7 +35,7 @@ export const OrderBar: React.FC = () => {
           key="order-bar"
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 60, opacity: 0 }}
+          exit={{ opacity: 0, transition: { duration: 0.05 } }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="lg:hidden fixed bottom-2.5 inset-x-2 xs:inset-x-4 max-w-md mx-auto z-40"
         >

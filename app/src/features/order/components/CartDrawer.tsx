@@ -96,6 +96,7 @@ export const CartDrawer: React.FC = () => {
   } = useOrder();
 
   const dragControls = useDragControls();
+  const [hasEntered, setHasEntered] = useState(false);
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -115,17 +116,22 @@ export const CartDrawer: React.FC = () => {
   }, []);
 
   const handleAnimationComplete = useCallback((definition: string) => {
-    if (definition === 'animate' && isCartOpen && cart.length > 0) {
-      // Fire analytics only after the drawer animation has completely reached 0px rest
-      const itemsPayload = cart.map(item => ({
-        id: item.product.id,
-        name: item.product.name,
-        price: parseProductPrice(item.product.price),
-        category: item.product.category,
-        quantity: item.quantity,
-      }));
-      trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
-      trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
+    if (definition === 'animate') {
+      setHasEntered(true);
+      if (isCartOpen && cart.length > 0) {
+        // Fire analytics only after the drawer animation has completely reached 0px rest
+        const itemsPayload = cart.map(item => ({
+          id: item.product.id,
+          name: item.product.name,
+          price: parseProductPrice(item.product.price),
+          category: item.product.category,
+          quantity: item.quantity,
+        }));
+        trackInitiateCheckout(itemsPayload, totalAmount, totalCount);
+        trackEcommerceEvent('initiate_checkout', totalAmount, { totalCount });
+      }
+    } else if (definition === 'exit') {
+      setHasEntered(false);
     }
   }, [isCartOpen, cart, totalAmount, totalCount]);
 
@@ -167,7 +173,7 @@ export const CartDrawer: React.FC = () => {
                   : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
               }
               onAnimationComplete={handleAnimationComplete}
-              drag={isMobile ? 'y' : false}
+              drag={isMobile && hasEntered ? 'y' : false}
               dragListener={false}
               dragControls={dragControls}
               dragConstraints={{ top: 0, bottom: 0 }}
@@ -177,7 +183,13 @@ export const CartDrawer: React.FC = () => {
                   setIsCartOpen(false);
                 }
               }}
-              className="w-full h-[88dvh] max-h-[88dvh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-4px_24px_rgba(0,0,0,0.3)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB] transform-gpu will-change-transform"
+              style={{
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+              }}
+              className="w-full h-[88vh] max-h-[88vh] md:h-full md:max-h-full bg-[#FBF6EB] text-[#2B1B12] shadow-[0_-4px_24px_rgba(0,0,0,0.3)] md:shadow-2xl flex flex-col justify-between overflow-hidden rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-none md:rounded-l-[28px] border-t md:border-t-0 md:border-l border-[#E2D3BB] transform-gpu will-change-transform"
             >
               {/* Mobile Drag Indicator Handle */}
               <div
@@ -238,7 +250,10 @@ export const CartDrawer: React.FC = () => {
               {/* Cart Items Scrollable List */}
               <div
                 className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:p-6 md:p-8 space-y-3.5 min-h-0 touch-pan-y"
-                style={{ contain: 'content' }}
+                style={{
+                  contain: 'content',
+                  WebkitOverflowScrolling: 'touch',
+                }}
               >
                 {cart.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-12 sm:py-16 space-y-4">
