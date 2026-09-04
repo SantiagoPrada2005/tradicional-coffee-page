@@ -54,7 +54,7 @@ export const OrderBar: React.FC = () => {
               </div>
               <div>
                 <div className="flex items-center gap-1 text-[11px] xs:text-xs font-['Plus_Jakarta_Sans'] font-bold text-[#F4EDDF]">
-                  <span>{formatCurrency(totalAmount)}</span>
+                  <span data-no-pixel="true">{formatCurrency(totalAmount)}</span>
                   <span className="text-[#C49C64]">·</span>
                   <span className="text-[10px] xs:text-xs font-normal text-[#E2C38F] flex items-center gap-0.5">
                     Ver pedido <ChevronUp className="w-3 h-3" />
@@ -71,6 +71,8 @@ export const OrderBar: React.FC = () => {
               type="button"
               whileTap={{ scale: 0.94 }}
               onClick={handleDirectWhatsApp}
+              data-no-pixel="true"
+              data-fb-disable-event="true"
               className="py-1.5 px-3 xs:py-2 xs:px-4 rounded-full bg-[#C49C64] hover:bg-[#D6A354] text-[#2B1B12] font-['Syne'] text-[10px] xs:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow cursor-pointer touch-manipulation"
             >
               <span>PEDIR</span>

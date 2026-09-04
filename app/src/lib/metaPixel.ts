@@ -33,6 +33,20 @@ export function generateEventId(): string {
 }
 
 /**
+ * Helper to normalize and sanitize monetary values for Meta Pixel and CAPI.
+ * Formats as a clean float with 2 decimals (e.g., 36000.00).
+ * Supports VITE_PIXEL_VALUE_DIVISOR if an Ad Account enforces cents offset.
+ */
+export function sanitizePixelValue(rawAmount: number): number {
+  if (typeof rawAmount !== 'number' || isNaN(rawAmount) || rawAmount < 0) {
+    return 0;
+  }
+  const divisor = Number(import.meta.env.VITE_PIXEL_VALUE_DIVISOR) || 1;
+  const normalized = rawAmount / divisor;
+  return Number(normalized.toFixed(2));
+}
+
+/**
  * Helper to safely get the fbq function if attached to window.
  */
 function getFbq(): ((...args: unknown[]) => void) | null {
@@ -128,10 +142,12 @@ export const initMetaPixel = (pixelId?: string): void => {
 
   const fbq = getFbq();
   if (fbq) {
+    // Disable automatic event and metadata scraping to prevent DOM price text confusion
+    fbq('set', 'autoConfig', false, id);
     fbq('init', id);
     isInitialized = true;
     if (import.meta.env.DEV) {
-      console.info(`[Meta Pixel] Initialized with ID: ${id}`);
+      console.info(`[Meta Pixel] Initialized with ID: ${id} (autoConfig: false)`);
     }
   }
 };
@@ -159,13 +175,14 @@ export const trackPageView = (): void => {
 export const trackViewContent = (product: PixelProductPayload): void => {
   if (typeof window === 'undefined') return;
   const eventId = generateEventId();
+  const sanitizedValue = sanitizePixelValue(product.price);
 
   const customData = {
     content_name: product.name,
     content_category: product.category || 'Bebidas',
     content_ids: [String(product.id)],
     content_type: 'product',
-    value: product.price,
+    value: sanitizedValue,
     currency: 'COP',
   };
 
@@ -185,7 +202,8 @@ export const trackViewContent = (product: PixelProductPayload): void => {
 export const trackAddToCart = (product: PixelProductPayload, quantity: number = 1): void => {
   if (typeof window === 'undefined') return;
   const eventId = generateEventId();
-  const subtotal = product.price * quantity;
+  const subtotal = sanitizePixelValue(product.price * quantity);
+  const itemPrice = sanitizePixelValue(product.price);
 
   const customData = {
     content_name: product.name,
@@ -196,7 +214,7 @@ export const trackAddToCart = (product: PixelProductPayload, quantity: number = 
       {
         id: String(product.id),
         quantity,
-        item_price: product.price,
+        item_price: itemPrice,
       },
     ],
     value: subtotal,
@@ -223,6 +241,7 @@ export const trackInitiateCheckout = (
 ): void => {
   if (typeof window === 'undefined' || items.length === 0) return;
   const eventId = generateEventId();
+  const sanitizedTotal = sanitizePixelValue(totalAmount);
 
   const customData = {
     content_ids: items.map(item => String(item.id)),
@@ -230,10 +249,10 @@ export const trackInitiateCheckout = (
     contents: items.map(item => ({
       id: String(item.id),
       quantity: item.quantity || 1,
-      item_price: item.price,
+      item_price: sanitizePixelValue(item.price),
     })),
     num_items: totalCount,
-    value: totalAmount,
+    value: sanitizedTotal,
     currency: 'COP',
   };
 
@@ -257,6 +276,7 @@ export const trackPurchase = (
 ): void => {
   if (typeof window === 'undefined' || items.length === 0) return;
   const eventId = generateEventId();
+  const sanitizedTotal = sanitizePixelValue(totalAmount);
 
   const customData = {
     content_ids: items.map(item => String(item.id)),
@@ -264,10 +284,10 @@ export const trackPurchase = (
     contents: items.map(item => ({
       id: String(item.id),
       quantity: item.quantity || 1,
-      item_price: item.price,
+      item_price: sanitizePixelValue(item.price),
     })),
     num_items: totalCount,
-    value: totalAmount,
+    value: sanitizedTotal,
     currency: 'COP',
   };
 
@@ -292,11 +312,12 @@ export const trackWhatsAppLead = (
   if (typeof window === 'undefined') return;
   const eventIdContact = generateEventId();
   const eventIdLead = generateEventId();
+  const sanitizedTotal = sanitizePixelValue(totalAmount);
 
   const customData = {
     content_name: details || 'Pedido WhatsApp Tradicional Coffee',
     num_items: itemsCount,
-    value: totalAmount,
+    value: sanitizedTotal,
     currency: 'COP',
   };
 

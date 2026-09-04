@@ -215,11 +215,11 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
 
       {/* Total & Primary CTA Button */}
       <div className="space-y-3 pt-1 border-t border-[#E2D3BB]">
-        <div className="flex items-baseline justify-between">
+        <div className="flex items-baseline justify-between" data-no-pixel="true">
           <span className="text-sm font-['Plus_Jakarta_Sans'] font-medium text-[#7A6854]">
             {totalCount} {totalCount === 1 ? 'producto' : 'productos'}
           </span>
-          <span className="font-['Cormorant_Garamond'] text-3xl font-bold text-[#2B1B12]">
+          <span className="font-['Cormorant_Garamond'] text-3xl font-bold text-[#2B1B12]" data-no-pixel="true">
             {formatCurrency(totalAmount)}
           </span>
         </div>
@@ -230,6 +230,8 @@ export const DesktopConfigPanel: React.FC<DesktopConfigPanelProps> = ({ product 
           whileHover={{ scale: 1.01 }}
           onClick={cart.length > 0 ? handleWhatsAppCheckout : () => setIsCartOpen(true)}
           disabled={totalCount === 0}
+          data-no-pixel="true"
+          data-fb-disable-event="true"
           className={`w-full py-3.5 px-4 rounded-full font-['Syne'] font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer ${
             totalCount > 0
               ? 'bg-[#422B19] hover:bg-[#2B1B12] text-[#E2C38F]'

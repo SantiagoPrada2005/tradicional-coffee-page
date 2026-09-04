@@ -354,11 +354,11 @@ export const CartDrawer: React.FC = () => {
                         {deliveryAddress ? 'Dirección indicada' : 'A coordinar'}
                       </span>
                     </div>
-                    <div className="flex items-baseline justify-between pt-1.5 border-t border-[#E2D3BB]/60">
+                    <div className="flex items-baseline justify-between pt-1.5 border-t border-[#E2D3BB]/60" data-no-pixel="true">
                       <span className="font-['Cormorant_Garamond'] text-xl sm:text-2xl font-bold text-[#2B1B12]">
                         Total
                       </span>
-                      <span className="font-['Cormorant_Garamond'] text-2xl sm:text-3xl font-bold text-[#2B1B12]">
+                      <span className="font-['Cormorant_Garamond'] text-2xl sm:text-3xl font-bold text-[#2B1B12]" data-no-pixel="true">
                         {formatCurrency(totalAmount)}
                       </span>
                     </div>
@@ -371,6 +371,8 @@ export const CartDrawer: React.FC = () => {
                       whileTap={{ scale: 0.97 }}
                       whileHover={{ scale: 1.01 }}
                       onClick={handleWhatsAppCheckout}
+                      data-no-pixel="true"
+                      data-fb-disable-event="true"
                       className="w-full py-3.5 sm:py-4 px-6 rounded-full bg-[#2B1B12] hover:bg-[#422B19] text-[#E2C38F] font-['Syne'] font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 shadow-[0_10px_25px_rgba(43,27,18,0.35)] transition-all cursor-pointer"
                     >
                       <span>HACER PEDIDO POR WHATSAPP</span>
